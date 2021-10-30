@@ -10,11 +10,11 @@ client.connect(err => {
   // perform actions on the collection object
   client.close();
 });
-mongoose.connect("mongodb+srv://shady:shady1234@airline.tqj19.mongodb.net/Airlines?retryWrites=true&w=majority",{useNewUrlParser : true})
+mongoose.connect(uri,{useNewUrlParser : true})
 const app = express();
 const port = process.env.PORT || "3000";
 const User = require('./models/User');
-const newUser = new User({
+/*const newUser = new User({
   Name: "Shady",
   Email: "shady@admin.com",
   Password: "1234",
@@ -24,11 +24,20 @@ const newUser = new User({
   MartialStatus: "Single",
   PhoneNumber:"011xxxxxx",
   isAdmin: true});
-  newUser.save();
-
-  console.log(user.find())
-
-
+  newUser.save().then(
+    data=>{
+    console.log("confirmed");
+  }
+  ).catch(err=>{
+    console.log("err1");
+  })
+  */  
+    
+    
+  
+  
+    console.log(User.find());
+  
 app.listen(port, () => {
   console.log("connected")
 })
