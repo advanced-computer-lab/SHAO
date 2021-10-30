@@ -1,5 +1,26 @@
-extends layout
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>
+        Create Flight
+    </title>
+</head>
+<body>
+    <h1>
+        Create Flight
+    </h1>
+<form action="/createflight" method ="POST">
+    <input type="text" name="FlightNumber" placeholder="flightNumber">
+    <input type="text" name="DepartureTime" placeholder="departureTime">
+    <input type="text" name="ArrivalTime" placeholder="arrivalTime">
+    <input type="text" name="EconomySeats" placeholder="economySeats">
+    <input type="text" name="BusinessSeats" placeholder="businessSeats">
+    <input type="text" name="Airport" placeholder="airport">
+    <input type="submit" name="createflight"></button>
+</form>
 
-block content
-  h1= title
-  p Welcome to #{title}
+
+
+</body>
+</html>
