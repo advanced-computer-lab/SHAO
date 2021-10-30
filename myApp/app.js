@@ -3,20 +3,28 @@ const mongoose = require('mongoose');
 const bodyp=require("body-parser");
 const bodyParser = require("body-parser");
 const { MongoClient } = require('mongodb');
-const uri = "mongodb+srv://shady:shady1234@airline.tqj19.mongodb.net/Airlines?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
-mongoose.connect(uri,{useNewUrlParser : true})
+
+
+
+//hidedb
+require("dotenv").config();
+const uri = process.env.uri;
+console.log(uri)
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+.then(result =>console.log("MongoDB is now connected") )
+.catch(err => console.log(err));
+
+
+
+
+
+
 const app = express();
 const port = process.env.PORT || "3000";
 const User = require('./models/User');
-/*const newUser = new User({
-  Name: "Shady",
-  Email: "shady@admin.com",
+const newUser = new User({
+  Name: "aliiiii",
+  Email: "aliiii@admin.com",
   Password: "1234",
   Age:21,
   BornIn: "Cairo",
@@ -31,7 +39,7 @@ const User = require('./models/User');
   ).catch(err=>{
     console.log("err1");
   })
-  */  
+  
     
     
   
