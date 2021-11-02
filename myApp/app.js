@@ -48,8 +48,36 @@ const User = require('./models/User');
 app.get('/createflight', (req,res) => {
   res.sendFile(__dirname + '/views/index.html')
 })
-app.post("/post", (req, res) => {
-  console.log("Connected to React");
+app.post("/addflight", (req, res) => {
+   var number = Number(req.body.flightNumber);
+   var dep = req.body.departureTime;
+   var arr = req.body.arrivalTime;
+   var ec = Number(req.body.economySeats);
+   var bz = Number(req.body.businessSeats);
+   var airport= req.body.airport;
+  
+
+  const flight =new Flight({
+    FlightNumber : number,
+    DepartureTime : dep,
+    ArrivalTime : arr ,
+    EconomySeats: ec,
+    BusinessSeats: bz,
+    Airport: airport});
+
+flight.save().then(
+  data=>{
+  res.send("confirmed");
+}
+).catch(err=>{
+  console.log("err");
+})
+  
+  
+  
+
+
+  console.log("confirmed");
   res.redirect("/");
 });
  app.post('/createflight',function(req,res) {
