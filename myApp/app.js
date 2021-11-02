@@ -9,7 +9,6 @@ const { MongoClient } = require('mongodb');
 //hidedb
 require("dotenv").config();
 const uri = process.env.uri;
-console.log(uri)
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(result =>console.log("MongoDB is now connected") )
 .catch(err => console.log(err));
@@ -20,7 +19,7 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 
 
 const app = express();
-const port = process.env.PORT || "3000";
+const port = process.env.PORT || 8080;
 const User = require('./models/User');
 /*const newUser = new User({
   Name: "aliiiii",
@@ -43,29 +42,32 @@ const User = require('./models/User');
   */
   
   
-    console.log(User.find());
+   // console.log(User.find());
 
 
 app.get('/createflight', (req,res) => {
   res.sendFile(__dirname + '/views/index.html')
 })
-
-app.post('/createflight',function(req,res) {
-  var number = Number(req.body.flightNumber);
-  var dep = req.body.departureTime;
-  var arr = req.body.arrivalTime;
-  var ec = Number(req.body.economySeats);
-  var bz = Number(req.body.businessSeats);
-  var airport= req.body.airport;
+app.post("/post", (req, res) => {
+  console.log("Connected to React");
+  res.redirect("/");
+});
+ app.post('/createflight',function(req,res) {
+  // var number = Number(req.body.flightNumber);
+  // var dep = req.body.departureTime;
+  // var arr = req.body.arrivalTime;
+  // var ec = Number(req.body.economySeats);
+  // var bz = Number(req.body.businessSeats);
+  // var airport= req.body.airport;
   
 
   const flight =new Flight({
-    FlightNumber : number,
-    DepartureTime : dep,
-    ArrivalTime : arr ,
-    EconomySeats: ec,
-    BusinessSeats: bz,
-    Airport: airport});
+    FlightNumber : 22,
+    DepartureTime : "12",
+    ArrivalTime : "arr" ,
+    EconomySeats: 200,
+    BusinessSeats: 200,
+    Airport: "airport"});
 
 flight.save().then(
   data=>{
