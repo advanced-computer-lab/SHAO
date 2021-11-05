@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const flightSchema = new Schema({
+const flightSchema =  new Schema ({
   FlightNumber: {
     type: Number,
     required: true,
@@ -27,6 +27,6 @@ const flightSchema = new Schema({
     type: String,
     required: true
   }}, { timestamps: true });
-
+mongoose.models={}
 const Flight = mongoose.model('Flight', flightSchema);
 module.exports = Flight;

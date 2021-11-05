@@ -1,11 +1,13 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 import ReactDOM from 'react-dom';
-import Addflight from './addflight';
+
+import App from"./App";
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <Addflight />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

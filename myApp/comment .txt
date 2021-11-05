@@ -1,0 +1,58 @@
+/*const newUser = new User({
+  Name: "aliiiii",
+  Email: "aliiii@admin.com",
+  Password: "1234",
+  Age:21,
+  BornIn: "Cairo",
+  LivesIn:"Cairo",
+  MartialStatus: "Single",
+  PhoneNumber:"011xxxxxx",
+  isAdmin: true});
+  newUser.save().then(
+    data=>{
+    console.log("confirmed");
+  }
+  ).catch(err=>{
+    console.log("err1");
+  })
+  // app.get('/createflight', (req,res) => {
+//   res.sendFile(__dirname + '/views/index.html')
+// })
+
+// app.post("/Addflight", (req, res) => {
+//     var number = Number(req.body.Flight_number);
+//     var dep = req.body.DepartureTime;
+//     var arr = req.body.ArrivalTime;
+//     var ec = Number(req.body.EconomySeats);
+//     var bz = Number(req.body.BusinessSeats);
+//     var airport= req.body.Airport;
+   
+ 
+//    const flight =new Flight({
+//      FlightNumber : number,
+//      DepartureTime : dep,
+//      ArrivalTime : arr ,
+//      EconomySeats: ec,
+//      BusinessSeats: bz,
+//      Airport: airport});
+ 
+//  flight.save().then(
+//    data=>{
+//    res.send("confirmed");
+//  }
+//  ).catch(err=>{
+//    console.log("err");
+//  })
+//    console.log("confirmed");
+//    res.redirect("/");
+//  });
+// app.get('/Showflights', (req,res) => {
+//   Flight.find({})
+//       .then(result => {
+//         res.send(result);
+//       })
+//       .catch(err => {
+//         console.log(err);
+//       });
+// });
+

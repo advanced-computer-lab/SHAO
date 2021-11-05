@@ -1,26 +1,21 @@
-
+import React from "react";
+import Navbar from "./compnents/nav";
+import { BrowserRouter as Router,Route } from "react-router-dom";
+import Addflight from "./compnents/addflight";
+import Showflights from "./compnents/showflights";
 function App() {
 return (
-	<div className="App">
-	<header className="App-header">
+	<Router>
+		<Navbar />
 		
+		<Route path="/flight/Addflight">
+		<Addflight />
+		</Route>
+		<Route path="/flight/Showflights">
+		<Showflights />
+		</Route>
 		
-<p>A simple React app.....</p>
-
-		<a
-		className="App-link"
-		href="https://reactjs.org"
-		target="_blank"
-		rel="noopener noreferrer"
-		>
-		Learn React
-		</a>
-		<form action="../../post/home" method="post"
-			className="form">
-		<button type="submit">Connected?</button>
-		</form>
-	</header>
-	</div>
+		</Router>
 );
 }
 
