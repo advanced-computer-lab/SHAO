@@ -1,6 +1,8 @@
 import React,{useState} from "react";
 import axios from "axios";
 
+import Button from '@material-ui/core/Button';
+
 
 function Addflight() {
  const [Flight_number, setfn] = useState(" ");
@@ -95,7 +97,7 @@ DepartureTime:DepartureTime ,
   </label>
   <br/>
              
-            <input type="submit"value='submit'/>
+  <Button variant="contained"  type="submit" color="primary" > Add flight </Button>
             
                    </header>
         </div>

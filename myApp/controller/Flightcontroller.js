@@ -44,7 +44,9 @@ FlightRoutes.post('/search', (req,res) => {
   
   Flight.find(req.body,function(err,docs){
     console.log(docs);
-   res.send(docs);
+    return res.redirect('/searchresults'); 
+
+   
    
 
   

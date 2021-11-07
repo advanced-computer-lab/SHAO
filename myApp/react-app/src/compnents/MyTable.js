@@ -1,48 +1,20 @@
-import React from "react";
-import axios from "axios";
-import {useState,useEffect} from "react";
-import Button from '@material-ui/core/Button';
 
+
+import React from "react";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-function Handledelete(event){
-  var s=String(event.currentTarget.id);
-  console.log(s);
-  const url='http://localhost:8080/flight/delete/' + s
-  axios.post(url)
-  window.location.reload(false);
-}
-function Handleupdate(event){
-  var s=String(event.currentTarget.id);
-  console.log(s);
-  const url='http://localhost:8080/flight/update/' + s
-
-  axios.post(url)
-  window.location.reload(false);
-
-  }
-function Showflights({}) {
 
 
-  
-  
-    const [userList,setUserList]= useState([]);
-    useEffect(()=> {
-    axios.get('http://localhost:8080/flight/Showflights')
-    .then((res)=>{
-      console.log(res.data);
-      setUserList(res.data);
-    })   
-   },[]);
-     return (
-         
-      <Paper>
+export default function MyTable({u}) {
+  console.log(u)
+  return (
+    <Paper>
       <Table>
-        <TableHead >
+        <TableHead>
           <TableRow>
             <TableCell>FlightNumber</TableCell>
             <TableCell>DepartureTime</TableCell>
@@ -56,7 +28,7 @@ function Showflights({}) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {userList.map(row => (
+          {u.map(row => (
             <TableRow key={row._id}>
             <TableCell>{row.FlightNumber}</TableCell>
             <TableCell>{row.DepartureTime}</TableCell>
@@ -67,20 +39,13 @@ function Showflights({}) {
             <TableCell>{row.BusinessSeats}</TableCell>
             <TableCell>{row.ArrivalTerminal}</TableCell>
             <TableCell>{row.DepartureTerminal}</TableCell>
-            <Button variant="contained" id={row._id} type="submit"value='delete' onClick={Handleupdate}> update </Button>
-            <Button variant="contained" id={row._id} type="submit"value='delete' onClick={Handledelete} color="primary"> delete </Button>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </Paper>
-     ) 
-         
-         
-         
-     
- 
-
+  );
 }
 
-export default Showflights;
+
+
