@@ -17,7 +17,6 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 
 
 
-
 const app = express();
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
@@ -30,11 +29,6 @@ app.use("/flight",Flightcontrol)
 
   
   
-  
-  
-
-
-
 
 
   

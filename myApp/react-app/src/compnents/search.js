@@ -2,45 +2,46 @@ import React,{useState} from "react";
 import axios from "axios";
 
 
-function Addflight() {
- const [Flight_number, setfn] = useState(" ");
- const [DepartureTime, setDT] = useState(" ");
- const [TO, setto] = useState(" ");
- const [From, setFrom] = useState(" ");
- const [ArrivalTime, setat] = useState(" ");
- const [First, setF] = useState(" ");
- const [EconomySeats, setE] = useState(" ");
- const [BusinessSeats, setB] = useState(" ");
- const [ArrivalTerminal, setater] = useState(" ");
- const [DepartureTerminal, setDter] = useState(" ");
- 
+function Search() {
+ const [Flight_number, setfn] = useState();
+ const [DepartureTime, setDT] = useState();
+ const [TO, setto] = useState();
+ const [From, setFrom] = useState();
+ const [ArrivalTime, setat] = useState();
+ const [First, setF] = useState();
+ const [EconomySeats, setE] = useState();
+ const [BusinessSeats, setB] = useState();
+ const [ArrivalTerminal, setater] = useState();
+ const [DepartureTerminal, setDter] = useState();
 
 
   return (
-    <form onSubmit={(event)=> axios.post('http://localhost:8080/flight/Addflight',{
+      
+    <form onSubmit={(event)=> axios.post('http://localhost:8080/flight/search',{
    
-   Flight_number:Flight_number,
-DepartureTime:DepartureTime ,
-  To:TO ,
-  From:From ,
-  ArrivalTime:ArrivalTime,
+   FlightNumber : Flight_number,
+   DepartureTime : DepartureTime ,
+   To : TO ,
+   From : From ,
+   ArrivalTime : ArrivalTime,
   
-  First:First ,
+   First : First ,
  
-  EconomySeats: EconomySeats,
-  BusinessSeats:BusinessSeats ,
-  ArrivalTerminal: ArrivalTerminal,
-  DepartureTerminal:DepartureTerminal
+   EconomySeats : EconomySeats,
+   BusinessSeats : BusinessSeats ,
+   ArrivalTerminal : ArrivalTerminal,
+   DepartureTerminal : DepartureTerminal
 
     })}>
-    <div className="Addflight">
-    <header className="Addflight-header">
+    
+    <div className="Search">
+    <header className="search-header">
     
         
         
             
             
-    <h1>Add your flight details</h1>
+    <h1>Search</h1>
     
     <label>
     Flight number:
@@ -103,5 +104,5 @@ DepartureTime:DepartureTime ,
     );
     }
     
-    export default Addflight;
+    export default Search;
     

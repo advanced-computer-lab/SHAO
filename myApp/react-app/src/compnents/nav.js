@@ -5,7 +5,7 @@ function Navbar(){
 <h4><Link to="/">home</Link></h4>
 <h4><Link to="/flight/Addflight">addflight</Link></h4>
 <h4><Link to="/flight/Showflights">Show Flights</Link></h4>
-
+<h4><Link to="/flight/search">Search</Link></h4>
     </nav>
 }
 export default Navbar;

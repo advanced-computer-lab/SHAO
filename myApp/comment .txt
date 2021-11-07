@@ -56,3 +56,17 @@
 //       });
 // });
 
+// const flight =new Flight({
+//   FlightNumber : "A12312",
+//   DepartureTime : "dep",
+//   To:"DXB",
+//   From:"cai",
+//   ArrivalTime : "arr" ,
+//   First: 222,
+//   EconomySeats: 200,
+//   BusinessSeats: 200,
+//   ArrivalTerminal:"2",
+//   DepartureTerminal:"3"
+// });
+
+// flight.save();

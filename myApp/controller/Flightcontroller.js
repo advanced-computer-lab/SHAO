@@ -4,9 +4,31 @@ const Flight = require('../models/Flight');
 const FlightRoutes = express.Router();
 
 
-
+FlightRoutes.post('/update/:id', (req,res) => {
+  console.log(req.body,"tt");
+  Flight.findByIdAndUpdate(req.params.id,req.body,{new : true})
+      .then(result => {
+        console.log(result);
+        res.send(result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+});
+FlightRoutes.post('/delete/:id', (req,res) => {
+  console.log(req.body,"tt");
+  Flight.findByIdAndDelete(req.params.id,{new : true})
+      .then(result => {
+        console.log(result);
+        res.send(result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+});
 FlightRoutes.get('/Showflights', (req,res) => {
-  Flight.find({})
+  
+  Flight.find()
       .then(result => {
         res.send(result);
       })
@@ -18,24 +40,42 @@ FlightRoutes.get('/Addflight', (req,res) => {
   
         res.send();
 });
+FlightRoutes.post('/search', (req,res) => {
+  
+  Flight.find(req.body,function(err,docs){
+    console.log(docs);
+   res.send(docs);
+   
+
+  
+  }
+  );});
 
 FlightRoutes.post("/Addflight", (req, res) => {
     
-  var number = Number(req.body.Flight_number);
+  var number = req.body.Flight_number;
     var dep = req.body.DepartureTime;
+    var to = req.body.To;
+    var from = req.body.From;
     var arr = req.body.ArrivalTime;
-    var ec = Number(req.body.EconomySeats);
-    var bz = Number(req.body.BusinessSeats);
-    var airport= req.body.Airport;
-   console.log("tEst",number,dep,arr,ec,bz,airport)
+    var Fr = req.body.First;
+    var ec = req.body.EconomySeats;
+    var bz = req.body.BusinessSeats;
+    var Arrt= req.body.ArrivalTerminal;
+    var Dept= req.body.DepartureTerminal;
+   
  
    const flight =new Flight({
      FlightNumber : number,
      DepartureTime : dep,
+     To:to,
+     From:from, 
      ArrivalTime : arr ,
+     First:Fr,
      EconomySeats: ec,
      BusinessSeats: bz,
-     Airport: airport});
+     ArrivalTerminal:Arrt,
+     DepartureTerminal:Dept});
  
  flight.save().then(
    data=>{
