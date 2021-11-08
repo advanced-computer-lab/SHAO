@@ -26,6 +26,9 @@
   "@material-ui/icons": "^4.11.2",
   
     
+  "@material-ui/styles": "^4.11.4",
+  
+    
   "@mui/material": "^5.0.6",
   
     
@@ -56,16 +59,25 @@
   "react-bootstrap-validation": "^0.1.11",
   
     
+  "react-confirm-alert": "^2.7.0",
+  
+    
   "react-devtools": "^4.21.0",
   
     
   "react-dom": "^17.0.2",
   
     
+  "react-draggable": "^4.4.4",
+  
+    
   "react-router-dom": "^5.3.0",
   
     
   "react-scripts": "^0.9.5",
+  
+    
+  "react-transition-components": "^4.2.0",
   
     
   "web-vitals": "^1.1.2"

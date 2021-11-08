@@ -1,6 +1,5 @@
 import React,{useState,useEffect} from "react";
 import axios from "axios";
-import SearchResults from "./searchResults";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -33,6 +32,7 @@ function Handledelete(event){
   const url='http://localhost:8080/flight/delete/' + s
   axios.post(url)
   window.location.reload(false);
+  
 }
 
 
