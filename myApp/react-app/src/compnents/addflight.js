@@ -32,9 +32,10 @@ DepartureTime:DepartureTime ,
   EconomySeats: EconomySeats,
   BusinessSeats:BusinessSeats ,
   ArrivalTerminal: ArrivalTerminal,
-  DepartureTerminal:DepartureTerminal
+  DepartureTerminal:DepartureTerminal,
+  
 
-    })}>
+    }).then(window.open("http://localhost:3000/flight/Showflights"))}>
     <div className="Addflight">
     <header className="Addflight-header">
     

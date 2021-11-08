@@ -16,23 +16,15 @@ function Handledelete(event){
   axios.post(url)
   window.location.reload(false);
 }
-function Handleupdate(event){
-  var s=String(event.currentTarget.id);
-  console.log(s);
-  const url='http://localhost:8080/flight/update/' + s
 
-  axios.post(url)
-  window.location.reload(false);
-
-  }
-function SearchResults({}) {
+function SearchResults({props}) {
 
 
   
   
-    const [userList,setUserList]= useState([]);
+     const [UserList,setUserList]= useState([props]);
     useEffect(()=> {
-    axios.get('http://localhost:3000/flight/searchresults')
+    axios.get('http://localhost:8080/flight/SearchResults')
     .then((res)=>{
       console.log(res.data);
       setUserList(res.data);
@@ -49,6 +41,7 @@ function SearchResults({}) {
             <TableCell>To</TableCell>
             <TableCell>From</TableCell>
             <TableCell>ArrivalTime</TableCell>
+            <TableCell>First</TableCell>
             <TableCell>EconomySeats</TableCell>
             <TableCell>BusinessSeats</TableCell>
             <TableCell>ArrivalTerminal</TableCell>
@@ -56,21 +49,9 @@ function SearchResults({}) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {userList.map(row => (
-            <TableRow key={row._id}>
-            <TableCell>{row.FlightNumber}</TableCell>
-            <TableCell>{row.DepartureTime}</TableCell>
-            <TableCell>{row.To}</TableCell>
-            <TableCell>{row.From}</TableCell>
-            <TableCell>{row.ArrivalTime}</TableCell>
-            <TableCell>{row.EconomySeats}</TableCell>
-            <TableCell>{row.BusinessSeats}</TableCell>
-            <TableCell>{row.ArrivalTerminal}</TableCell>
-            <TableCell>{row.DepartureTerminal}</TableCell>
-            <Button variant="contained" id={row._id} type="submit"value='delete' onClick={Handleupdate}> update </Button>
-            <Button variant="contained" id={row._id} type="submit"value='delete' onClick={Handledelete} color="primary"> delete </Button>
-            </TableRow>
-          ))}
+          {props.map(rows => (
+            <Row row={rows} />)
+          )}
         </TableBody>
       </Table>
     </Paper>
@@ -84,3 +65,79 @@ function SearchResults({}) {
 }
 
 export default SearchResults;
+function Row(props){
+  function Handleupdate(event){
+    var s=String(event.currentTarget.id);
+    console.log(s);
+    axios.post('http://localhost:8080/flight/update/' + s,{
+     
+      FlightNumber : Flight_number,
+      DepartureTime : DepartureTime ,
+      To : TO ,
+      From : From ,
+      ArrivalTime : ArrivalTime,
+     
+      First : First ,
+    
+      EconomySeats : EconomySeats,
+      BusinessSeats : BusinessSeats ,
+      ArrivalTerminal : ArrivalTerminal,
+      DepartureTerminal : DepartureTerminal,
+   
+       
+        }).then((res) => {
+      console.log(res)
+      console.log(res.data)
+ 
+   })
+  
+    
+    window.location.reload(false);
+    
+  
+    }
+  const [Flight_number, setfn] = useState();
+  const [DepartureTime, setDT] = useState();
+  const [TO, setto] = useState();
+  const [From, setFrom] = useState();
+  const [ArrivalTime, setat] = useState();
+  const [First, setF] = useState();
+  const [EconomySeats, setE] = useState();
+  const [BusinessSeats, setB] = useState();
+  const [ArrivalTerminal, setater] = useState();
+  const [DepartureTerminal, setDter] = useState();
+   useEffect(() => {setfn(props.row.FlightNumber);
+    setDT(props.row.DepartureTime);
+    setto(props.row.To);
+    setFrom(props.row.From);
+    setat(props.row.ArrivalTime);
+    setF(props.row.First);
+    setE(props.row.EconomySeats);
+    setB(props.row.BusinessSeats);
+    setater(props.row.ArrivalTerminal);
+    setDter(props.row.DepartureTerminal);
+    
+
+
+  },[])
+  return(<TableRow key={props.row._id}>
+    <TableCell><input  type="text" name="Flight_number"  placeholder="Flight_number" value={Flight_number} onChange={event=>setfn(event.target.value)}  />
+</TableCell>
+    <TableCell><input   type="text" name="DepartureTime" placeholder="DepartureTime" value={DepartureTime} onChange={event=>setDT(event.target.value)} /></TableCell>
+    <TableCell><input  type="text" name="To"  placeholder="To" value= {TO} onChange={event=>setto(event.target.value)} /></TableCell>
+    <TableCell><input  type="text" name="From" value= {From} placeholder="From" onChange={event=>setFrom(event.target.value)}  />
+  </TableCell>
+    <TableCell><input   type="text" name="ArrivalTime" placeholder="ArrivalTime" value= {ArrivalTime} onChange={event=>setat(event.target.value)} />
+  </TableCell>
+  <TableCell> <input  type="text" name="First"  placeholder="First" value={First} onChange={event=>setF(event.target.value)}  />
+</TableCell>
+
+    <TableCell> <input   type="text" name="EconomySeats" placeholder="EconomySeats" value= {EconomySeats} onChange={event=>setE(event.target.value)} /></TableCell>
+    <TableCell> <input   type="text" name="BusinessSeats" placeholder="BusinessSeats" value={BusinessSeats} onChange={event=>setB(event.target.value) }  /></TableCell>
+    <TableCell><input  type="text" name="ArrivalTerminal"  placeholder="ArrivalTerminal" value={ArrivalTerminal} onChange={event=>setater(event.target.value)}  /></TableCell>
+    <TableCell><input  type="text" name="DepartureTerminal"  placeholder="DepartureTerminal" value= {DepartureTerminal} onChange={event=>setDter(event.target.value)}  /></TableCell>
+    <Button variant="contained" id={props.row._id} type="submit"value='delete' onClick={Handleupdate}> update </Button>
+    <Button variant="contained" id={props.row._id} type="submit"value='delete' onClick={Handledelete} color="primary"> delete </Button>
+    </TableRow>)
+
+}

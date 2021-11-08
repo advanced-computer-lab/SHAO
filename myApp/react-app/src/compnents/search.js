@@ -1,68 +1,99 @@
 import React,{useState} from "react";
 import axios from "axios";
-
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
+import SearchResults from "./searchResults";
+// import Table from "@material-ui/core/Table";
+// import TableBody from "@material-ui/core/TableBody";
+// import TableCell from "@material-ui/core/TableCell";
+// import TableHead from "@material-ui/core/TableHead";
+// import TableRow from "@material-ui/core/TableRow";
+// import Paper from "@material-ui/core/Paper";
 
 import Button from '@material-ui/core/Button';
-function Handledelete(event){
-  var s=String(event.currentTarget.id);
-  console.log(s);
-  const url='http://localhost:8080/flight/delete/' + s
-  axios.post(url)
-  window.location.reload(false);
-}
-function Handleupdate(event){
-  var s=String(event.currentTarget.id);
-  console.log(s);
-  const url='http://localhost:8080/flight/update/' + s
+// function Handledelete(event){
+//   var s=String(event.currentTarget.id);
+//   console.log(s);
+//   const url='http://localhost:8080/flight/delete/' + s
+//   axios.post(url)
+//   window.location.reload(false);
+// }
+// function Handleupdate(event){
+//   var s=String(event.currentTarget.id);
+//   console.log(s);
+//   const url='http://localhost:8080/flight/update/' + s
 
-  axios.post(url)
-  window.location.reload(false);
+//   axios.post(url)
+//   window.location.reload(false);
 
-  }
+//   }
+   
+
 
 
 
 function Search() {
- const [Flight_number, setfn] = useState();
- const [DepartureTime, setDT] = useState();
- const [TO, setto] = useState();
- const [From, setFrom] = useState();
- const [ArrivalTime, setat] = useState();
- const [First, setF] = useState();
- const [EconomySeats, setE] = useState();
- const [BusinessSeats, setB] = useState();
- const [ArrivalTerminal, setater] = useState();
- const [DepartureTerminal, setDter] = useState();
+  const Handleclick=(event)=>{
+    event.preventDefault()
+    axios.post('http://localhost:8080/flight/search',{
+     
+     FlightNumber : Flight_number,
+     DepartureTime : DepartureTime ,
+     To : TO ,
+     From : From ,
+     ArrivalTime : ArrivalTime,
+    
+     First : First ,
+   
+     EconomySeats : EconomySeats,
+     BusinessSeats : BusinessSeats ,
+     ArrivalTerminal : ArrivalTerminal,
+     DepartureTerminal : DepartureTerminal,
+  
+      
+       }).then((res) => {
+         <SearchResults props={res} />
+     console.log(res)
+     console.log(res.data)
 
-
+  })
+  }
+  const [Flight_number, setfn] = useState();
+  const [DepartureTime, setDT] = useState();
+  const [TO, setto] = useState();
+  const [From, setFrom] = useState();
+  const [ArrivalTime, setat] = useState();
+  const [First, setF] = useState();
+  const [EconomySeats, setE] = useState();
+  const [BusinessSeats, setB] = useState();
+  const [ArrivalTerminal, setater] = useState();
+  const [DepartureTerminal, setDter] = useState();
+    
   return (
       
-    <form onSubmit={(event)=> axios.post('http://localhost:8080/flight/search',{
+     <form onSubmit={Handleclick}
+     //{ (event)=> {
+    
+  //      axios.post('http://localhost:8080/flight/search',{
    
-   FlightNumber : Flight_number,
-   DepartureTime : DepartureTime ,
-   To : TO ,
-   From : From ,
-   ArrivalTime : ArrivalTime,
+  //  FlightNumber : Flight_number,
+  //  DepartureTime : DepartureTime ,
+  //  To : TO ,
+  //  From : From ,
+  //  ArrivalTime : ArrivalTime,
   
-   First : First ,
- 
-   EconomySeats : EconomySeats,
-   BusinessSeats : BusinessSeats ,
-   ArrivalTerminal : ArrivalTerminal,
-   DepartureTerminal : DepartureTerminal,
+  //  First : First ,
+
+  //  EconomySeats : EconomySeats,
+  //  BusinessSeats : BusinessSeats ,
+  //  ArrivalTerminal : ArrivalTerminal,
+  //  DepartureTerminal : DepartureTerminal,
+   
 
     
-    }).then(axios.get('http://localhost:3000/flight/search'),(req,res) => {
-  console.log(req,res)
-  console.log(res.data)
-})}>
+    
+
+  //   }).then(res=>{console.log(res)} ).catch((err)=>
+  //   console.log(err))}}
+  >
     
     <div className="Search">
     <header className="search-header">
@@ -75,7 +106,7 @@ function Search() {
     
     <label>
     Flight number:
-    <input  type="text" name="Flight_number"  placeholder="Flight_number" onChange={event=>setfn(event.target.value)} />
+    <input  type="text" name="Flight_number"  placeholder="Flight_number" value={Flight_number} onChange={event=>setfn(event.target.value)} />
   </label>
   <br/>
   <label>
@@ -126,12 +157,12 @@ function Search() {
   </label>
   <br/>
              
-            <Button variant="contained"  type="submit" color="primary"> Submit </Button>
+            <Button variant="contained"  type="submit" color="primary"  value='submit ' > Submit </Button>
             
             
                    </header>
         </div>
-        </form>
+       </form>
     );
     }
     

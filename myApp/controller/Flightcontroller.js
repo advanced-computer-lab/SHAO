@@ -40,17 +40,19 @@ FlightRoutes.get('/Addflight', (req,res) => {
   
         res.send();
 });
+
 FlightRoutes.post('/search', (req,res) => {
   
   Flight.find(req.body,function(err,docs){
-    console.log(docs);
+    
   }
-  ).then(result => {
-          res.send(result);
-        })
-        .catch(err => {
-          console.log(err);
-        });});
+  ).clone().then(result => {
+    console.log(result)
+    return res.send(result);
+  })
+  .catch(err => {
+    console.log(err);
+  });});
 
 FlightRoutes.post("/Addflight", (req, res) => {
     
@@ -80,13 +82,13 @@ FlightRoutes.post("/Addflight", (req, res) => {
  
  flight.save().then(
    data=>{
-   res.send("confirmed");
+    res.redirect("http://localhost:3000/flight/Showflights");
  }
  ).catch(err=>{
    console.log(err);
  })
    console.log("confirmed");
-   res.redirect("/");
+   
  });
 
 module.exports = FlightRoutes
