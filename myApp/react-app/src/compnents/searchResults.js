@@ -24,38 +24,39 @@ function SearchResults({props}) {
   
      const [UserList,setUserList]= useState([props]);
     useEffect(()=> {
-    axios.get('http://localhost:8080/flight/SearchResults')
+    axios.post('http://localhost:8080/flight/search')
     .then((res)=>{
       console.log(res.data);
       setUserList(res.data);
+      return (
+         
+        <Paper>
+        <Table>
+          <TableHead >
+            <TableRow>
+              <TableCell>FlightNumber</TableCell>
+              <TableCell>DepartureTime</TableCell>
+              <TableCell>To</TableCell>
+              <TableCell>From</TableCell>
+              <TableCell>ArrivalTime</TableCell>
+              <TableCell>First</TableCell>
+              <TableCell>EconomySeats</TableCell>
+              <TableCell>BusinessSeats</TableCell>
+              <TableCell>ArrivalTerminal</TableCell>
+              <TableCell>DepartureTerminal</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {UserList.map(rows => (
+              <Row row={rows} />)
+            )}
+          </TableBody>
+        </Table>
+      </Paper>
+       )
     })   
    },[]);
-     return (
-         
-      <Paper>
-      <Table>
-        <TableHead >
-          <TableRow>
-            <TableCell>FlightNumber</TableCell>
-            <TableCell>DepartureTime</TableCell>
-            <TableCell>To</TableCell>
-            <TableCell>From</TableCell>
-            <TableCell>ArrivalTime</TableCell>
-            <TableCell>First</TableCell>
-            <TableCell>EconomySeats</TableCell>
-            <TableCell>BusinessSeats</TableCell>
-            <TableCell>ArrivalTerminal</TableCell>
-            <TableCell>DepartureTerminal</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {props.map(rows => (
-            <Row row={rows} />)
-          )}
-        </TableBody>
-      </Table>
-    </Paper>
-     ) 
+      
          
          
          
