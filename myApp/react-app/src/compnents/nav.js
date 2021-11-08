@@ -45,7 +45,7 @@ function Navbar() {
     <AppBar position="static">
       <CssBaseline />
       <Toolbar>
-        <Typography variant="h4" className={classes.logo}>
+        <Typography variant="h2" className={classes.logo}>
           AirLines
         </Typography>
           <div className={classes.navlinks}>

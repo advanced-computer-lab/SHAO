@@ -59,48 +59,9 @@ function Search() {
    DepartureTerminal : DepartureTerminal,
 
     
-    }).then((res) => {
-        console.log(res.data)
-        return (
-            <Paper>
-      <Table>
-        <TableHead >
-          <TableRow>
-            <TableCell>FlightNumber</TableCell>
-            <TableCell>DepartureTime</TableCell>
-            <TableCell>To</TableCell>
-            <TableCell>From</TableCell>
-            <TableCell>ArrivalTime</TableCell>
-            <TableCell>EconomySeats</TableCell>
-            <TableCell>BusinessSeats</TableCell>
-            <TableCell>ArrivalTerminal</TableCell>
-            <TableCell>DepartureTerminal</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {res.data.map(row => (
-            <TableRow key={row._id}>
-            <TableCell>{row.FlightNumber}</TableCell>
-            <TableCell>{row.DepartureTime}</TableCell>
-            <TableCell>{row.To}</TableCell>
-            <TableCell>{row.From}</TableCell>
-            <TableCell>{row.ArrivalTime}</TableCell>
-            <TableCell>{row.EconomySeats}</TableCell>
-            <TableCell>{row.BusinessSeats}</TableCell>
-            <TableCell>{row.ArrivalTerminal}</TableCell>
-            <TableCell>{row.DepartureTerminal}</TableCell>
-            <Button variant="contained" id={row._id} type="submit"value='delete' onClick={Handleupdate}> update </Button>
-            <Button variant="contained" id={row._id} type="submit"value='delete' onClick={Handledelete} color="primary"> delete </Button>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Paper>
-     ) 
-        
-  
-}, (error) => {
-  console.log(error);
+    }).then(axios.get('http://localhost:3000/flight/search'),(req,res) => {
+  console.log(req,res)
+  console.log(res.data)
 })}>
     
     <div className="Search">

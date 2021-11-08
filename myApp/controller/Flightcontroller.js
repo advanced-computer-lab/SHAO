@@ -44,14 +44,13 @@ FlightRoutes.post('/search', (req,res) => {
   
   Flight.find(req.body,function(err,docs){
     console.log(docs);
-    return res.redirect('/searchresults'); 
-
-   
-   
-
-  
   }
-  );});
+  ).then(result => {
+          res.send(result);
+        })
+        .catch(err => {
+          console.log(err);
+        });});
 
 FlightRoutes.post("/Addflight", (req, res) => {
     
