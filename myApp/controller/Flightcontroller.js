@@ -2,7 +2,7 @@
 const express = require("express");
 const Flight = require('../models/Flight');
 const FlightRoutes = express.Router();
-
+const bodyp = require("body-parser")
 
 FlightRoutes.post('/update/:id', (req,res) => {
   console.log(req.body,"tt");
@@ -70,10 +70,10 @@ FlightRoutes.post("/Addflight", (req, res) => {
  
    const flight =new Flight({
      FlightNumber : number,
-     DepartureTime : dep,
+     DepartureTime : Date.parse(dep),
      To:to,
      From:from, 
-     ArrivalTime : arr ,
+     ArrivalTime : Date.parse(arr) ,
      First:Fr,
      EconomySeats: ec,
      BusinessSeats: bz,

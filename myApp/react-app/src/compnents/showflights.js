@@ -9,6 +9,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import { TextField } from "@material-ui/core";
 function Handledelete(event){
   var s=String(event.currentTarget.id);
   console.log(s);
@@ -33,7 +34,7 @@ function Showflights({}) {
      return (
          
       <Paper>
-      <Table>
+      <Table sx={{ maxWidth: 100 }} >
         <TableHead >
           <TableRow>
             <TableCell>FlightNumber</TableCell>
@@ -121,23 +122,25 @@ function Row(props){
 
   },[])
   return(<TableRow key={props.row._id}>
-    <TableCell><input  type="text" name="Flight_number"  placeholder="Flight_number" value={Flight_number} onChange={event=>setfn(event.target.value)}  />
+    <TableCell><TextField variant="standard"  type="text" name="Flight_number"  placeholder="Flight_number" value={Flight_number} onChange={event=>setfn(event.target.value)}  />
 </TableCell>
-    <TableCell><input   type="text" name="DepartureTime" placeholder="DepartureTime" value={DepartureTime} onChange={event=>setDT(event.target.value)} /></TableCell>
-    <TableCell><input  type="text" name="To"  placeholder="To" value= {TO} onChange={event=>setto(event.target.value)} /></TableCell>
-    <TableCell><input  type="text" name="From" value= {From} placeholder="From" onChange={event=>setFrom(event.target.value)}  />
+    <TableCell><TextField variant="standard"   type="text" name="DepartureTime" placeholder="DepartureTime" value={DepartureTime} onChange={event=>setDT(event.target.value)} /></TableCell>
+    <TableCell><TextField variant="standard"  type="text" name="To"  placeholder="To" value= {TO} onChange={event=>setto(event.target.value)} /></TableCell>
+    <TableCell><TextField variant="standard"  type="text" name="From" value= {From} placeholder="From" onChange={event=>setFrom(event.target.value)}  />
   </TableCell>
-    <TableCell><input   type="text" name="ArrivalTime" placeholder="ArrivalTime" value= {ArrivalTime} onChange={event=>setat(event.target.value)} />
+    <TableCell><TextField variant="standard"   type="text" name="ArrivalTime" placeholder="ArrivalTime" value= {ArrivalTime} onChange={event=>setat(event.target.value)} />
   </TableCell>
-  <TableCell> <input  type="text" name="First"  placeholder="First" value={First} onChange={event=>setF(event.target.value)}  />
+  <TableCell> <TextField variant="standard"  type="text" name="First"  placeholder="First" value={First} onChange={event=>setF(event.target.value)}  />
 </TableCell>
 
-    <TableCell> <input   type="text" name="EconomySeats" placeholder="EconomySeats" value= {EconomySeats} onChange={event=>setE(event.target.value)} /></TableCell>
-    <TableCell> <input   type="text" name="BusinessSeats" placeholder="BusinessSeats" value={BusinessSeats} onChange={event=>setB(event.target.value) }  /></TableCell>
-    <TableCell><input  type="text" name="ArrivalTerminal"  placeholder="ArrivalTerminal" value={ArrivalTerminal} onChange={event=>setater(event.target.value)}  /></TableCell>
-    <TableCell><input  type="text" name="DepartureTerminal"  placeholder="DepartureTerminal" value= {DepartureTerminal} onChange={event=>setDter(event.target.value)}  /></TableCell>
+    <TableCell> <TextField variant="standard"   type="text" name="EconomySeats" placeholder="EconomySeats" value= {EconomySeats} onChange={event=>setE(event.target.value)} /></TableCell>
+    <TableCell> <TextField variant="standard"   type="text" name="BusinessSeats" placeholder="BusinessSeats" value={BusinessSeats} onChange={event=>setB(event.target.value) }  /></TableCell>
+    <TableCell><TextField variant="standard"  type="text" name="ArrivalTerminal"  placeholder="ArrivalTerminal" value={ArrivalTerminal} onChange={event=>setater(event.target.value)}  /></TableCell>
+    <TableCell><TextField variant="standard"  type="text" name="DepartureTerminal"  placeholder="DepartureTerminal" value= {DepartureTerminal} onChange={event=>setDter(event.target.value)}  /></TableCell>
     <Button variant="contained" id={props.row._id} type="submit"value='delete' onClick={Handleupdate}> update </Button>
-    <Button variant="contained" id={props.row._id} type="submit"value='delete' onClick={Handledelete} color="primary"> delete </Button>
+    <Button variant="contained" id={props.row._id} type="submit"value='reserve' onClick={Handledelete} color="primary"> reserve </Button>
+    <Button variant="contained" id={props.row._id} type="submit"value='delete' onClick={Handledelete} color="secondary"> delete </Button>
+    
     </TableRow>)
 
 }
