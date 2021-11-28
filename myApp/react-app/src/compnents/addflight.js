@@ -46,54 +46,54 @@ DepartureTime:DepartureTime ,
     <h1>Add your flight details</h1>
     
     <label>
-    Flight number:
+      Flight number:
     <input  type="text" name="Flight_number"  placeholder="Flight_number" onChange={event=>setfn(event.target.value)} />
   </label>
   <br/>
   <label>
-  DepartureTime:
+    DepartureTime:
     <input   type="text" name="DepartureTime" placeholder="DepartureTime" onChange={event=>setDT(event.target.value)}  />
   </label>
   <br/>
   <label>
-    To:
+      To:
     <input  type="text" name="To"  placeholder="To" onChange={event=>setto(event.target.value)} />
   </label>
   <br/>
   
   <label>
-    From:
+      From:
     <input  type="text" name="From"  placeholder="From" onChange={event=>setFrom(event.target.value)}  />
   </label>
   <br/>
   <label>
-  ArrivalTime
+    ArrivalTime
     <input   type="text" name="ArrivalTime" placeholder="ArrivalTime" onChange={event=>setat(event.target.value)} />
   </label>
   <br/>
   <label>
   
   <label>
-    First:
+      First:
     <input  type="text" name="First"  placeholder="First" onChange={event=>setF(event.target.value)}  />
   </label>
   <br/>
-  EconomySeats:
+    EconomySeats:
     <input   type="text" name="EconomySeats" placeholder="EconomySeats" onChange={event=>setE(event.target.value)} />
   </label>
   <br/>
     <label>
-    BusinessSeats:
+      BusinessSeats:
     <input   type="text" name="BusinessSeats" placeholder="BusinessSeats" onChange={event=>setB(event.target.value)}  />
   </label>
   <br/>
   <label>
-    ArrivalTerminal:
+      ArrivalTerminal:
     <input  type="text" name="ArrivalTerminal"  placeholder="ArrivalTerminal" onChange={event=>setater(event.target.value)}  />
   </label>
   <br/>
   <label>
-    DepartureTerminal:
+      DepartureTerminal:
     <input  type="text" name="DepartureTerminal"  placeholder="DepartureTerminal" onChange={event=>setDter(event.target.value)}  />
   </label>
   <br/>

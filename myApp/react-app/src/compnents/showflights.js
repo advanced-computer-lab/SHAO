@@ -9,6 +9,9 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+
+
+
 function Handledelete(event){
   var s=String(event.currentTarget.id);
   console.log(s);
@@ -31,6 +34,7 @@ function Showflights({}) {
     })   
    },[]);
      return (
+       
          
       <Paper>
       <Table>
@@ -55,6 +59,7 @@ function Showflights({}) {
         </TableBody>
       </Table>
     </Paper>
+    
      ) 
          
          
@@ -138,6 +143,7 @@ function Row(props){
     <TableCell><input  type="text" name="DepartureTerminal"  placeholder="DepartureTerminal" value= {DepartureTerminal} onChange={event=>setDter(event.target.value)}  /></TableCell>
     <Button variant="contained" id={props.row._id} type="submit"value='delete' onClick={Handleupdate}> update </Button>
     <Button variant="contained" id={props.row._id} type="submit"value='delete' onClick={Handledelete} color="primary"> delete </Button>
-    </TableRow>)
+    </TableRow>
+    )
 
 }

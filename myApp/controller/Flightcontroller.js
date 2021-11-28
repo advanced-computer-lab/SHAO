@@ -66,8 +66,15 @@ FlightRoutes.post("/Addflight", (req, res) => {
     var bz = req.body.BusinessSeats;
     var Arrt= req.body.ArrivalTerminal;
     var Dept= req.body.DepartureTerminal;
-   
+
+    if(from==to) 
+    {
+      console.log('same place error')
+    
+    }
  
+    else 
+    {
    const flight =new Flight({
      FlightNumber : number,
      DepartureTime : dep,
@@ -86,7 +93,7 @@ FlightRoutes.post("/Addflight", (req, res) => {
  }
  ).catch(err=>{
    console.log(err);
- })
+ })}
    console.log("confirmed");
    
  });
