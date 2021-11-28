@@ -55,25 +55,25 @@ FlightRoutes.post('/search', (req,res) => {
   });});
 
 FlightRoutes.post("/Addflight", (req, res) => {
-    var dep = new Date();
-    var arr = new Date();
+   
     var number = req.body.Flight_number;
-    dep = Date.parse(req.body.DepartureTime);
+    var dep = Date.parse(req.body.DepartureTime);
     var to = req.body.To;
     var from = req.body.From;
-    arr = Date.parse(req.body.ArrivalTime);
+    var arr = Date.parse(req.body.ArrivalTime);
     var Fr = req.body.First;
     var ec = req.body.EconomySeats;
     var bz = req.body.BusinessSeats;
     var Arrt= req.body.ArrivalTerminal;
     var Dept= req.body.DepartureTerminal;
    
-    if(from==to)
-    {
-      msg = "Arrival and departure terminal can't be the same";
-      res.send(msg);
-    }
- 
+//     if(from===to)
+//     {
+//       console.log("err")
+//       msg = "Arrival and departure terminal can't be the same";
+//       res.send(msg);
+//     }
+//  else{
    const flight =new Flight({
      FlightNumber : number,
      DepartureTime : dep,
@@ -95,6 +95,7 @@ FlightRoutes.post("/Addflight", (req, res) => {
  })
    console.log("confirmed");
    
- });
+// }
+});
 
 module.exports = FlightRoutes
