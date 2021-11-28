@@ -2,7 +2,7 @@
 const express = require("express");
 const Flight = require('../models/Flight');
 const FlightRoutes = express.Router();
-const bodyp = require("body-parser")
+var msg = " ";
 
 FlightRoutes.post('/update/:id', (req,res) => {
   console.log(req.body,"tt");
@@ -55,25 +55,31 @@ FlightRoutes.post('/search', (req,res) => {
   });});
 
 FlightRoutes.post("/Addflight", (req, res) => {
-    
-  var number = req.body.Flight_number;
-    var dep = req.body.DepartureTime;
+    var dep = new Date();
+    var arr = new Date();
+    var number = req.body.Flight_number;
+    dep = Date.parse(req.body.DepartureTime);
     var to = req.body.To;
     var from = req.body.From;
-    var arr = req.body.ArrivalTime;
+    arr = Date.parse(req.body.ArrivalTime);
     var Fr = req.body.First;
     var ec = req.body.EconomySeats;
     var bz = req.body.BusinessSeats;
     var Arrt= req.body.ArrivalTerminal;
     var Dept= req.body.DepartureTerminal;
    
+    if(from==to)
+    {
+      msg = "Arrival and departure terminal can't be the same";
+      res.send(msg);
+    }
  
    const flight =new Flight({
      FlightNumber : number,
-     DepartureTime : Date.parse(dep),
+     DepartureTime : dep,
      To:to,
      From:from, 
-     ArrivalTime : Date.parse(arr) ,
+     ArrivalTime : arr ,
      First:Fr,
      EconomySeats: ec,
      BusinessSeats: bz,

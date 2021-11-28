@@ -34,7 +34,7 @@ DepartureTime:DepartureTime ,
   ArrivalTerminal: ArrivalTerminal,
   DepartureTerminal:DepartureTerminal,
   
-
+  
     }).then(window.open("http://localhost:3000/flight/Showflights"))}>
     <div className="Addflight">
     <header className="Addflight-header">
@@ -99,6 +99,7 @@ DepartureTime:DepartureTime ,
   <br/>
              
   <Button variant="contained"  type="submit" color="primary" > Add flight </Button>
+
             
                    </header>
         </div>
