@@ -1,81 +1,72 @@
 import React from "react";
 import axios from "axios";
 import {useState,useEffect} from "react";
-import flighttable from './flighttable';
+import Button from '@material-ui/core/Button';
 
-function Showflights({}) {
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+function Handledelete(event){
+  var s=String(event.currentTarget.id);
+  console.log(s);
+  const url='http://localhost:8080/flight/delete/' + s
+  axios.post(url)
+  window.location.reload(false);
+}
+
+function SearchResults({props}) {
 
 
   
   
-    const [userList,setUserList]= useState([]);
-    useEffect(() => {
-     // Update the document title using the browser API
-    axios.get('http://localhost:8080/flight/Showflights')
+     const [UserList,setUserList]= useState([props]);
+    useEffect(()=> {
+    axios.post('http://localhost:8080/flight/search')
     .then((res)=>{
       console.log(res.data);
       setUserList(res.data);
-    }) //returning the data from the backend  
+      return (
+         
+        <Paper>
+        <Table>
+          <TableHead >
+            <TableRow>
+              <TableCell>FlightNumber</TableCell>
+              <TableCell>DepartureTime</TableCell>
+              <TableCell>To</TableCell>
+              <TableCell>From</TableCell>
+              <TableCell>ArrivalTime</TableCell>
+              <TableCell>First</TableCell>
+              <TableCell>EconomySeats</TableCell>
+              <TableCell>BusinessSeats</TableCell>
+              <TableCell>ArrivalTerminal</TableCell>
+              <TableCell>DepartureTerminal</TableCell>
+              <TableCell>TicketsPrice</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {UserList.map(rows => (
+              <Row row={rows} />)
+            )}
+          </TableBody>
+        </Table>
+      </Paper>
+       )
+    })   
    },[]);
-     return (
+      
          
-<<<<<<< Updated upstream
-         userList.map((u) =>{ //flightList /f
- 
-          return( <div><button key = {u.FlightNumber}>{u.FlightNumber}</button><button>{u.AirPort}</button></div>) 
-=======
-      <Paper>
-      <Table>
-        <TableHead >
-          <TableRow>
-            <TableCell>FlightNumber</TableCell>
-            <TableCell>DepartureTime</TableCell>
-            <TableCell>To</TableCell>
-            <TableCell>From</TableCell>
-            <TableCell>ArrivalTime</TableCell>
-            <TableCell>First</TableCell>
-            <TableCell>EconomySeats</TableCell>
-            <TableCell>BusinessSeats</TableCell>
-            <TableCell>ArrivalTerminal</TableCell>
-            <TableCell>DepartureTerminal</TableCell>
-            <TableCell>TicketsPrice</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {userList.map(rows => (
-            <Row row={rows} />)
-          )}
-        </TableBody>
-      </Table>
-    </Paper>
-     ) 
          
->>>>>>> Stashed changes
          
-         })
-         
-     )
+     
  
 
 }
-<<<<<<< Updated upstream
-//      <div className="Showflight">
-//     <header className="Showflight-header">
-        
-        
-// <h1>All flight :</h1>
 
-//         <form action="../../Showflights" method="post"
-//             className="form">
-//         <button  type="submit">submit</button>
-//         </form>
-//     </header>
-//     </div>
-
-export default Showflights;
-=======
-
-export default Showflights;
+export default SearchResults;
 function Row(props){
   function Handleupdate(event){
     var s=String(event.currentTarget.id);
@@ -148,11 +139,9 @@ function Row(props){
     <TableCell> <input   type="text" name="BusinessSeats" placeholder="BusinessSeats" value={BusinessSeats} onChange={event=>setB(event.target.value) }  /></TableCell>
     <TableCell><input  type="text" name="ArrivalTerminal"  placeholder="ArrivalTerminal" value={ArrivalTerminal} onChange={event=>setater(event.target.value)}  /></TableCell>
     <TableCell><input  type="text" name="DepartureTerminal"  placeholder="DepartureTerminal" value= {DepartureTerminal} onChange={event=>setDter(event.target.value)}  /></TableCell>
-
     <TableCell><input  type="text" name="TicketsPrice"  placeholder="TicketsPrice" value= {TicketsPrice} onChange={event=>setticket(event.target.value)}  /></TableCell>
     <Button variant="contained" id={props.row._id} type="submit"value='delete' onClick={Handleupdate}> update </Button>
     <Button variant="contained" id={props.row._id} type="submit"value='delete' onClick={Handledelete} color="primary"> delete </Button>
     </TableRow>)
 
 }
->>>>>>> Stashed changes

@@ -24,6 +24,7 @@ function Addflight() {
 //       BusinessSeats : BS,
 //       Airport: A
 
+<<<<<<< Updated upstream
 //     }
 //   })
 //     axios.post('/Addflight',{
@@ -35,6 +36,38 @@ function Addflight() {
 //       Airport: A
 
 
+=======
+function Addflight() {
+ const [Flight_number, setfn] = useState(" ");
+ const [DepartureTime, setDT] = useState(" ");
+ const [TO, setto] = useState(" ");
+ const [From, setFrom] = useState(" ");
+ const [ArrivalTime, setat] = useState(" ");
+ const [First, setF] = useState(" ");
+ const [EconomySeats, setE] = useState(" ");
+ const [BusinessSeats, setB] = useState(" ");
+ const [ArrivalTerminal, setater] = useState(" ");
+ const [DepartureTerminal, setDter] = useState(" ");
+ const [TicketsPrice, setticket] = useState(" ");
+
+
+  return (
+    <form onSubmit={(event)=> axios.post('http://localhost:8080/flight/Addflight',{
+   
+   Flight_number:Flight_number,
+DepartureTime:DepartureTime ,
+  To:TO ,
+  From:From ,
+  ArrivalTime:ArrivalTime,
+  
+  First:First ,
+ 
+  EconomySeats: EconomySeats,
+  BusinessSeats:BusinessSeats ,
+  ArrivalTerminal: ArrivalTerminal,
+  DepartureTerminal:DepartureTerminal,
+  TicketsPrice:TicketsPrice,
+>>>>>>> Stashed changes
 
 //     }).then((response)=>{
 //       console.log(response);
@@ -93,10 +126,27 @@ axios.get('http://localhost:8080/flight/Addflight')
   Airport:
     <input  type="text" name="Airport" placeholder="Airport"  />
   </label>
+<<<<<<< Updated upstream
              <form action="/flight/Addflight" method="post"
                 className="form">
             <button type="submit">submit</button>
             </form> 
+=======
+  <br/>
+  <label>
+    DepartureTerminal:
+    <input  type="text" name="DepartureTerminal"  placeholder="DepartureTerminal" onChange={event=>setDter(event.target.value)}  />
+  </label>
+  <br/>
+
+      <label>
+    TicketsPrice:
+    <input  type="text" name="TicketsPrice"  placeholder="TicketsPrice" onChange={event=>setticket(event.target.value)}  />
+  </label>
+  <br/>        
+  <Button variant="contained"  type="submit" color="primary" > Add flight </Button>
+            
+>>>>>>> Stashed changes
                    </header>
         </div>
     );
