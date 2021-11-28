@@ -55,7 +55,7 @@ FlightRoutes.post('/search', (req,res) => {
   });});
 
 FlightRoutes.post("/Addflight", (req, res) => {
-   
+    
     var number = req.body.Flight_number;
     var dep = Date.parse(req.body.DepartureTime);
     var to = req.body.To;
@@ -67,13 +67,13 @@ FlightRoutes.post("/Addflight", (req, res) => {
     var Arrt= req.body.ArrivalTerminal;
     var Dept= req.body.DepartureTerminal;
    
-//     if(from===to)
-//     {
-//       console.log("err")
-//       msg = "Arrival and departure terminal can't be the same";
-//       res.send(msg);
-//     }
-//  else{
+    console.log(dep)
+    console.log(arr)
+     if(from===to || arr<dep)
+     {
+       console.log("error")
+     }
+     else{
    const flight =new Flight({
      FlightNumber : number,
      DepartureTime : dep,
@@ -88,14 +88,14 @@ FlightRoutes.post("/Addflight", (req, res) => {
  
  flight.save().then(
    data=>{
-    res.redirect("http://localhost:3000/flight/Showflights");
+    res.redirect("http:localhost:3000/flight/Showflights");
  }
  ).catch(err=>{
    console.log(err);
  })
    console.log("confirmed");
    
-// }
+ }
 });
 
 module.exports = FlightRoutes
