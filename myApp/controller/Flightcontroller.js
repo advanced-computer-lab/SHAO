@@ -8,6 +8,7 @@ var msg = " ";
 var f = [];
 var e = [];
 var b = [];
+var i = 0;
 
 
 FlightRoutes.post('/update/:id', (req,res) => {
@@ -16,28 +17,35 @@ FlightRoutes.post('/update/:id', (req,res) => {
   var ec = req.body.EconomySeats;
   var bz = req.body.BusinessSeats;
   
+ f = [];
+ e = [];
+ b = [];
 
-  for(var i = 0; i<Number.parseInt(Fr);i++)
+  for(i = 0; i<Number.parseInt(Fr);i++)
   {
-    f[i]=i+1
-
-  }
-  for(var i = 0; i<Number.parseInt(ec);i++)
-  {
-    e[i]=i+1
+    f[i]=i+1;
 
   }
-  for(var i = 0; i<Number.parseInt(bz);i++)
+  for(i = 0; i<Number.parseInt(ec);i++)
   {
-    b[i]=i+1
+    e[i]=i+1;
+
+  }
+  for( i = 0; i<Number.parseInt(bz);i++)
+  {
+    b[i]=i+1;
 
   }
   
   console.log(f);
-  console.log(e)
-  console.log(b)
+  console.log(e);
+  console.log(b);
 
   console.log(req.body,"tt");
+  Flight.findByIdAndUpdate(req.params.id,{AvailableFSeats:f, AvailableESeats:e,AvailableBSeats:b},{new : true}).catch(err => {
+    console.log(err);
+  
+});
   Flight.findByIdAndUpdate(req.params.id,req.body,{new : true})
       .then(result => {
         console.log(result);
@@ -74,6 +82,7 @@ FlightRoutes.get('/Addflight', (req,res) => {
 });
 
 FlightRoutes.post('/search', (req,res) => {
+
   
   Flight.find(req.body,function(err,docs){
     
@@ -84,7 +93,12 @@ FlightRoutes.post('/search', (req,res) => {
   })
   .catch(err => {
     console.log(err);
-  });});
+  });
+
+  
+
+
+});
 
 FlightRoutes.post("/Addflight", (req, res) => {
     
@@ -98,26 +112,28 @@ FlightRoutes.post("/Addflight", (req, res) => {
     var bz = req.body.BusinessSeats;
     var Arrt= req.body.ArrivalTerminal;
     var Dept= req.body.DepartureTerminal;
+    var bag= req.body.BaggageAllowance;
+    var type= req.body.Type;
+    var price= req.body.TicketPrice;
 
 
 
-    for(var i = 0; i<Number.parseInt(Fr);i++)
+
+    for( i = 0; i<Number.parseInt(Fr);i++)
     {
       f[i]=i+1
 
     }
-    for(var i = 0; i<Number.parseInt(ec);i++)
+    for( i = 0; i<Number.parseInt(ec);i++)
     {
       e[i]=i+1
 
     }
-    for(var i = 0; i<Number.parseInt(bz);i++)
+    for( i = 0; i<Number.parseInt(bz);i++)
     {
       b[i]=i+1
 
     }
-
-    console.log(f);
 
 
      if(from===to || arr<dep)
@@ -138,7 +154,10 @@ FlightRoutes.post("/Addflight", (req, res) => {
      DepartureTerminal:Dept,
     AvailableFSeats:f,
     AvailableESeats:e,
-    AvailableBSeats:b});
+    AvailableBSeats:b,
+    BaggageAllowance: bag,
+    Type: type,
+    TicketPrice: price});
  
  flight.save().then(
    data=>{

@@ -97,6 +97,22 @@ DepartureTime:DepartureTime ,
     <input  type="text" name="DepartureTerminal"  placeholder="DepartureTerminal" onChange={event=>setDter(event.target.value)}  />
   </label>
   <br/>
+
+  <label>
+    BaggageAllowance:
+    <input  type="text" name="BaggageAllowance"  placeholder="BaggageAllowance" onChange={event=>setDter(event.target.value)}  />
+  </label>
+  <br/>
+  <label>
+    Type:
+    <input  type="text" name="Type"  placeholder="Type" onChange={event=>setDter(event.target.value)}  />
+  </label>
+  <br/>
+  <label>
+    TicketPrice:
+    <input  type="text" name="TicketPrice"  placeholder="TicketPrice" onChange={event=>setDter(event.target.value)}  />
+  </label>
+  <br/>
              
   <Button variant="contained"  type="submit" color="primary" > Add flight </Button>
 

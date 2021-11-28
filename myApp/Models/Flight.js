@@ -57,6 +57,18 @@ const flightSchema =  new Schema ({
     type: [],
     required: true
   },
+  BaggageAllowance:{
+    type: String,
+    required: true
+  },
+  Type:{
+    type: String,
+    required: true
+  },
+  TicketPrice:{
+    type: Number,
+    required: true
+  },
 }, { timestamps: true });
 mongoose.models={}
 const Flight = mongoose.model('Flight', flightSchema);

@@ -13,7 +13,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { TextField } from "@material-ui/core";
+import { responsiveFontSizes, TextField } from "@material-ui/core";
 function Handledelete(event){
   var s=String(event.currentTarget.id);
   console.log(s);
@@ -26,7 +26,6 @@ function Handledelete(event){
 function Showflights({}) {
 
 
-  
   
     const [userList,setUserList]= useState([]);
     useEffect(()=> {
@@ -52,6 +51,9 @@ function Showflights({}) {
             <TableCell>BusinessSeats</TableCell>
             <TableCell>ArrivalTerminal</TableCell>
             <TableCell>DepartureTerminal</TableCell>
+            <TableCell>BaggageAllowance</TableCell>
+            <TableCell>Type</TableCell>
+            <TableCell>TicketPrice</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -98,6 +100,10 @@ function Row(props){
       BusinessSeats : BusinessSeats ,
       ArrivalTerminal : ArrivalTerminal,
       DepartureTerminal : DepartureTerminal,
+      BaggageAllowance : BaggageAllowance,
+      Type : Type,
+      TicketPrice : TicketPrice,
+
    
        
         }).then((res) => {
@@ -121,6 +127,10 @@ function Row(props){
   const [BusinessSeats, setB] = useState();
   const [ArrivalTerminal, setater] = useState();
   const [DepartureTerminal, setDter] = useState();
+  const [BaggageAllowance, setBag] = useState();
+  const [Type, setType] = useState();
+  const [TicketPrice, setPrice] = useState();
+
    useEffect(() => {setfn(props.row.FlightNumber);
     setDT(props.row.DepartureTime);
     setto(props.row.To);
@@ -131,6 +141,9 @@ function Row(props){
     setB(props.row.BusinessSeats);
     setater(props.row.ArrivalTerminal);
     setDter(props.row.DepartureTerminal);
+    setBag(props.row.BaggageAllowance);
+    setType(props.row.Type);
+    setPrice(props.row.TicketPrice);
     
 
 
@@ -151,6 +164,11 @@ function Row(props){
     <TableCell> <TextField variant="standard"   type="text" name="BusinessSeats" placeholder="BusinessSeats" value={BusinessSeats} onChange={event=>setB(event.target.value) }  /></TableCell>
     <TableCell><TextField variant="standard"  type="text" name="ArrivalTerminal"  placeholder="ArrivalTerminal" value={ArrivalTerminal} onChange={event=>setater(event.target.value)}  /></TableCell>
     <TableCell><TextField variant="standard"  type="text" name="DepartureTerminal"  placeholder="DepartureTerminal" value= {DepartureTerminal} onChange={event=>setDter(event.target.value)}  /></TableCell>
+    <TableCell><TextField variant="standard"  type="text" name="BaggageAllowance"  placeholder="BaggageAllowance" value= {BaggageAllowance} onChange={event=>setBag(event.target.value)}  /></TableCell>
+    <TableCell><TextField variant="standard"  type="text" name="Type"  placeholder="Type" value= {Type} onChange={event=>setType(event.target.value)}  /></TableCell>
+    <TableCell><TextField variant="standard"  type="text" name="TicketPrice"  placeholder="TicketPrice" value= {TicketPrice} onChange={event=>setPrice(event.target.value)}  /></TableCell>
+
+    
     <Button variant="contained" id={props.row._id} type="submit"value='delete' onClick={Handleupdate}> update </Button>
     <Button variant="contained" id={props.row._id} type="submit"value='reserve' onClick={Handledelete} color="primary"> reserve </Button>
     <Button variant="contained" id={props.row._id} type="submit"value='delete' onClick={handleClickOpen} color="secondary"> delete </Button>
