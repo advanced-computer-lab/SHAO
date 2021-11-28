@@ -175,6 +175,17 @@ function Row(props){
           </Button>
         </DialogActions>
       </Dialog>
+
+
+      
+
+
+
+
+
+
+
+
     </TableRow>)
 
 }

@@ -4,7 +4,39 @@ const Flight = require('../models/Flight');
 const FlightRoutes = express.Router();
 var msg = " ";
 
+
+var f = [];
+var e = [];
+var b = [];
+
+
 FlightRoutes.post('/update/:id', (req,res) => {
+
+  var Fr = req.body.First;
+  var ec = req.body.EconomySeats;
+  var bz = req.body.BusinessSeats;
+  
+
+  for(var i = 0; i<Number.parseInt(Fr);i++)
+  {
+    f[i]=i+1
+
+  }
+  for(var i = 0; i<Number.parseInt(ec);i++)
+  {
+    e[i]=i+1
+
+  }
+  for(var i = 0; i<Number.parseInt(bz);i++)
+  {
+    b[i]=i+1
+
+  }
+  
+  console.log(f);
+  console.log(e)
+  console.log(b)
+
   console.log(req.body,"tt");
   Flight.findByIdAndUpdate(req.params.id,req.body,{new : true})
       .then(result => {
@@ -66,9 +98,28 @@ FlightRoutes.post("/Addflight", (req, res) => {
     var bz = req.body.BusinessSeats;
     var Arrt= req.body.ArrivalTerminal;
     var Dept= req.body.DepartureTerminal;
-   
-    console.log(dep)
-    console.log(arr)
+
+
+
+    for(var i = 0; i<Number.parseInt(Fr);i++)
+    {
+      f[i]=i+1
+
+    }
+    for(var i = 0; i<Number.parseInt(ec);i++)
+    {
+      e[i]=i+1
+
+    }
+    for(var i = 0; i<Number.parseInt(bz);i++)
+    {
+      b[i]=i+1
+
+    }
+
+    console.log(f);
+
+
      if(from===to || arr<dep)
      {
        console.log("error")
@@ -84,7 +135,10 @@ FlightRoutes.post("/Addflight", (req, res) => {
      EconomySeats: ec,
      BusinessSeats: bz,
      ArrivalTerminal:Arrt,
-     DepartureTerminal:Dept});
+     DepartureTerminal:Dept,
+    AvailableFSeats:f,
+    AvailableESeats:e,
+    AvailableBSeats:b});
  
  flight.save().then(
    data=>{
