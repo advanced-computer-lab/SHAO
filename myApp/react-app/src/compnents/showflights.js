@@ -2,7 +2,11 @@ import React from "react";
 import axios from "axios";
 import {useState,useEffect} from "react";
 import Button from '@material-ui/core/Button';
-
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -17,6 +21,7 @@ function Handledelete(event){
   axios.post(url)
   window.location.reload(false);
 }
+
 
 function Showflights({}) {
 
@@ -67,6 +72,15 @@ function Showflights({}) {
 
 export default Showflights;
 function Row(props){
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   function Handleupdate(event){
     var s=String(event.currentTarget.id);
     console.log(s);
@@ -139,8 +153,28 @@ function Row(props){
     <TableCell><TextField variant="standard"  type="text" name="DepartureTerminal"  placeholder="DepartureTerminal" value= {DepartureTerminal} onChange={event=>setDter(event.target.value)}  /></TableCell>
     <Button variant="contained" id={props.row._id} type="submit"value='delete' onClick={Handleupdate}> update </Button>
     <Button variant="contained" id={props.row._id} type="submit"value='reserve' onClick={Handledelete} color="primary"> reserve </Button>
-    <Button variant="contained" id={props.row._id} type="submit"value='delete' onClick={Handledelete} color="secondary"> delete </Button>
-    
+    <Button variant="contained" id={props.row._id} type="submit"value='delete' onClick={handleClickOpen} color="secondary"> delete </Button>
+    <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Delete flight"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are sure you want to delete?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>no</Button>
+          <Button id ={props.row._id} onClick={Handledelete} autoFocus>
+            yes
+          </Button>
+        </DialogActions>
+      </Dialog>
     </TableRow>)
 
 }
