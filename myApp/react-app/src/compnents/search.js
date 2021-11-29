@@ -7,6 +7,11 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { TextField } from "@material-ui/core";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 import Button from '@material-ui/core/Button';
 // function Handledelete(event){
@@ -39,6 +44,8 @@ function Handledelete(event){
 
 
 function Search() {
+
+
   function Handleupdate(event){
     var s=String(event.currentTarget.id);
     console.log(s);
@@ -298,6 +305,20 @@ function Row(props){
     
   
     }
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+    
+    const handleClose = () => {
+      setOpen(false);
+    };
+    
+
+
+
   const [Flight_number, setfn] = useState();
   const [DepartureTime, setDT] = useState();
   const [TO, setto] = useState();
@@ -351,7 +372,38 @@ function Row(props){
 
     
     <Button variant="contained" id={props.row._id} type="submit"value='delete' onClick={Handleupdate}> update </Button>
-    <Button variant="contained" id={props.row._id} type="submit"value='delete' onClick={Handledelete} color="secondary"> delete </Button>  
+    <Button variant="contained" id={props.row._id} type="submit"value='delete' onClick={handleClickOpen} color="secondary"> delete </Button>  
+    
+
+
+    <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Delete flight"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are sure you want to delete?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>No</Button>
+          <Button id ={props.row._id} onClick={Handledelete} autoFocus>
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+
+      
+
+
+    
+    
     </TableRow>)
 
 }

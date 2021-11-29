@@ -138,7 +138,7 @@ FlightRoutes.post("/Addflight", (req, res) => {
 
      if(from===to || arr<dep)
      {
-       console.log("error")
+       console.log("From=To Error")
      }
      else{
    const flight =new Flight({
@@ -162,11 +162,12 @@ FlightRoutes.post("/Addflight", (req, res) => {
  flight.save().then(
    data=>{
     res.redirect("http:localhost:3000/flight/Showflights");
+    console.log("Flight Added");
  }
  ).catch(err=>{
-   console.log(err);
+   console.log("Must fill all attributes");
  })
-   console.log("confirmed");
+   
    
  }
 });

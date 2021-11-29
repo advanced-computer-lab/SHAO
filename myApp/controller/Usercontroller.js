@@ -34,8 +34,8 @@ const UserRoutes = express.Router();
 
 
 
-  console.log(f);
-  console.log(rf);
+  //console.log(f);
+  //console.log(rf);
   if(f == false)
   {
 
@@ -43,7 +43,7 @@ const UserRoutes = express.Router();
    User.findByIdAndUpdate("61a52b332239b52f7ef5cc68", {$push: {ReservedFlights: req.params.id}})
  
    .then(result => {
-     console.log(result);
+     //console.log(result);
      res.send(result);
          })
          .catch(err => {
@@ -75,7 +75,7 @@ const UserRoutes = express.Router();
   
           .then(result => {
             
-            console.log(result);
+           // console.log(result);
             res.send(result);
           })
           .catch(err => {

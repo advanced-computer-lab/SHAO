@@ -5,19 +5,19 @@ import Button from '@material-ui/core/Button';
 
 
 function Addflight() {
- const [Flight_number, setfn] = useState(" ");
- const [DepartureTime, setDT] = useState(" ");
- const [TO, setto] = useState(" ");
- const [From, setFrom] = useState(" ");
- const [ArrivalTime, setat] = useState(" ");
- const [First, setF] = useState(" ");
- const [EconomySeats, setE] = useState(" ");
- const [BusinessSeats, setB] = useState(" ");
- const [ArrivalTerminal, setater] = useState(" ");
- const [DepartureTerminal, setDter] = useState(" ");
- const [BaggageAllowance, setBag] = useState(" ");
- const [Type, setType] = useState(" ");
- const [TicketPrice, setPrice] = useState(" ");
+ const [Flight_number, setfn] = useState();
+ const [DepartureTime, setDT] = useState();
+ const [TO, setto] = useState();
+ const [From, setFrom] = useState();
+ const [ArrivalTime, setat] = useState();
+ const [First, setF] = useState();
+ const [EconomySeats, setE] = useState();
+ const [BusinessSeats, setB] = useState();
+ const [ArrivalTerminal, setater] = useState();
+ const [DepartureTerminal, setDter] = useState();
+ const [BaggageAllowance, setBag] = useState()
+ const [Type, setType] = useState();
+ const [TicketPrice, setPrice] = useState();
 
  
  

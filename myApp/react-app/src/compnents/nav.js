@@ -19,7 +19,7 @@ import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   navlinks: {
-    marginLeft: theme.spacing(10),
+    marginLeft: theme.spacing(-10), // used to be 10
     display: "flex",
   },
  logo: {
@@ -63,6 +63,9 @@ function Navbar() {
             </Link>
             <Link to="/flight/UserSearch" className={classes.link}>
               UserSearch
+            </Link>
+            <Link to="/user/Profile" className={classes.link}>
+              Profile
             </Link>
           </div>
       </Toolbar>

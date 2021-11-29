@@ -14,6 +14,8 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { responsiveFontSizes, TextField } from "@material-ui/core";
+
+
 function Handledelete(event){
   var s=String(event.currentTarget.id);
   console.log(s);
@@ -186,9 +188,9 @@ function Row(props){
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>no</Button>
+          <Button onClick={handleClose}>No</Button>
           <Button id ={props.row._id} onClick={Handledelete} autoFocus>
-            yes
+            Yes
           </Button>
         </DialogActions>
       </Dialog>

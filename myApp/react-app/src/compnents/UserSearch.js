@@ -7,8 +7,16 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { TextField } from "@material-ui/core";
-
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import { responsiveFontSizes} from "@material-ui/core";
 import Button from '@material-ui/core/Button';
+
+
+
 // function Handledelete(event){
 //   var s=String(event.currentTarget.id);
 //   console.log(s);
@@ -32,7 +40,7 @@ function Handlereserve(event){
   console.log(s);
   //const url='http://localhost:8080/user/reserve' + s
   axios.post('http://localhost:8080/user/reserve/' + s)
-  //window.location.reload(false);
+  window.location.reload(false);
   
 }
 
@@ -41,7 +49,7 @@ function Handlecreserve(event){
   console.log(s);
   //const url='http://localhost:8080/user/reserve' + s
   axios.post('http://localhost:8080/user/cancelreserve/' + s)
-  //window.location.reload(false);
+  window.location.reload(false);
   
 }
 
@@ -273,6 +281,31 @@ function UserSearch() {
     export default UserSearch;
     
 function Row(props){
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
+
+  const [openC, setOpenC] = React.useState(false);
+
+  const handleClickOpenC = () => {
+    setOpenC(true);
+  };
+
+  const handleCloseC = () => {
+    setOpenC(false);
+  };
+
+
+
   function Handleupdate(event){
     var s=String(event.currentTarget.id);
     console.log(s);
@@ -357,8 +390,58 @@ function Row(props){
     <TableCell><TextField variant="standard"  type="text" name="BaggageAllowance"  placeholder="BaggageAllowance" value= {BaggageAllowance} onChange={event=>setBag(event.target.value)}  /></TableCell>
     <TableCell><TextField variant="standard"  type="text" name="Type"  placeholder="Type" value= {Type} onChange={event=>setType(event.target.value)}  /></TableCell>
     <TableCell><TextField variant="standard"  type="text" name="TicketPrice"  placeholder="TicketPrice" value= {TicketPrice} onChange={event=>setPrice(event.target.value)}  /></TableCell>
-    <Button variant="contained" id={props.row._id} type="submit"value='reserve' onClick={Handlereserve} color="primary"> reserve </Button>
-    <Button variant="contained" id={props.row._id} type="submit"value='cancelreserve' onClick={Handlecreserve} color="secondary"> Cancel reservation </Button>  
+    <Button variant="contained" id={props.row._id} type="submit"value='reserve' onClick={handleClickOpen} color="primary"> reserve </Button>
+    <Button variant="contained" id={props.row._id} type="submit"value='cancelreserve' onClick={handleClickOpenC} color="secondary"> Cancel reservation </Button>  
+    
+    
+    <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Reserve flight"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are sure you want to reserve this flight?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>No</Button>
+          <Button id ={props.row._id} onClick={Handlereserve} autoFocus>
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+
+
+      
+    <Dialog
+        open={openC}
+        onClose={handleCloseC}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Cancel flight"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are sure you want to cancel reservation of this flight?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseC}>No</Button>
+          <Button id ={props.row._id} onClick={Handlecreserve} autoFocus>
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
+    
+    
     </TableRow>)
 
 }
