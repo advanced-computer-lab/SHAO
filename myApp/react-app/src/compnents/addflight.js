@@ -15,6 +15,11 @@ function Addflight() {
  const [BusinessSeats, setB] = useState(" ");
  const [ArrivalTerminal, setater] = useState(" ");
  const [DepartureTerminal, setDter] = useState(" ");
+ const [BaggageAllowance, setBag] = useState(" ");
+ const [Type, setType] = useState(" ");
+ const [TicketPrice, setPrice] = useState(" ");
+
+ 
  
 
 
@@ -33,6 +38,9 @@ DepartureTime:DepartureTime ,
   BusinessSeats:BusinessSeats ,
   ArrivalTerminal: ArrivalTerminal,
   DepartureTerminal:DepartureTerminal,
+  BaggageAllowance : BaggageAllowance,
+  Type : Type,
+  TicketPrice : TicketPrice,
   
   
     }).then(window.open("http://localhost:3000/flight/Showflights"))}>
@@ -100,17 +108,17 @@ DepartureTime:DepartureTime ,
 
   <label>
     BaggageAllowance:
-    <input  type="text" name="BaggageAllowance"  placeholder="BaggageAllowance" onChange={event=>setDter(event.target.value)}  />
+    <input  type="text" name="BaggageAllowance"  placeholder="BaggageAllowance" onChange={event=>setBag(event.target.value)}  />
   </label>
   <br/>
   <label>
     Type:
-    <input  type="text" name="Type"  placeholder="Type" onChange={event=>setDter(event.target.value)}  />
+    <input  type="text" name="Type"  placeholder="Type" onChange={event=>setType(event.target.value)}  />
   </label>
   <br/>
   <label>
     TicketPrice:
-    <input  type="text" name="TicketPrice"  placeholder="TicketPrice" onChange={event=>setDter(event.target.value)}  />
+    <input  type="text" name="TicketPrice"  placeholder="TicketPrice" onChange={event=>setPrice(event.target.value)}  />
   </label>
   <br/>
              
