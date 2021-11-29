@@ -38,6 +38,14 @@ const userSchema = new Schema({
   isAdmin: {
     type: Boolean,
     required: true
+  },
+  ReservedFlights: {
+    type: [],
+    required: true
+  },
+  ReservedSeats: {
+    type: [],
+    required: true
   }
   
 }, { timestamps: true });

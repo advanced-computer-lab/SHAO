@@ -61,6 +61,9 @@ function Navbar() {
             <Link to="/flight/search" className={classes.link}>
               Search
             </Link>
+            <Link to="/flight/UserSearch" className={classes.link}>
+              UserSearch
+            </Link>
           </div>
       </Toolbar>
     </AppBar>

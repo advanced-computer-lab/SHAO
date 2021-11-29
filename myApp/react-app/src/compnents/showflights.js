@@ -169,8 +169,7 @@ function Row(props){
     <TableCell><TextField variant="standard"  type="text" name="TicketPrice"  placeholder="TicketPrice" value= {TicketPrice} onChange={event=>setPrice(event.target.value)}  /></TableCell>
 
     
-    <Button variant="contained" id={props.row._id} type="submit"value='delete' onClick={Handleupdate}> update </Button>
-    <Button variant="contained" id={props.row._id} type="submit"value='reserve' onClick={Handledelete} color="primary"> reserve </Button>
+    <Button variant="contained" id={props.row._id} type="submit"value='delete' onClick={Handleupdate} color="primary"> update </Button>
     <Button variant="contained" id={props.row._id} type="submit"value='delete' onClick={handleClickOpen} color="secondary"> delete </Button>
     <Dialog
         open={open}

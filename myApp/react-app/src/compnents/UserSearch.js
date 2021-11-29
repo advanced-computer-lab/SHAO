@@ -38,7 +38,7 @@ function Handledelete(event){
 
 
 
-function Search() {
+function UserSearch() {
   function Handleupdate(event){
     var s=String(event.currentTarget.id);
     console.log(s);
@@ -261,7 +261,7 @@ function Search() {
     );
     }
     
-    export default Search;
+    export default UserSearch;
     
 function Row(props){
   function Handleupdate(event){
@@ -348,10 +348,8 @@ function Row(props){
     <TableCell><TextField variant="standard"  type="text" name="BaggageAllowance"  placeholder="BaggageAllowance" value= {BaggageAllowance} onChange={event=>setBag(event.target.value)}  /></TableCell>
     <TableCell><TextField variant="standard"  type="text" name="Type"  placeholder="Type" value= {Type} onChange={event=>setType(event.target.value)}  /></TableCell>
     <TableCell><TextField variant="standard"  type="text" name="TicketPrice"  placeholder="TicketPrice" value= {TicketPrice} onChange={event=>setPrice(event.target.value)}  /></TableCell>
-
-    
-    <Button variant="contained" id={props.row._id} type="submit"value='delete' onClick={Handleupdate}> update </Button>
-    <Button variant="contained" id={props.row._id} type="submit"value='delete' onClick={Handledelete} color="secondary"> delete </Button>  
+    <Button variant="contained" id={props.row._id} type="submit"value='reserve' onClick={Handledelete} color="primary"> reserve </Button>
+    <Button variant="contained" id={props.row._id} type="submit"value='delete' onClick={Handledelete} color="secondary"> Cancel reservation </Button>  
     </TableRow>)
 
 }

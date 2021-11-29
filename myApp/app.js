@@ -25,8 +25,29 @@ const port = process.env.PORT || 8080;
 const User = require('./models/User');
 const Flight = require('./models/Flight');
 const Flightcontrol = require("./controller/Flightcontroller");
-app.use("/flight",Flightcontrol)
-
+const usercontrol=require("./controller/Usercontroller");
+app.use("/flight",Flightcontrol);
+app.use("/user",usercontrol);
+const newUser = new User({
+  Name: "User1",
+  Email: "User@user.com",
+  Password: "1234",
+  Age:21,
+  BornIn: "Cairo",
+  LivesIn:"Cairo",
+  MartialStatus: "Single",
+  PhoneNumber:"011xxxxxx",
+  isAdmin: false,
+  ReservedFlights:[],
+  ReservedSeats: []
+});
+  newUser.save().then(
+    data=>{
+    console.log("confirmed");
+  }
+  ).catch(err=>{
+    console.log("err1");
+  });
   
   
 

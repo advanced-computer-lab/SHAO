@@ -4,6 +4,7 @@ import { BrowserRouter as Router,Route } from "react-router-dom";
 import Addflight from "./compnents/addflight";
 import Showflights from "./compnents/showflights";
 import Search from "./compnents/search";
+import UserSearch from "./compnents/UserSearch";
 function App() {
 return (
 	<Router>
@@ -17,6 +18,9 @@ return (
 		</Route>
 		<Route path="/flight/search">
 		<Search />
+		</Route>
+		<Route path="/flight/UserSearch">
+		<UserSearch />
 		</Route>
 		
 		</Router>
