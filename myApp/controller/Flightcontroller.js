@@ -88,7 +88,7 @@ FlightRoutes.post('/search', (req,res) => {
     
   }
   ).clone().then(result => {
-    console.log(result)
+    //console.log(result)
     return res.send(result);
   })
   .catch(err => {
