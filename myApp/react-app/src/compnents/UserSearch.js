@@ -307,136 +307,7 @@ function UserSearch() {
     
     export default UserSearch;
  
-function Checkboxrow(props){
-  const [AvailableFSeats, setfs] = useState();
-  const [AvailableESeats, setes] = useState();
-  const [AvailableBSeats, setbs] = useState();
 
-
-  useEffect(() => {
-    setbs(props.row.AvailableBSeats);
-    setfs(props.row.AvailableFSeats);
-    setes(props.row.AvailableESeats);
-  },[])
-
-
-  const [state, setState] = React.useState({
-    AvailableFSeats: true,
-    AvailableESeats: false,
-    AvailableBSeats: false,
-  });
-
-  const handleChange = (event) => {
-    setState({
-      ...state,
-      [event.target.name]: event.target.checked,
-    });
-  };
-
-      
-  <Box sx={{ display: 'flex' }}>
-  <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
-    <FormLabel component="legend">First Class Seats</FormLabel>
-    
-    <FormGroup>
-      <FormControlLabel
-        control={
-          <Checkbox checked={AvailableFSeats} onChange={handleChange} name="AvailableFSeats" />
-        }
-        label={AvailableFSeats}
-      />
-      <FormControlLabel
-        control={
-          <Checkbox checked={AvailableFSeats} onChange={handleChange} name="AvailableFSeats" />
-        }
-        label={AvailableFSeats}
-      />
-      <FormControlLabel
-        control={
-          <Checkbox checked={AvailableFSeats} onChange={handleChange} name="AvailableFSeats" />
-        }
-        label={AvailableFSeats}
-      />
-    </FormGroup>
-  </FormControl>
-
-
-
-
-  <FormControl
-    component="fieldset"
-    sx={{ m: 3 }}
-    variant="standard"
-  >
-    <FormLabel component="legend">Economic Class Seats</FormLabel>
-    <FormGroup>
-
-      
-
-
-      
-
-      
-      <FormControlLabel
-        control={
-          <Checkbox checked={AvailableESeats} onChange={handleChange} name="gilad" />
-        }
-        label={AvailableESeats}
-      />
-      <FormControlLabel
-        control={
-          <Checkbox checked={AvailableESeats} onChange={handleChange} name="jason" />
-        }
-        label={AvailableESeats}
-      />
-      <FormControlLabel
-        control={
-          <Checkbox checked={AvailableESeats} onChange={handleChange} name="antoine" />
-        }
-        label={AvailableESeats}
-      />
-    </FormGroup>
-  </FormControl>
-
-
-
-
-  <FormControl
-    component="fieldset"
-    sx={{ m: 3 }}
-    variant="standard"
-  >
-    <FormLabel component="legend">Business Class Seats</FormLabel>
-    <FormGroup>
-      <FormControlLabel
-        control={
-          <Checkbox checked={AvailableBSeats} onChange={handleChange} name="gilad" />
-        }
-        label={AvailableBSeats}
-      />
-      <FormControlLabel
-        control={
-          <Checkbox checked={AvailableBSeats} onChange={handleChange} name="jason" />
-        }
-        label={AvailableBSeats}
-      />
-      <FormControlLabel
-        control={
-          <Checkbox checked={AvailableBSeats} onChange={handleChange} name="antoine" />
-        }
-        label={AvailableESeats}
-      />
-    </FormGroup>
-  </FormControl>
-
-
-
-</Box>
-
-
-
-  
-}    
     
 function Row(props){
 
@@ -538,6 +409,9 @@ function Row(props){
   const [AvailableESeats, setes] = useState();
   const [AvailableBSeats, setbs] = useState();
   const [fList,setfList]= useState([]);
+  const [bList,setbList]= useState([]);
+  const [eList,seteList]= useState([]);
+
 
 
 
@@ -559,14 +433,9 @@ function Row(props){
     setfs(props.row.AvailableFSeats);
     setes(props.row.AvailableESeats);
 
-    setfList(props.row.AvailableESeats);
-
-
-
-
-    //{fList.map(checkboxes => (
-    //        <Checkboxrow checkbox={checkboxes} />)
-     //     )}
+    setfList(props.row.AvailableFSeats);
+    seteList(props.row.AvailableESeats);
+    setbList(props.row.AvailableBSeats);
 
 
 
@@ -587,8 +456,8 @@ function Row(props){
     });
   };
 
-//  const { gilad, jason, antoine } = state;
-  //const error = [gilad, jason, antoine].filter((v) => v).length !== 2;
+  const {AvailableFFSeats, AvailableEESeats, AvailableBBSeats} = state;
+  const error = [AvailableFSeats, AvailableESeats, AvailableBSeats].filter((v) => v).length !== 2;
 
 
 
@@ -701,108 +570,61 @@ function Row(props){
           <ListItem button>
 
 
-
           <Box sx={{ display: 'flex' }}>
-  <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
+
+          <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
     <FormLabel component="legend">First Class Seats</FormLabel>
     
     <FormGroup>
-      <FormControlLabel
-        control={
-          <Checkbox checked={AvailableFSeats} onChange={handleChange} name="AvailableFSeats" />
-        }
-        label={AvailableFSeats}
-      />
-      <FormControlLabel
-        control={
-          <Checkbox checked={AvailableFSeats} onChange={handleChange} name="AvailableFSeats" />
-        }
-        label={AvailableFSeats}
-      />
-      <FormControlLabel
-        control={
-          <Checkbox checked={AvailableFSeats} onChange={handleChange} name="AvailableFSeats" />
-        }
-        label={AvailableFSeats}
-      />
-    </FormGroup>
+
+          {fList.map(AvailableFSeats => (
+            <FormControlLabel
+            control={
+              <Checkbox checked={AvailableFFSeats} onChange={handleChange} name={AvailableFSeats} />
+            }
+            label={AvailableFSeats}
+          />)
+          )}
+          </FormGroup>
   </FormControl>
 
 
-
-
-
-  <FormControl
-    component="fieldset"
-    sx={{ m: 3 }}
-    variant="standard"
-  >
+  <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
     <FormLabel component="legend">Economic Class Seats</FormLabel>
+    
     <FormGroup>
 
-  
-
-      
-      <FormControlLabel
-        control={
-          <Checkbox checked={AvailableESeats} onChange={handleChange} name="gilad" />
-        }
-        label={AvailableESeats}
-      />
-      <FormControlLabel
-        control={
-          <Checkbox checked={AvailableESeats} onChange={handleChange} name="jason" />
-        }
-        label={AvailableESeats}
-      />
-      <FormControlLabel
-        control={
-          <Checkbox checked={AvailableESeats} onChange={handleChange} name="antoine" />
-        }
-        label={AvailableESeats}
-      />
-    </FormGroup>
+          {eList.map(AvailableESeats => (
+            <FormControlLabel
+            control={
+              <Checkbox checked={AvailableEESeats} onChange={handleChange} name={AvailableESeats} />
+            }
+            label={AvailableESeats}
+          />)
+          )}
+          </FormGroup>
   </FormControl>
 
 
-
-
-  <FormControl
-    component="fieldset"
-    sx={{ m: 3 }}
-    variant="standard"
-  >
+  <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
     <FormLabel component="legend">Business Class Seats</FormLabel>
+    
     <FormGroup>
-      <FormControlLabel
-        control={
-          <Checkbox checked={AvailableBSeats} onChange={handleChange} name="gilad" />
-        }
-        label={AvailableBSeats}
-      />
-      <FormControlLabel
-        control={
-          <Checkbox checked={AvailableBSeats} onChange={handleChange} name="jason" />
-        }
-        label={AvailableBSeats}
-      />
-      <FormControlLabel
-        control={
-          <Checkbox checked={AvailableBSeats} onChange={handleChange} name="antoine" />
-        }
-        label={AvailableESeats}
-      />
-    </FormGroup>
+
+          {bList.map(AvailableBSeats => (
+            <FormControlLabel
+            control={
+              <Checkbox checked={AvailableBBSeats} onChange={handleChange} name={AvailableBSeats} />
+            }
+            label={AvailableBSeats}
+          />)
+          )}
+          </FormGroup>
   </FormControl>
 
 
-
+ 
 </Box>
-
-
-
-
-      
 
 
           </ListItem>
