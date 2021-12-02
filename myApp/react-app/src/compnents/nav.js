@@ -19,7 +19,7 @@ import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   navlinks: {
-    marginLeft: theme.spacing(-10), // used to be 10
+    marginLeft: theme.spacing(-40), // used to be 10
     display: "flex",
   },
  logo: {
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     color: "white",
     fontSize: "20px",
-    marginLeft: theme.spacing(20),
+    marginLeft: theme.spacing(8),
     "&:hover": {
       color: "yellow",
       borderBottom: "1px solid white",
@@ -45,7 +45,7 @@ function Navbar() {
     <AppBar position="static">
       <CssBaseline />
       <Toolbar>
-        <Typography variant="h2" className={classes.logo}>
+        <Typography variant="h3" className={classes.logo}>
           AirLines
         </Typography>
           <div className={classes.navlinks}>
@@ -57,6 +57,9 @@ function Navbar() {
             </Link>
             <Link to="/flight/Showflights" className={classes.link}>
               Show Flights
+            </Link>
+            <Link to="/user/Showresflights" className={classes.link}>
+              Show Reserved Flights
             </Link>
             <Link to="/flight/search" className={classes.link}>
               Search

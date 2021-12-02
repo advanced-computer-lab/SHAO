@@ -15,6 +15,31 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { responsiveFontSizes} from "@material-ui/core";
 import Button from '@material-ui/core/Button';
 
+import ListItemText from '@mui/material/ListItemText';
+import ListItem from '@mui/material/ListItem';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+//import CloseIcon from '@mui/icons-material/Close';
+import Slide from '@mui/material/Slide';
+
+
+import Box from '@mui/material/Box';
+import FormLabel from '@mui/material/FormLabel';
+import FormControl from '@mui/material/FormControl';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormHelperText from '@mui/material/FormHelperText';
+import Checkbox from '@mui/material/Checkbox';
+
+
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 
 // function Handledelete(event){
@@ -56,6 +81,7 @@ function Handlecreserve(event){
 
 
 function UserSearch() {
+  
   function Handleupdate(event){
     var s=String(event.currentTarget.id);
     console.log(s);
@@ -88,7 +114,7 @@ function UserSearch() {
     }
   const Handleclick=(event)=>{
     event.preventDefault()
-    axios.post('http://localhost:8080/flight/search',{
+    axios.post('http://localhost:8080/flight/usersearch',{
      
      FlightNumber : Flight_number,
      DepartureTime : DepartureTime ,
@@ -133,6 +159,7 @@ function UserSearch() {
   const [BusinessSeats, setB] = useState();
   const [ArrivalTerminal, setater] = useState();
   const [DepartureTerminal, setDter] = useState();
+  
     
   return (
       
@@ -279,8 +306,161 @@ function UserSearch() {
     }
     
     export default UserSearch;
+ 
+function Checkboxrow(props){
+  const [AvailableFSeats, setfs] = useState();
+  const [AvailableESeats, setes] = useState();
+  const [AvailableBSeats, setbs] = useState();
+
+
+  useEffect(() => {
+    setbs(props.row.AvailableBSeats);
+    setfs(props.row.AvailableFSeats);
+    setes(props.row.AvailableESeats);
+  },[])
+
+
+  const [state, setState] = React.useState({
+    AvailableFSeats: true,
+    AvailableESeats: false,
+    AvailableBSeats: false,
+  });
+
+  const handleChange = (event) => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
+  };
+
+      
+  <Box sx={{ display: 'flex' }}>
+  <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
+    <FormLabel component="legend">First Class Seats</FormLabel>
+    
+    <FormGroup>
+      <FormControlLabel
+        control={
+          <Checkbox checked={AvailableFSeats} onChange={handleChange} name="AvailableFSeats" />
+        }
+        label={AvailableFSeats}
+      />
+      <FormControlLabel
+        control={
+          <Checkbox checked={AvailableFSeats} onChange={handleChange} name="AvailableFSeats" />
+        }
+        label={AvailableFSeats}
+      />
+      <FormControlLabel
+        control={
+          <Checkbox checked={AvailableFSeats} onChange={handleChange} name="AvailableFSeats" />
+        }
+        label={AvailableFSeats}
+      />
+    </FormGroup>
+  </FormControl>
+
+
+
+
+  <FormControl
+    component="fieldset"
+    sx={{ m: 3 }}
+    variant="standard"
+  >
+    <FormLabel component="legend">Economic Class Seats</FormLabel>
+    <FormGroup>
+
+      
+
+
+      
+
+      
+      <FormControlLabel
+        control={
+          <Checkbox checked={AvailableESeats} onChange={handleChange} name="gilad" />
+        }
+        label={AvailableESeats}
+      />
+      <FormControlLabel
+        control={
+          <Checkbox checked={AvailableESeats} onChange={handleChange} name="jason" />
+        }
+        label={AvailableESeats}
+      />
+      <FormControlLabel
+        control={
+          <Checkbox checked={AvailableESeats} onChange={handleChange} name="antoine" />
+        }
+        label={AvailableESeats}
+      />
+    </FormGroup>
+  </FormControl>
+
+
+
+
+  <FormControl
+    component="fieldset"
+    sx={{ m: 3 }}
+    variant="standard"
+  >
+    <FormLabel component="legend">Business Class Seats</FormLabel>
+    <FormGroup>
+      <FormControlLabel
+        control={
+          <Checkbox checked={AvailableBSeats} onChange={handleChange} name="gilad" />
+        }
+        label={AvailableBSeats}
+      />
+      <FormControlLabel
+        control={
+          <Checkbox checked={AvailableBSeats} onChange={handleChange} name="jason" />
+        }
+        label={AvailableBSeats}
+      />
+      <FormControlLabel
+        control={
+          <Checkbox checked={AvailableBSeats} onChange={handleChange} name="antoine" />
+        }
+        label={AvailableESeats}
+      />
+    </FormGroup>
+  </FormControl>
+
+
+
+</Box>
+
+
+
+  
+}    
     
 function Row(props){
+
+
+  
+
+
+
+
+  const [openR, setOpenR] = React.useState(false);
+
+  const handleClickOpenR = () => {
+    setOpenR(true);
+  };
+
+  const handleCloseR = () => {
+    setOpenR(false);
+  };
+
+
+
+
+
+
 
   const [open, setOpen] = React.useState(false);
 
@@ -353,11 +533,21 @@ function Row(props){
   const [BaggageAllowance, setBag] = useState();
   const [Type, setType] = useState();
   const [TicketPrice, setPrice] = useState();
+  
+  const [AvailableFSeats, setfs] = useState();
+  const [AvailableESeats, setes] = useState();
+  const [AvailableBSeats, setbs] = useState();
+  const [fList,setfList]= useState([]);
+
+
+
    useEffect(() => {setfn(props.row.FlightNumber);
     setDT(props.row.DepartureTime);
     setto(props.row.To);
     setFrom(props.row.From);
     setat(props.row.ArrivalTime);
+    setbs(props.row.AvailableBSeats);
+
     setF(props.row.First);
     setE(props.row.EconomySeats);
     setB(props.row.BusinessSeats);
@@ -366,11 +556,45 @@ function Row(props){
     setBag(props.row.BaggageAllowance);
     setType(props.row.Type);
     setPrice(props.row.TicketPrice);
-    
-    
+    setfs(props.row.AvailableFSeats);
+    setes(props.row.AvailableESeats);
+
+    setfList(props.row.AvailableESeats);
+
+
+
+
+    //{fList.map(checkboxes => (
+    //        <Checkboxrow checkbox={checkboxes} />)
+     //     )}
+
 
 
   },[])
+
+
+
+  const [state, setState] = React.useState({
+    AvailableFSeats: true,
+    AvailableESeats: false,
+    AvailableBSeats: false,
+  });
+
+  const handleChange = (event) => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
+  };
+
+//  const { gilad, jason, antoine } = state;
+  //const error = [gilad, jason, antoine].filter((v) => v).length !== 2;
+
+
+
+
+
+
   return(<TableRow key={props.row._id}>
     <TableCell><TextField variant="standard"  type="text" name="Flight_number"  placeholder="Flight_number" value={Flight_number} onChange={event=>setfn(event.target.value)}  />
 </TableCell>
@@ -440,8 +664,173 @@ function Row(props){
           </Button>
         </DialogActions>
       </Dialog>
+
+
+
+      <Button variant="outlined" onClick={handleClickOpenR}>
+        Reserve Seats
+      </Button>
+      <Dialog
+        fullScreen
+        open={openR}
+        onClose={handleCloseR}
+        TransitionComponent={Transition}
+      >
+        <AppBar sx={{ position: 'relative' }}>
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={handleCloseR}
+              aria-label="close"
+            >
+
+            </IconButton>
+            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+              Reserve Seats
+            </Typography>
+            <Button autoFocus color="inherit" onClick={handleCloseR}>
+              Save
+            </Button>
+          </Toolbar>
+        </AppBar>
+        <List>
+
+
+          
+          <ListItem button>
+
+
+
+          <Box sx={{ display: 'flex' }}>
+  <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
+    <FormLabel component="legend">First Class Seats</FormLabel>
+    
+    <FormGroup>
+      <FormControlLabel
+        control={
+          <Checkbox checked={AvailableFSeats} onChange={handleChange} name="AvailableFSeats" />
+        }
+        label={AvailableFSeats}
+      />
+      <FormControlLabel
+        control={
+          <Checkbox checked={AvailableFSeats} onChange={handleChange} name="AvailableFSeats" />
+        }
+        label={AvailableFSeats}
+      />
+      <FormControlLabel
+        control={
+          <Checkbox checked={AvailableFSeats} onChange={handleChange} name="AvailableFSeats" />
+        }
+        label={AvailableFSeats}
+      />
+    </FormGroup>
+  </FormControl>
+
+
+
+
+
+  <FormControl
+    component="fieldset"
+    sx={{ m: 3 }}
+    variant="standard"
+  >
+    <FormLabel component="legend">Economic Class Seats</FormLabel>
+    <FormGroup>
+
+  
+
+      
+      <FormControlLabel
+        control={
+          <Checkbox checked={AvailableESeats} onChange={handleChange} name="gilad" />
+        }
+        label={AvailableESeats}
+      />
+      <FormControlLabel
+        control={
+          <Checkbox checked={AvailableESeats} onChange={handleChange} name="jason" />
+        }
+        label={AvailableESeats}
+      />
+      <FormControlLabel
+        control={
+          <Checkbox checked={AvailableESeats} onChange={handleChange} name="antoine" />
+        }
+        label={AvailableESeats}
+      />
+    </FormGroup>
+  </FormControl>
+
+
+
+
+  <FormControl
+    component="fieldset"
+    sx={{ m: 3 }}
+    variant="standard"
+  >
+    <FormLabel component="legend">Business Class Seats</FormLabel>
+    <FormGroup>
+      <FormControlLabel
+        control={
+          <Checkbox checked={AvailableBSeats} onChange={handleChange} name="gilad" />
+        }
+        label={AvailableBSeats}
+      />
+      <FormControlLabel
+        control={
+          <Checkbox checked={AvailableBSeats} onChange={handleChange} name="jason" />
+        }
+        label={AvailableBSeats}
+      />
+      <FormControlLabel
+        control={
+          <Checkbox checked={AvailableBSeats} onChange={handleChange} name="antoine" />
+        }
+        label={AvailableESeats}
+      />
+    </FormGroup>
+  </FormControl>
+
+
+
+</Box>
+
+
+
+
+      
+
+
+          </ListItem>
+
+
+
+
+
+
+
+
+
+
+
+
+          <Divider />
+        </List>
+      </Dialog>
+
+
+
+
+
+
     
     
-    </TableRow>)
+    </TableRow>
+    
+    )
 
 }

@@ -1,6 +1,6 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import axios from "axios";
-
+import { TextField } from "@material-ui/core";
 import Button from '@material-ui/core/Button';
 
 
@@ -16,12 +16,34 @@ function Profile() {
  const [ReservedFlights, setrf] = useState();
  const [ReservedSeats, setrs] = useState();
 
- 
+ const s = "61a52b332239b52f7ef5cc68";
+
+ const [userList,setUserList]= useState([]);
+ useEffect(()=> {
+ axios.get('http://localhost:8080/user/Profile/' + s)
+ .then((res)=>{
+
+  setn(res.data.Name);
+  sete(res.data.Email);
+  setp(res.data.Password);
+  seta(res.data.Age);
+  setb(res.data.BornIn);
+  setl(res.data.LivesIn);
+  setpn(res.data.PhoneNumber);
+
+
+
+
+
+   console.log(res.data);
+   setUserList(res.data);
+ })   
+},[]);
  
 
 
   return (
-    <form onSubmit={(event)=> axios.post('http://localhost:8080/user/Profile',{
+    <form onSubmit={(event)=> axios.post('http://localhost:8080/user/update/' + s,{
    
   Name:Name,
   Email:Email ,
@@ -29,11 +51,7 @@ function Profile() {
   Age:Age,
   BornIn:BornIn,
   LivesIn:LivesIn,
-  PhoneNumber: PhoneNumber,
-  isAdmin:isAdmin ,
-  ReservedFlights: ReservedFlights,
-  ReservedSeats:ReservedSeats,
- 
+  PhoneNumber: PhoneNumber
   
   
     })}>
@@ -43,50 +61,60 @@ function Profile() {
         
         
             
-            
-    <h1>Account Settings</h1>
+    <br/>
+    <br/>
+
+    <h3>Account Settings</h3>
+    <br/>
+    <br/>
+
     
     <label>
     Name:
-    <input  type="text" name="Name"  placeholder="Name" onChange={event=>setn(event.target.value)} />
+    <TextField variant="standard"  type="text" name="Name"  placeholder={Name} onChange={event=>setn(event.target.value)} />
   </label>
+  <br/>
   <br/>
   <label>
   Email:
-    <input   type="text" name="Email" placeholder="Email" onChange={event=>setImmediate(event.target.value)}  />
+    <TextField variant="standard"   type="text" name="Email" placeholder={Email} onChange={event=>sete(event.target.value)}  />
   </label>
+  <br/>
   <br/>
   <label>
     Password:
-    <input  type="text" name="Password"  placeholder="Password" onChange={event=>setp(event.target.value)} />
+    <TextField variant="standard"  type="text" name="Password"  placeholder={Password} onChange={event=>setp(event.target.value)} />
   </label>
+  <br/>
   <br/>
   
   <label>
     Age:
-    <input  type="text" name="Age"  placeholder="Age" onChange={event=>seta(event.target.value)}  />
+    <TextField variant="standard"  type="text" name="Age"  placeholder={Age} onChange={event=>seta(event.target.value)}  />
   </label>
   <br/>
+  <br/>
   <label>
-  BornIn
-    <input   type="text" name="BornIn" placeholder="BornIn" onChange={event=>setb(event.target.value)} />
+  Born In:
+    <TextField variant="standard"   type="text" name="BornIn" placeholder={BornIn} onChange={event=>setb(event.target.value)} />
   </label>
+  <br/>
   <br/>
   <label>
   
   <label>
-    LivesIn:
-    <input  type="text" name="LivesIn"  placeholder="LivesIn" onChange={event=>setl(event.target.value)}  />
+    Lives In:
+    <TextField variant="standard"  type="text" name="LivesIn"  placeholder={LivesIn} onChange={event=>setl(event.target.value)}  />
   </label>
   <br/>
-  PhoneNumber:
-    <input   type="text" name="PhoneNumber" placeholder="PhoneNumber" onChange={event=>setpn(event.target.value)} />
+  <br/>
+  Phone Number:
+    <TextField variant="standard"   type="text" name="PhoneNumber" placeholder={PhoneNumber} onChange={event=>setpn(event.target.value)} />
   </label>
   <br/>
-    <label>
-    isAdmin:
-    <input   type="text" name="isAdmin" placeholder="isAdmin" onChange={event=>setia(event.target.value)}  />
-  </label>
+  <br/>
+
+    
              
   <Button variant="contained"  type="submit" color="primary" >Save</Button>
 

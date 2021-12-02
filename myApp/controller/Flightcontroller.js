@@ -172,4 +172,25 @@ FlightRoutes.post("/Addflight", (req, res) => {
  }
 });
 
+
+
+FlightRoutes.post('/usersearch', (req,res) => {
+
+  
+  Flight.find(req.body,function(err,docs){
+    
+  }
+  ).clone().then(result => {
+    //console.log(result)
+    return res.send(result);
+  })
+  .catch(err => {
+    console.log(err);
+  });
+
+  
+
+
+});
+
 module.exports = FlightRoutes
