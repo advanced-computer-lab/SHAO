@@ -411,6 +411,10 @@ function Row(props){
   const [fList,setfList]= useState([]);
   const [bList,setbList]= useState([]);
   const [eList,seteList]= useState([]);
+  const checkf= [];
+  const checke= [];
+  const checkb=[];
+
 
 
 
@@ -454,11 +458,20 @@ function Row(props){
       ...state,
       [event.target.name]: event.target.checked,
     });
+    if(event.target.name==="AvailableFSeats"&&event.target.checked===true){
+      checkf.push(event.target.label);}
+      else if(event.target.name==="AvailableBSeats"&&event.target.checked===true){
+        checkb.push(event.target.label);}
+        else if(event.target.name==="AvailableESeats"&&event.target.checked===true){
+          checke.push(event.target.label);}
+          console.log(checkf)
+          console.log(checke)
+          console.log(checkb)
+     
   };
 
   const {AvailableFFSeats, AvailableEESeats, AvailableBBSeats} = state;
   const error = [AvailableFSeats, AvailableESeats, AvailableBSeats].filter((v) => v).length !== 2;
-
 
 
 
@@ -580,7 +593,7 @@ function Row(props){
           {fList.map(AvailableFSeats => (
             <FormControlLabel
             control={
-              <Checkbox checked={AvailableFFSeats} onChange={handleChange} name={AvailableFSeats} />
+              <Checkbox checked={AvailableFFSeats} onChange={handleChange} name="AvailableFSeats" />
             }
             label={AvailableFSeats}
           />)
@@ -597,7 +610,7 @@ function Row(props){
           {eList.map(AvailableESeats => (
             <FormControlLabel
             control={
-              <Checkbox checked={AvailableEESeats} onChange={handleChange} name={AvailableESeats} />
+              <Checkbox checked={AvailableEESeats} onChange={handleChange} name="AvailableESeats" />
             }
             label={AvailableESeats}
           />)
@@ -614,7 +627,7 @@ function Row(props){
           {bList.map(AvailableBSeats => (
             <FormControlLabel
             control={
-              <Checkbox checked={AvailableBBSeats} onChange={handleChange} name={AvailableBSeats} />
+              <Checkbox checked={AvailableBBSeats} onChange={handleChange} name="AvailableBSeats" />
             }
             label={AvailableBSeats}
           />)

@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
 const { MongoClient } = require('mongodb');
 const axios = require('axios').default;
+var nodemailer = require('nodemailer');
 
 const cors = require ("cors")
 //hidedb
