@@ -20,22 +20,27 @@ FlightRoutes.post('/update/:id', (req,res) => {
  f = [];
  e = [];
  b = [];
+ var x;
+ for( i = 0; i<Number.parseInt(Fr);i++)
+ {
+   x=i+1;
+   f[i]="F"+x
 
-  for(i = 0; i<Number.parseInt(Fr);i++)
-  {
-    f[i]=i+1;
+ }
+ for( i = 0; i<Number.parseInt(ec);i++)
+ {
+   x=i+1;
 
-  }
-  for(i = 0; i<Number.parseInt(ec);i++)
-  {
-    e[i]=i+1;
+   e[i]="E"+x
 
-  }
-  for( i = 0; i<Number.parseInt(bz);i++)
-  {
-    b[i]=i+1;
+ }
+ for( i = 0; i<Number.parseInt(bz);i++)
+ {
+   x=i+1;
 
-  }
+   b[i]="B"+x
+
+ }
   
   console.log(f);
   console.log(e);
@@ -118,20 +123,25 @@ FlightRoutes.post("/Addflight", (req, res) => {
 
 
 
-
+var x;
     for( i = 0; i<Number.parseInt(Fr);i++)
     {
-      f[i]=i+1
+      x=i+1;
+      f[i]="F"+x
 
     }
     for( i = 0; i<Number.parseInt(ec);i++)
     {
-      e[i]=i+1
+      x=i+1;
+
+      e[i]="E"+x
 
     }
     for( i = 0; i<Number.parseInt(bz);i++)
     {
-      b[i]=i+1
+      x=i+1;
+
+      b[i]="B"+x
 
     }
 

@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import axios from "axios";
-
+import { TextField } from "@material-ui/core";
 import Button from '@material-ui/core/Button';
 
 
@@ -49,77 +49,92 @@ DepartureTime:DepartureTime ,
     
         
         
+            <br/>
             
-            
-    <h1>Add your flight details</h1>
+    <h2>Add your flight details</h2>
+    <br/>
     
     <label>
     Flight number:
-    <input  type="text" name="Flight_number"  placeholder="Flight_number" onChange={event=>setfn(event.target.value)} />
+    <br/>
+    <TextField variant="standard" name="Flight_number"  placeholder="Flight_number" onChange={event=>setfn(event.target.value)} />
   </label>
   <br/>
   <label>
   DepartureTime:
-    <input   type="text" name="DepartureTime" placeholder="DepartureTime" onChange={event=>setDT(event.target.value)}  />
+  <br/>
+    <TextField variant="standard" name="DepartureTime" placeholder="DepartureTime" onChange={event=>setDT(event.target.value)}  />
   </label>
   <br/>
   <label>
     To:
-    <input  type="text" name="To"  placeholder="To" onChange={event=>setto(event.target.value)} />
+    <br/>
+    <TextField variant="standard" name="To"  placeholder="To" onChange={event=>setto(event.target.value)} />
   </label>
   <br/>
   
   <label>
     From:
-    <input  type="text" name="From"  placeholder="From" onChange={event=>setFrom(event.target.value)}  />
+    <br/>
+    <TextField variant="standard" name="From"  placeholder="From" onChange={event=>setFrom(event.target.value)}  />
   </label>
   <br/>
   <label>
-  ArrivalTime
-    <input   type="text" name="ArrivalTime" placeholder="ArrivalTime" onChange={event=>setat(event.target.value)} />
+  ArrivalTime:
+  <br/>
+    <TextField variant="standard" name="ArrivalTime" placeholder="ArrivalTime" onChange={event=>setat(event.target.value)} />
   </label>
   <br/>
   <label>
   
   <label>
     First:
-    <input  type="text" name="First"  placeholder="First" onChange={event=>setF(event.target.value)}  />
+    <br/>
+    <TextField variant="standard" name="First"  placeholder="First" onChange={event=>setF(event.target.value)}  />
   </label>
   <br/>
   EconomySeats:
-    <input   type="text" name="EconomySeats" placeholder="EconomySeats" onChange={event=>setE(event.target.value)} />
+  <br/>
+    <TextField variant="standard" name="EconomySeats" placeholder="EconomySeats" onChange={event=>setE(event.target.value)} />
   </label>
   <br/>
     <label>
     BusinessSeats:
-    <input   type="text" name="BusinessSeats" placeholder="BusinessSeats" onChange={event=>setB(event.target.value)}  />
+    <br/>
+    <TextField variant="standard" name="BusinessSeats" placeholder="BusinessSeats" onChange={event=>setB(event.target.value)}  />
   </label>
   <br/>
   <label>
     ArrivalTerminal:
-    <input  type="text" name="ArrivalTerminal"  placeholder="ArrivalTerminal" onChange={event=>setater(event.target.value)}  />
+    <br/>
+    <TextField variant="standard" name="ArrivalTerminal"  placeholder="ArrivalTerminal" onChange={event=>setater(event.target.value)}  />
   </label>
   <br/>
   <label>
     DepartureTerminal:
-    <input  type="text" name="DepartureTerminal"  placeholder="DepartureTerminal" onChange={event=>setDter(event.target.value)}  />
+    <br/>
+    <TextField variant="standard" name="DepartureTerminal"  placeholder="DepartureTerminal" onChange={event=>setDter(event.target.value)}  />
   </label>
   <br/>
 
   <label>
     BaggageAllowance:
-    <input  type="text" name="BaggageAllowance"  placeholder="BaggageAllowance" onChange={event=>setBag(event.target.value)}  />
+    <br/>
+    <TextField variant="standard" name="BaggageAllowance"  placeholder="BaggageAllowance" onChange={event=>setBag(event.target.value)}  />
   </label>
   <br/>
   <label>
     Type:
-    <input  type="text" name="Type"  placeholder="Type" onChange={event=>setType(event.target.value)}  />
+    <br/>
+    <TextField variant="standard" name="Type"  placeholder="Type" onChange={event=>setType(event.target.value)}  />
   </label>
   <br/>
   <label>
     TicketPrice:
-    <input  type="text" name="TicketPrice"  placeholder="TicketPrice" onChange={event=>setPrice(event.target.value)}  />
+    <br/>
+    <TextField variant="standard" name="TicketPrice"  placeholder="TicketPrice" onChange={event=>setPrice(event.target.value)}  />
   </label>
+  <br/>
   <br/>
              
   <Button variant="contained"  type="submit" color="primary" > Add flight </Button>

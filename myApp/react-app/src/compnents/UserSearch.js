@@ -34,6 +34,8 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormHelperText from '@mui/material/FormHelperText';
 import Checkbox from '@mui/material/Checkbox';
+import Seatmap from 'react-seatmap';
+
 
 
 
@@ -200,70 +202,70 @@ function UserSearch() {
     
     <label>
     Flight number:
-    <input  type="text" name="Flight_number"  placeholder="Flight_number" value={Flight_number} onChange={event=>setfn(event.target.value)} />
+    <TextField variant="standard"  type="text" name="Flight_number"  placeholder="Flight_number" value={Flight_number} onChange={event=>setfn(event.target.value)} />
   </label>
   <br/>
   <label>
   DepartureTime:
-    <input   type="text" name="DepartureTime" placeholder="DepartureTime" onChange={event=>setDT(event.target.value)}  />
+    <TextField variant="standard"   type="text" name="DepartureTime" placeholder="DepartureTime" onChange={event=>setDT(event.target.value)}  />
   </label>
   <br/>
   <label>
     To:
-    <input  type="text" name="To"  placeholder="To" onChange={event=>setto(event.target.value)} />
+    <TextField variant="standard"  type="text" name="To"  placeholder="To" onChange={event=>setto(event.target.value)} />
   </label>
   <br/>
   
   <label>
     From:
-    <input  type="text" name="From"  placeholder="From" onChange={event=>setFrom(event.target.value)}  />
+    <TextField variant="standard"  type="text" name="From"  placeholder="From" onChange={event=>setFrom(event.target.value)}  />
   </label>
   <br/>
   <label>
   ArrivalTime
-    <input   type="text" name="ArrivalTime" placeholder="ArrivalTime" onChange={event=>setat(event.target.value)} />
+    <TextField variant="standard"   type="text" name="ArrivalTime" placeholder="ArrivalTime" onChange={event=>setat(event.target.value)} />
   </label>
   <br/>
   <label>
   
   <label>
     First:
-    <input  type="text" name="First"  placeholder="First" onChange={event=>setF(event.target.value)}  />
+    <TextField variant="standard"  type="text" name="First"  placeholder="First" onChange={event=>setF(event.target.value)}  />
   </label>
   <br/>
   EconomySeats:
-    <input   type="text" name="EconomySeats" placeholder="EconomySeats" onChange={event=>setE(event.target.value)} />
+    <TextField variant="standard"   type="text" name="EconomySeats" placeholder="EconomySeats" onChange={event=>setE(event.target.value)} />
   </label>
   <br/>
     <label>
     BusinessSeats:
-    <input   type="text" name="BusinessSeats" placeholder="BusinessSeats" onChange={event=>setB(event.target.value)}  />
+    <TextField variant="standard"   type="text" name="BusinessSeats" placeholder="BusinessSeats" onChange={event=>setB(event.target.value)}  />
   </label>
   <br/>
   <label>
     ArrivalTerminal:
-    <input  type="text" name="ArrivalTerminal"  placeholder="ArrivalTerminal" onChange={event=>setater(event.target.value)}  />
+    <TextField variant="standard"  type="text" name="ArrivalTerminal"  placeholder="ArrivalTerminal" onChange={event=>setater(event.target.value)}  />
   </label>
   <br/>
   <label>
     DepartureTerminal:
-    <input  type="text" name="DepartureTerminal"  placeholder="DepartureTerminal" onChange={event=>setDter(event.target.value)}  />
+    <TextField variant="standard"  type="text" name="DepartureTerminal"  placeholder="DepartureTerminal" onChange={event=>setDter(event.target.value)}  />
   </label>
   <br/>
   
   <label>
     BaggageAllowance:
-    <input  type="text" name="BaggageAllowance"  placeholder="BaggageAllowance" onChange={event=>setDter(event.target.value)}  />
+    <TextField variant="standard"  type="text" name="BaggageAllowance"  placeholder="BaggageAllowance" onChange={event=>setDter(event.target.value)}  />
   </label>
   <br/>
   <label>
     Type:
-    <input  type="text" name="Type"  placeholder="Type" onChange={event=>setDter(event.target.value)}  />
+    <TextField variant="standard"  type="text" name="Type"  placeholder="Type" onChange={event=>setDter(event.target.value)}  />
   </label>
   <br/>
   <label>
     TicketPrice:
-    <input  type="text" name="TicketPrice"  placeholder="TicketPrice" onChange={event=>setDter(event.target.value)}  />
+    <TextField variant="standard"  type="text" name="TicketPrice"  placeholder="TicketPrice" onChange={event=>setDter(event.target.value)}  />
   </label>
   <br/>
              
@@ -298,7 +300,7 @@ function UserSearch() {
         </TableBody>
       </Table>
     </Paper>
-     )
+     
         </div>
        </form>
        
@@ -310,6 +312,22 @@ function UserSearch() {
 
     
 function Row(props){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   
@@ -414,7 +432,7 @@ function Row(props){
   const checkf= [];
   const checke= [];
   const checkb=[];
-
+  const allseats=[];
 
 
 
@@ -459,20 +477,25 @@ function Row(props){
       [event.target.name]: event.target.checked,
     });
     if(event.target.name==="AvailableFSeats"&&event.target.checked===true){
-      checkf.push(event.target.label);}
+      checkf.push(event.target.label);
+      allseats.push(event.target.label);}
       else if(event.target.name==="AvailableBSeats"&&event.target.checked===true){
-        checkb.push(event.target.label);}
+        checkb.push(event.target.label);
+        allseats.push(event.target.label);}
         else if(event.target.name==="AvailableESeats"&&event.target.checked===true){
-          checke.push(event.target.label);}
+          checke.push(event.target.label);
+          allseats.push(event.target.label);}
           console.log(checkf)
           console.log(checke)
           console.log(checkb)
+          console.log(allseats)
+
      
   };
 
+
   const {AvailableFFSeats, AvailableEESeats, AvailableBBSeats} = state;
   const error = [AvailableFSeats, AvailableESeats, AvailableBSeats].filter((v) => v).length !== 2;
-
 
 
 
@@ -571,7 +594,7 @@ function Row(props){
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
               Reserve Seats
             </Typography>
-            <Button autoFocus color="inherit" onClick={handleCloseR}>
+            <Button type = "submit" autoFocus color="inherit" onClick={handleCloseR}>
               Save
             </Button>
           </Toolbar>
@@ -584,8 +607,18 @@ function Row(props){
 
 
           <Box sx={{ display: 'flex' }}>
+          <form onSubmit={(event)=> axios.post('http://localhost:8080/flight/Addflight',{
+   
+  ReservedSeats:allseats,
+  
+  
+    }).then(window.open("http://localhost:3000/flight/Showflights"))}>
+    
+    <div className="Reserve Seats">
+    <header className="search-header">
 
-          <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
+
+    <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
     <FormLabel component="legend">First Class Seats</FormLabel>
     
     <FormGroup>
@@ -635,6 +668,15 @@ function Row(props){
           </FormGroup>
   </FormControl>
 
+
+
+            
+            
+                   </header>
+                  
+     
+        </div>
+       </form>
 
  
 </Box>

@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   navlinks: {
-    marginLeft: theme.spacing(30), // used to be 10
+    marginLeft: theme.spacing(0), // used to be 10
     display: "flex",
   },
  logo: {
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     color: "white",
     fontSize: "20px",
-    marginLeft: theme.spacing(10),
+    marginLeft: theme.spacing(8),
     "&:hover": {
       color: "yellow",
       borderBottom: "1px solid white",
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Navbar() {
+function NavbarU() {
   const classes = useStyles();
 
   return (
@@ -44,17 +44,12 @@ function Navbar() {
             <Link to="/" className={classes.link}>
               Home
             </Link>
-            <Link to="/flight/Addflight" className={classes.link}>
-              Add Flight
-            </Link>
-            <Link to="/flight/Showflights" className={classes.link}>
-              Show Flights
-            </Link>
-          
-            <Link to="/flight/search" className={classes.link}>
+            <Link to="/user/Showresflights" className={classes.link}>
+              Show Reserved Flights
+            </Link>     
+            <Link to="/flight/UserSearch" className={classes.link}>
               Search
             </Link>
-          
             <Link to="/user/Profile" className={classes.link}>
               Profile
             </Link>
@@ -63,4 +58,4 @@ function Navbar() {
     </AppBar>
   );
 }
-export default Navbar;
+export default NavbarU;

@@ -7,6 +7,7 @@ import Showresflights from "./compnents/showresflights";
 import Search from "./compnents/search";
 import UserSearch from "./compnents/UserSearch";
 import Profile from "./compnents/Profile";
+
 function App() {
 return (
 	<Router>
@@ -21,15 +22,10 @@ return (
 		<Route path="/flight/search">
 		<Search />
 		</Route>
-		<Route path="/flight/UserSearch">
-		<UserSearch />
-		</Route>
 		<Route path="/user/Profile">
 		<Profile />
 		</Route>
-		<Route path="/user/Showresflights">
-		<Showresflights />
-		</Route>
+
 		
 		
 		</Router>

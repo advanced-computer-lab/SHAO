@@ -163,70 +163,70 @@ function Search() {
     
     <label>
     Flight number:
-    <input  type="text" name="Flight_number"  placeholder="Flight_number" value={Flight_number} onChange={event=>setfn(event.target.value)} />
+    <TextField variant="standard"  type="text" name="Flight_number"  placeholder="Flight_number" value={Flight_number} onChange={event=>setfn(event.target.value)} />
   </label>
   <br/>
   <label>
   DepartureTime:
-    <input   type="text" name="DepartureTime" placeholder="DepartureTime" onChange={event=>setDT(event.target.value)}  />
+    <TextField variant="standard"   type="text" name="DepartureTime" placeholder="DepartureTime" onChange={event=>setDT(event.target.value)}  />
   </label>
   <br/>
   <label>
     To:
-    <input  type="text" name="To"  placeholder="To" onChange={event=>setto(event.target.value)} />
+    <TextField variant="standard"  type="text" name="To"  placeholder="To" onChange={event=>setto(event.target.value)} />
   </label>
   <br/>
   
   <label>
     From:
-    <input  type="text" name="From"  placeholder="From" onChange={event=>setFrom(event.target.value)}  />
+    <TextField variant="standard"  type="text" name="From"  placeholder="From" onChange={event=>setFrom(event.target.value)}  />
   </label>
   <br/>
   <label>
   ArrivalTime
-    <input   type="text" name="ArrivalTime" placeholder="ArrivalTime" onChange={event=>setat(event.target.value)} />
+    <TextField variant="standard"   type="text" name="ArrivalTime" placeholder="ArrivalTime" onChange={event=>setat(event.target.value)} />
   </label>
   <br/>
   <label>
   
   <label>
     First:
-    <input  type="text" name="First"  placeholder="First" onChange={event=>setF(event.target.value)}  />
+    <TextField variant="standard"  type="text" name="First"  placeholder="First" onChange={event=>setF(event.target.value)}  />
   </label>
   <br/>
   EconomySeats:
-    <input   type="text" name="EconomySeats" placeholder="EconomySeats" onChange={event=>setE(event.target.value)} />
+    <TextField variant="standard"   type="text" name="EconomySeats" placeholder="EconomySeats" onChange={event=>setE(event.target.value)} />
   </label>
   <br/>
     <label>
     BusinessSeats:
-    <input   type="text" name="BusinessSeats" placeholder="BusinessSeats" onChange={event=>setB(event.target.value)}  />
+    <TextField variant="standard"   type="text" name="BusinessSeats" placeholder="BusinessSeats" onChange={event=>setB(event.target.value)}  />
   </label>
   <br/>
   <label>
     ArrivalTerminal:
-    <input  type="text" name="ArrivalTerminal"  placeholder="ArrivalTerminal" onChange={event=>setater(event.target.value)}  />
+    <TextField variant="standard"  type="text" name="ArrivalTerminal"  placeholder="ArrivalTerminal" onChange={event=>setater(event.target.value)}  />
   </label>
   <br/>
   <label>
     DepartureTerminal:
-    <input  type="text" name="DepartureTerminal"  placeholder="DepartureTerminal" onChange={event=>setDter(event.target.value)}  />
+    <TextField variant="standard"  type="text" name="DepartureTerminal"  placeholder="DepartureTerminal" onChange={event=>setDter(event.target.value)}  />
   </label>
   <br/>
   
   <label>
     BaggageAllowance:
-    <input  type="text" name="BaggageAllowance"  placeholder="BaggageAllowance" onChange={event=>setDter(event.target.value)}  />
+    <TextField variant="standard"  type="text" name="BaggageAllowance"  placeholder="BaggageAllowance" onChange={event=>setDter(event.target.value)}  />
   </label>
   <br/>
   <label>
     Type:
-    <input  type="text" name="Type"  placeholder="Type" onChange={event=>setDter(event.target.value)}  />
+    <TextField variant="standard"  type="text" name="Type"  placeholder="Type" onChange={event=>setDter(event.target.value)}  />
   </label>
   <br/>
   <label>
     TicketPrice:
-    <input  type="text" name="TicketPrice"  placeholder="TicketPrice" onChange={event=>setDter(event.target.value)}  />
+    <TextField variant="standard"  type="text" name="TicketPrice"  placeholder="TicketPrice" onChange={event=>setDter(event.target.value)}  />
   </label>
   <br/>
              
@@ -261,7 +261,7 @@ function Search() {
         </TableBody>
       </Table>
     </Paper>
-     )
+     
         </div>
        </form>
        
