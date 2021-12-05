@@ -323,7 +323,7 @@ function Row(props){
   const handleCloseR = (event) => {
     setOpenR(false);
     var s=String(event.currentTarget.id);
-  axios.post('http://localhost:8080/user/reserveseats/' ,{
+  axios.post('http://localhost:8080/user/reserveseats/' + s ,{
      
     ReservedSeats: allseats,
 
@@ -333,7 +333,8 @@ function Row(props){
       console.log(res)
       console.log(res.data)
  
-   })  };
+   })
+  };
 
 
 
@@ -404,9 +405,9 @@ function Row(props){
   const [TO, setto] = useState();
   const [From, setFrom] = useState();
   const [ArrivalTime, setat] = useState();
-  const [First, setF] = useState();
-  const [EconomySeats, setE] = useState();
-  const [BusinessSeats, setB] = useState();
+  const [First, setF] = useState(0);
+  const [EconomySeats, setE] = useState(0);
+  const [BusinessSeats, setB] = useState(0);
   const [ArrivalTerminal, setater] = useState();
   const [DepartureTerminal, setDter] = useState();
   const [BaggageAllowance, setBag] = useState();
@@ -485,12 +486,14 @@ function Row(props){
 
 
       if(event.target.name.split(",")[0]==="AvailableFSeats"&&event.target.checked===false){
-        allseats.pop(event.target.name.split(",")[1]);}
+        //allseats.pop(event.target.name.split(",")[1]);
+      allseats.splice(allseats.indexOf(event.target.name.split(",")[1]),1);}
         if(event.target.name.split(",")[0]==="AvailableBSeats"&&event.target.checked===false){
-          allseats.pop(event.target.name.split(",")[1]);}
+          //allseats.pop(event.target.name.split(",")[1]);}
+          allseats.splice(allseats.indexOf(event.target.name.split(",")[1]),1);}
           if(event.target.name.split(",")[0]==="AvailableESeats"&&event.target.checked===false){
-            allseats.pop(event.target.name.split(",")[1]);}  
-     
+            //allseats.pop(event.target.name.split(",")[1]);}  
+            allseats.splice(allseats.indexOf(event.target.name.split(",")[1]),1);}
   };
 
             console.log(checkf)

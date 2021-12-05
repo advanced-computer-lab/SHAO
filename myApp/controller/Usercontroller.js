@@ -199,12 +199,65 @@ var nodemailer = require('nodemailer');
 
 
 
-    UserRoutes.post('/reserveseats', (req,res) => {
+    UserRoutes.post('/reserveseats/:id', (req,res) => {
     
       User.findByIdAndUpdate("61a52b332239b52f7ef5cc68",{ReservedSeats:req.body.ReservedSeats},{new : true}).catch(err => {
         console.log(err);
       
     });
+Flight.findById(req.params.id).then(result => {
+  for (let i = 0; i <= req.body.ReservedSeats.length; i++) {
+    
+    if(result.AvailableFSeats.indexOf(req.body.ReservedSeats[i])!==-1){
+      
+      result.AvailableFSeats.splice(result.AvailableFSeats.indexOf(req.body.ReservedSeats[i]),1)
+      Flight.findByIdAndUpdate(req.params.id,{ AvailableFSeats : result.AvailableFSeats},{new : true}).catch(err => {
+        console.log(err);
+      
+    });;
+    Flight.findByIdAndUpdate(req.params.id,{ First : result.AvailableFSeats.length},{new : true}).catch(err => {
+      console.log(err);
+    
+  })
+    }
+    if(result.AvailableESeats.indexOf(req.body.ReservedSeats[i])!==-1){
+      result.AvailableESeats.splice(result.AvailableESeats.indexOf(req.body.ReservedSeats[i]),1)
+      Flight.findByIdAndUpdate(req.params.id,{ AvailableESeats : result.AvailableESeats},{new : true}).catch(err => {
+        console.log(err);
+      
+    });
+    Flight.findByIdAndUpdate(req.params.id,{ EconomySeats : result.AvailableESeats.length},{new : true}).catch(err => {
+      console.log(err);
+    
+  })
+  
+  }
+    if(result.AvailableBSeats.indexOf(req.body.ReservedSeats[i])!==-1){
+      
+      result.AvailableBSeats.splice(result.AvailableBSeats.indexOf(req.body.ReservedSeats[i]),1)
+      Flight.findByIdAndUpdate(req.params.id,{ AvailableBSeats : result.AvailableBSeats},{new : true}).catch(err => {
+        console.log(err);
+      
+    });
+  
+    Flight.findByIdAndUpdate(req.params.id,{ BusinessSeats : result.AvailableBSeats.length},{new : true}).catch(err => {
+      console.log(err);
+    
+  })
+  
+  }
+    
+  }
+    
+
+    
+  
+
+
+})
+.catch(err => {
+  console.log(err);
+});
 
     
     });

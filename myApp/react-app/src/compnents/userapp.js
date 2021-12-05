@@ -8,10 +8,9 @@ import Home from "./Home";
 
 function Appuser() {
 return (
+
 	<Router>
 		<NavbarU />
-		
-		
 		<Route path="/flight/UserSearch">
 		<UserSearch />
 		</Route>
@@ -21,13 +20,12 @@ return (
 		<Route path="/user/Showresflights">
 		<Showresflights />
 		</Route>
-		<Route path="/Home">
+		<Route path="/user/home">
 		<Home />
 		</Route>
 		
-		
 		</Router>
-);
+		);
 }
 
 export default Appuser;

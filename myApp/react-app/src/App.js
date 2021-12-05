@@ -8,7 +8,7 @@ import Profile from "./compnents/Profile";
 import Home from "./compnents/Home";
 
 function App() {
-return (
+	return (
 	<Router>
 		<Navbar />
 		
@@ -24,14 +24,19 @@ return (
 		<Route path="/user/Profile">
 		<Profile />
 		</Route>
-		<Route path="/Home">
+		<Route path="/user/home">
 		<Home />
 		</Route>
 
 		
 		
 		</Router>
-);
+		
+  
+
+
+  );
+
 }
 
 export default App;

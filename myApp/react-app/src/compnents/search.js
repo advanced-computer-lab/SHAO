@@ -110,9 +110,9 @@ function Search() {
   const [TO, setto] = useState();
   const [From, setFrom] = useState();
   const [ArrivalTime, setat] = useState();
-  const [First, setF] = useState();
-  const [EconomySeats, setE] = useState();
-  const [BusinessSeats, setB] = useState();
+  const [First, setF] = useState(0);
+  const [EconomySeats, setE] = useState(0);
+  const [BusinessSeats, setB] = useState(0);
   const [ArrivalTerminal, setater] = useState();
   const [DepartureTerminal, setDter] = useState();
   const [BaggageAllowance, setBag] = useState();
@@ -297,9 +297,9 @@ function Row(props){
   const [TO, setto] = useState();
   const [From, setFrom] = useState();
   const [ArrivalTime, setat] = useState();
-  const [First, setF] = useState();
-  const [EconomySeats, setE] = useState();
-  const [BusinessSeats, setB] = useState();
+  const [First, setF] = useState(0);
+  const [EconomySeats, setE] = useState(0);
+  const [BusinessSeats, setB] = useState(0);
   const [ArrivalTerminal, setater] = useState();
   const [DepartureTerminal, setDter] = useState();
   const [BaggageAllowance, setBag] = useState();

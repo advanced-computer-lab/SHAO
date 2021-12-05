@@ -26,14 +26,14 @@ function Home() {
       <br/>
 
 <br/>
+Welcome to Shao AirLines
 
-      Welcome to Shao AirLines
   </h1>
-    
-    <div style={myStyle}>
+  <div style={myStyle}>
         
-    </div>
+        </div>
+    
 </div>
-  );
+  )
 }
 export default Home;
