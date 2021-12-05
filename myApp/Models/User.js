@@ -38,6 +38,17 @@ const userSchema = new Schema({
   isAdmin: {
     type: Boolean,
     required: true
+<<<<<<< Updated upstream
+=======
+  },
+  ReservedFlights: {
+    type: [],
+    required: true
+  },
+  ReservedSeats: {
+    type: [],
+    required: true
+>>>>>>> Stashed changes
   }
   
 }, { timestamps: true });
