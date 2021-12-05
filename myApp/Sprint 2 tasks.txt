@@ -1,6 +1,6 @@
 Team shao
-Ali:
-Shady:
-hatem: 
-hania: 
-omar: 
+
+Ali - Shady: Rest of project
+hatem: 11-14
+hania: 15
+omar: 29.1
