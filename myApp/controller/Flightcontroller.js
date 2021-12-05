@@ -190,7 +190,7 @@ FlightRoutes.post('/usersearch', (req,res) => {
   Flight.find(req.body,function(err,docs){
     
   }
-  ).clone().then(result => {
+  ).where('First').gte(req.body.First).where('EconomySeats').gte(req.body.EconomySeats).where('BusinessSeats').gte(req.body.BusinessSeats).clone().then(result => {
     //console.log(result)
     return res.send(result);
   })

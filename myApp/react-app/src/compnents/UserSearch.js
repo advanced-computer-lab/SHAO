@@ -43,29 +43,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-
-// function Handledelete(event){
-//   var s=String(event.currentTarget.id);
-//   console.log(s);
-//   const url='http://localhost:8080/flight/delete/' + s
-//   axios.post(url)
-//   window.location.reload(false);
-// }
-// function Handleupdate(event){
-//   var s=String(event.currentTarget.id);
-//   console.log(s);
-//   const url='http://localhost:8080/flight/update/' + s
-
-//   axios.post(url)
-//   window.location.reload(false);
-
-//   }
    
 
 function Handlereserve(event){
   var s=String(event.currentTarget.id);
   console.log(s);
-  //const url='http://localhost:8080/user/reserve' + s
   axios.post('http://localhost:8080/user/reserve/' + s)
   window.location.reload(false);
   
@@ -74,7 +56,6 @@ function Handlereserve(event){
 function Handlecreserve(event){
   var s=String(event.currentTarget.id);
   console.log(s);
-  //const url='http://localhost:8080/user/reserve' + s
   axios.post('http://localhost:8080/user/cancelreserve/' + s)
   window.location.reload(false);
   
@@ -144,16 +125,7 @@ function UserSearch() {
       
        }).then((res) => {
         setUserList(res.data);
-        //  setfn(res.data.FlightNumber);
-        //  setDT(res.data.DepartureTime);
-        //  setto(res.data.TO);
-        //  setFrom(res.data.From);
-        //  setat(res.data.ArrivalTime);
-        //  setF(res.data.First);
-        //  setE(res.data.EconomySeats);
-        //  setB(res.data.BusinessSeats);
-        //  setater(res.data.ArrivalTerminal);
-        //  setDter(res.data.DepartureTerminal);
+       
 
      console.log(res)
      console.log(res.data)
@@ -166,9 +138,9 @@ function UserSearch() {
   const [TO, setto] = useState();
   const [From, setFrom] = useState();
   const [ArrivalTime, setat] = useState();
-  const [First, setF] = useState();
-  const [EconomySeats, setE] = useState();
-  const [BusinessSeats, setB] = useState();
+  const [First, setF] = useState(0);
+  const [EconomySeats, setE] = useState(0);
+  const [BusinessSeats, setB] = useState(0);
   const [ArrivalTerminal, setater] = useState();
   const [DepartureTerminal, setDter] = useState();
   const [BaggageAllowance, setBag] = useState();
@@ -184,31 +156,7 @@ function UserSearch() {
     
   return (
       
-     <form onSubmit={Handleclick}
-     //{ (event)=> {
-    
-  //      axios.post('http://localhost:8080/flight/search',{
-   
-  //  FlightNumber : Flight_number,
-  //  DepartureTime : DepartureTime ,
-  //  To : TO ,
-  //  From : From ,
-  //  ArrivalTime : ArrivalTime,
-  
-  //  First : First ,
-
-  //  EconomySeats : EconomySeats,
-  //  BusinessSeats : BusinessSeats ,
-  //  ArrivalTerminal : ArrivalTerminal,
-  //  DepartureTerminal : DepartureTerminal,
-   
-
-    
-    
-
-  //   }).then(res=>{console.log(res)} ).catch((err)=>
-  //   console.log(err))}}
-  >
+     <form onSubmit={Handleclick} >
     
     <div className="Search">
     <header className="search-header">
@@ -316,13 +264,23 @@ function Row(props){
 
   const [openR, setOpenR] = React.useState(false);
 
-  const handleClickOpenR = () => {
+  const handleClickOpenR = () => { //Reserve Seats pop up
     setOpenR(true);
   };
 
   const handleCloseR = (event) => {
     setOpenR(false);
     var s=String(event.currentTarget.id);
+
+
+    var x=String(event.currentTarget.id);
+    console.log(s);
+    axios.post('http://localhost:8080/user/reserve/' + x)
+    window.location.replace('http://localhost:3000/user/Showresflights');
+    
+
+
+
   axios.post('http://localhost:8080/user/reserveseats/' + s ,{
      
     ReservedSeats: allseats,
@@ -344,7 +302,7 @@ function Row(props){
 
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
+  const handleClickOpen = () => {   //Reserve Confirmation
     setOpen(true);
   };
 
@@ -356,7 +314,7 @@ function Row(props){
 
   const [openC, setOpenC] = React.useState(false);
 
-  const handleClickOpenC = () => {
+  const handleClickOpenC = () => { //Cancel Confirmation
     setOpenC(true);
   };
 
@@ -405,9 +363,9 @@ function Row(props){
   const [TO, setto] = useState();
   const [From, setFrom] = useState();
   const [ArrivalTime, setat] = useState();
-  const [First, setF] = useState(0);
-  const [EconomySeats, setE] = useState(0);
-  const [BusinessSeats, setB] = useState(0);
+  const [First, setF] = useState();
+  const [EconomySeats, setE] = useState();
+  const [BusinessSeats, setB] = useState();
   const [ArrivalTerminal, setater] = useState();
   const [DepartureTerminal, setDter] = useState();
   const [BaggageAllowance, setBag] = useState();
@@ -474,25 +432,19 @@ function Row(props){
       [event.target.name]: event.target.checked,
     });
     if(event.target.name.split(",")[0]==="AvailableFSeats"&&event.target.checked===true){
-     // checkf.push(event.target.name.split(",")[1]);
       allseats.push(event.target.name.split(",")[1]);}
       if(event.target.name.split(",")[0]==="AvailableBSeats"&&event.target.checked===true){
-       // checkb.push(event.target.name.split(",")[1]);
         allseats.push(event.target.name.split(",")[1]);}
         if(event.target.name.split(",")[0]==="AvailableESeats"&&event.target.checked===true){
-        //  checke.push(event.target.name.split(",")[1]);
           allseats.push(event.target.name.split(",")[1]);}
 
 
 
       if(event.target.name.split(",")[0]==="AvailableFSeats"&&event.target.checked===false){
-        //allseats.pop(event.target.name.split(",")[1]);
       allseats.splice(allseats.indexOf(event.target.name.split(",")[1]),1);}
         if(event.target.name.split(",")[0]==="AvailableBSeats"&&event.target.checked===false){
-          //allseats.pop(event.target.name.split(",")[1]);}
           allseats.splice(allseats.indexOf(event.target.name.split(",")[1]),1);}
           if(event.target.name.split(",")[0]==="AvailableESeats"&&event.target.checked===false){
-            //allseats.pop(event.target.name.split(",")[1]);}  
             allseats.splice(allseats.indexOf(event.target.name.split(",")[1]),1);}
   };
 
@@ -514,7 +466,7 @@ function Row(props){
   </TableCell>
     <TableCell><TextField variant="standard"   type="text" name="ArrivalTime" placeholder="ArrivalTime" value= {ArrivalTime} onChange={event=>setat(event.target.value)} />
   </TableCell>
-  <TableCell> <TextField variant="standard"  type="text" name="First"  placeholder="First" value={First} onChange={event=>setfList(event.target.value)}  />
+  <TableCell> <TextField variant="standard"  type="text" name="First"  placeholder="First" value={First} onChange={event=>setF(event.target.value)}  />
 </TableCell>
 
     <TableCell> <TextField variant="standard"   type="text" name="EconomySeats" placeholder="EconomySeats" value= {EconomySeats} onChange={event=>setE(event.target.value)} /></TableCell>
@@ -524,9 +476,8 @@ function Row(props){
     <TableCell><TextField variant="standard"  type="text" name="BaggageAllowance"  placeholder="BaggageAllowance" value= {BaggageAllowance} onChange={event=>setBag(event.target.value)}  /></TableCell>
     <TableCell><TextField variant="standard"  type="text" name="Type"  placeholder="Type" value= {Type} onChange={event=>setType(event.target.value)}  /></TableCell>
     <TableCell><TextField variant="standard"  type="text" name="TicketPrice"  placeholder="TicketPrice" value= {TicketPrice} onChange={event=>setPrice(event.target.value)}  /></TableCell>
-    <Button variant="contained" id={props.row._id} type="submit"value='reserve' onClick={handleClickOpen} color="primary"> reserve </Button>
-    <Button variant="contained" id={props.row._id} type="submit"value='cancelreserve' onClick={handleClickOpenC} color="secondary"> Cancel reservation </Button>  
-    
+    {/* <Button variant="contained" id={props.row._id} type="submit"value='reserve' onClick={handleClickOpen} color="primary"> reserve </Button> */}
+  
     
     <Dialog
         open={open}
@@ -544,7 +495,7 @@ function Row(props){
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>No</Button>
-          <Button id ={props.row._id} onClick={Handlereserve} autoFocus>
+          <Button id ={props.row._id} onClick={handleClickOpen, handleCloseR} autoFocus>
             Yes
           </Button>
         </DialogActions>
@@ -576,10 +527,11 @@ function Row(props){
       </Dialog>
 
 
-
-      <Button variant="outlined" onClick={handleClickOpenR}>
-        Reserve Seats
+      <Button variant="contained" id={props.row._id} type="submit"value='reserve' 
+      onClick={handleClickOpen,handleClickOpenR} color="primary"> Reserve 
       </Button>
+      <Button variant="contained" id={props.row._id} type="submit"value='cancelreserve' onClick={handleClickOpenC} color="secondary"> Cancel reservation </Button>  
+    
       <Dialog
         fullScreen
         open={openR}
@@ -599,7 +551,7 @@ function Row(props){
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
               Reserve Seats
             </Typography>
-            <Button id = {props.row._id} type = "submit" autoFocus color="inherit" onClick={handleCloseR}>
+            <Button id = {props.row._id} type = "submit" autoFocus color="inherit" onClick={handleClickOpen}>
               Save
             </Button>
           </Toolbar>

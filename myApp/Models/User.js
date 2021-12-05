@@ -46,7 +46,8 @@ const userSchema = new Schema({
   ReservedSeats: {
     type: [],
     required: true
-  }
+  },
+  
   
 }, { timestamps: true });
 
