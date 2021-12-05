@@ -200,24 +200,11 @@ var nodemailer = require('nodemailer');
 
 
     UserRoutes.post('/reserveseats', (req,res) => {
-      const x  = [];
-      x = req.body.data;
-      console.log(x);
-      User.findById("61a52b332239b52f7ef5cc68").then(result => {
-        
-        for (let i = 0; i < x.length; i++) {
-          
-          User.findByIdAndUpdate("61a52b332239b52f7ef5cc68", {$push: {ReservedSeats: x[i]}})
-
-        }
-
-
-                res.send(result);
     
-      })
-      .catch(err => {
+      User.findByIdAndUpdate("61a52b332239b52f7ef5cc68",{ReservedSeats:req.body.ReservedSeats},{new : true}).catch(err => {
         console.log(err);
-      });
+      
+    });
 
     
     });

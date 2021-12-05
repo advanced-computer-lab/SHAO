@@ -136,6 +136,10 @@ function UserSearch() {
      BaggageAllowance : BaggageAllowance ,
       Type : Type,
       TicketPrice : TicketPrice,
+      AvailableFSeats: AvailableFSeats,
+      AvailableESeats: AvailableESeats,
+      AvailableBSeats: AvailableBSeats,
+
   
       
        }).then((res) => {
@@ -170,6 +174,12 @@ function UserSearch() {
   const [BaggageAllowance, setBag] = useState();
   const [Type, setType] = useState();
   const [TicketPrice, setPrice] = useState();
+  const [AvailableFSeats, setfs] = useState();
+  const [AvailableESeats, setes] = useState();
+  const [AvailableBSeats, setbs] = useState();
+  const [fList,setfList]= useState([]);
+  const [bList,setbList]= useState([]);
+  const [eList,seteList]= useState([]);
   
     
   return (
@@ -205,78 +215,58 @@ function UserSearch() {
     
         
         
+            <br/>
             
-            
-    <h1>Search</h1>
+    <h3 style={{ color: '#3f51b5' }}>Search</h3>
+
+
+
+    <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="on"
+    >
+      <div>
+        <TextField style={{textAlign: 'center' }} variant="standard" name="Flight_number"  label="Flight Number" onChange={event=>setfn(event.target.value)} />
+        </div>
+        <div>
+
+        <TextField variant="standard" name="DepartureTime" label="Departure Time" onChange={event=>setDT(event.target.value)} />
+        <TextField variant="standard" name="To"  label="To" onChange={event=>setto(event.target.value)} />
+        <TextField variant="standard" name="From"  label="From" onChange={event=>setFrom(event.target.value)}  />
+        <TextField variant="standard" name="ArrivalTime" label="Arrival Time" onChange={event=>setat(event.target.value)} />
+
+        <TextField style = {{}} variant="standard" name="First"  label="First Seats" onChange={event=>setF(event.target.value)}  />
+  
+    <TextField variant="standard" name="EconomySeats" label="Economy Seats" onChange={event=>setE(event.target.value)} />
+
+ 
+      </div>
+      <div>
+        
+    <TextField variant="standard" name="BusinessSeats" label="Business Seats" onChange={event=>setB(event.target.value)}  />
+    <TextField variant="standard" name="ArrivalTerminal"  label="Arrival Terminal" onChange={event=>setater(event.target.value)}  />
+<TextField variant="standard" name="DepartureTerminal"  label="Departure Terminal" onChange={event=>setDter(event.target.value)}  />
+
+         
     
-    <label>
-    Flight number:
-    <TextField variant="standard"  type="text" name="Flight_number"  placeholder="Flight_number" value={Flight_number} onChange={event=>setfn(event.target.value)} />
-  </label>
-  <br/>
-  <label>
-  DepartureTime:
-    <TextField variant="standard"   type="text" name="DepartureTime" placeholder="DepartureTime" onChange={event=>setDT(event.target.value)}  />
-  </label>
-  <br/>
-  <label>
-    To:
-    <TextField variant="standard"  type="text" name="To"  placeholder="To" onChange={event=>setto(event.target.value)} />
-  </label>
-  <br/>
-  
-  <label>
-    From:
-    <TextField variant="standard"  type="text" name="From"  placeholder="From" onChange={event=>setFrom(event.target.value)}  />
-  </label>
-  <br/>
-  <label>
-  ArrivalTime
-    <TextField variant="standard"   type="text" name="ArrivalTime" placeholder="ArrivalTime" onChange={event=>setat(event.target.value)} />
-  </label>
-  <br/>
-  <label>
-  
-  <label>
-    First:
-    <TextField variant="standard"  type="text" name="First"  placeholder="First" onChange={event=>setF(event.target.value)}  />
-  </label>
-  <br/>
-  EconomySeats:
-    <TextField variant="standard"   type="text" name="EconomySeats" placeholder="EconomySeats" onChange={event=>setE(event.target.value)} />
-  </label>
-  <br/>
-    <label>
-    BusinessSeats:
-    <TextField variant="standard"   type="text" name="BusinessSeats" placeholder="BusinessSeats" onChange={event=>setB(event.target.value)}  />
-  </label>
-  <br/>
-  <label>
-    ArrivalTerminal:
-    <TextField variant="standard"  type="text" name="ArrivalTerminal"  placeholder="ArrivalTerminal" onChange={event=>setater(event.target.value)}  />
-  </label>
-  <br/>
-  <label>
-    DepartureTerminal:
-    <TextField variant="standard"  type="text" name="DepartureTerminal"  placeholder="DepartureTerminal" onChange={event=>setDter(event.target.value)}  />
-  </label>
-  <br/>
-  
-  <label>
-    BaggageAllowance:
-    <TextField variant="standard"  type="text" name="BaggageAllowance"  placeholder="BaggageAllowance" onChange={event=>setBag(event.target.value)}  />
-  </label>
-  <br/>
-  <label>
-    Type:
-    <TextField variant="standard"  type="text" name="Type"  placeholder="Type" onChange={event=>setType(event.target.value)}  />
-  </label>
-  <br/>
-  <label>
-    TicketPrice:
-    <TextField variant="standard"  type="text" name="TicketPrice"  placeholder="TicketPrice" onChange={event=>setPrice(event.target.value)}  />
-  </label>
-  <br/>
+ 
+    <TextField variant="standard" name="BaggageAllowance"  label="Baggage Allowance" onChange={event=>setBag(event.target.value)}  />
+
+    <TextField variant="standard" name="Type"  label="Type" onChange={event=>setType(event.target.value)}  />
+    <TextField variant="standard" name="TicketPrice"  label="Ticket Price" onChange={event=>setPrice(event.target.value)}  />
+
+
+
+      </div>
+
+      <br/>
+
+    </Box>
+    
              
             <Button variant="contained"  type="submit" color="primary"  value='submit ' > Submit </Button>
             
@@ -324,35 +314,26 @@ function Row(props){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
   const [openR, setOpenR] = React.useState(false);
 
   const handleClickOpenR = () => {
     setOpenR(true);
   };
 
-  const handleCloseR = () => {
+  const handleCloseR = (event) => {
     setOpenR(false);
-  };
+    var s=String(event.currentTarget.id);
+  axios.post('http://localhost:8080/user/reserveseats/' ,{
+     
+    ReservedSeats: allseats,
+
+   
+       
+        }).then((res) => {
+      console.log(res)
+      console.log(res.data)
+ 
+   })  };
 
 
 
@@ -438,10 +419,12 @@ function Row(props){
   const [fList,setfList]= useState([]);
   const [bList,setbList]= useState([]);
   const [eList,seteList]= useState([]);
-  const checkf= [];
-  const checke= [];
-  const checkb=[];
-  const allseats=[];
+  const [checkf,setcf]= useState([]);
+  const [checkb,setcb]= useState([]);
+  const [checke,setce]= useState([]);
+  const [allseats,setas]= useState([]);
+
+
 
 
 
@@ -451,7 +434,7 @@ function Row(props){
     setto(props.row.To);
     setFrom(props.row.From);
     setat(props.row.ArrivalTime);
-    setbs(props.row.AvailableBSeats);
+    
 
     setF(props.row.First);
     setE(props.row.EconomySeats);
@@ -463,7 +446,7 @@ function Row(props){
     setPrice(props.row.TicketPrice);
     setfs(props.row.AvailableFSeats);
     setes(props.row.AvailableESeats);
-
+    setbs(props.row.AvailableBSeats);
     setfList(props.row.AvailableFSeats);
     seteList(props.row.AvailableESeats);
     setbList(props.row.AvailableBSeats);
@@ -476,35 +459,45 @@ function Row(props){
 
   const [state, setState] = React.useState({
     AvailableFSeats: true,
-    AvailableESeats: false,
-    AvailableBSeats: false,
+    AvailableESeats: true,
+    AvailableBSeats: true,
   });
+
+  // []
+  // for
+  // push
 
   const handleChange = (event) => {
     setState({
       ...state,
       [event.target.name]: event.target.checked,
     });
-    if(event.target.name==="AvailableFSeats"&&event.target.checked===true){
-      checkf.push(event.target.label);
-      allseats.push(event.target.label);}
-      else if(event.target.name==="AvailableBSeats"&&event.target.checked===true){
-        checkb.push(event.target.label);
-        allseats.push(event.target.label);}
-        else if(event.target.name==="AvailableESeats"&&event.target.checked===true){
-          checke.push(event.target.label);
-          allseats.push(event.target.label);}
-          console.log(checkf)
-          console.log(checke)
-          console.log(checkb)
-          console.log(allseats)
+    if(event.target.name.split(",")[0]==="AvailableFSeats"&&event.target.checked===true){
+     // checkf.push(event.target.name.split(",")[1]);
+      allseats.push(event.target.name.split(",")[1]);}
+      if(event.target.name.split(",")[0]==="AvailableBSeats"&&event.target.checked===true){
+       // checkb.push(event.target.name.split(",")[1]);
+        allseats.push(event.target.name.split(",")[1]);}
+        if(event.target.name.split(",")[0]==="AvailableESeats"&&event.target.checked===true){
+        //  checke.push(event.target.name.split(",")[1]);
+          allseats.push(event.target.name.split(",")[1]);}
 
+
+
+      if(event.target.name.split(",")[0]==="AvailableFSeats"&&event.target.checked===false){
+        allseats.pop(event.target.name.split(",")[1]);}
+        if(event.target.name.split(",")[0]==="AvailableBSeats"&&event.target.checked===false){
+          allseats.pop(event.target.name.split(",")[1]);}
+          if(event.target.name.split(",")[0]==="AvailableESeats"&&event.target.checked===false){
+            allseats.pop(event.target.name.split(",")[1]);}  
      
   };
 
-
+            console.log(checkf)
+            console.log(checke)
+            console.log(checkb)
+            console.log(allseats)
   const {AvailableFFSeats, AvailableEESeats, AvailableBBSeats} = state;
-  const error = [AvailableFSeats, AvailableESeats, AvailableBSeats].filter((v) => v).length !== 2;
 
 
 
@@ -518,7 +511,7 @@ function Row(props){
   </TableCell>
     <TableCell><TextField variant="standard"   type="text" name="ArrivalTime" placeholder="ArrivalTime" value= {ArrivalTime} onChange={event=>setat(event.target.value)} />
   </TableCell>
-  <TableCell> <TextField variant="standard"  type="text" name="First"  placeholder="First" value={First} onChange={event=>setF(event.target.value)}  />
+  <TableCell> <TextField variant="standard"  type="text" name="First"  placeholder="First" value={First} onChange={event=>setfList(event.target.value)}  />
 </TableCell>
 
     <TableCell> <TextField variant="standard"   type="text" name="EconomySeats" placeholder="EconomySeats" value= {EconomySeats} onChange={event=>setE(event.target.value)} /></TableCell>
@@ -603,7 +596,7 @@ function Row(props){
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
               Reserve Seats
             </Typography>
-            <Button type = "submit" autoFocus color="inherit" onClick={handleCloseR}>
+            <Button id = {props.row._id} type = "submit" autoFocus color="inherit" onClick={handleCloseR}>
               Save
             </Button>
           </Toolbar>
@@ -635,7 +628,8 @@ function Row(props){
           {fList.map(AvailableFSeats => (
             <FormControlLabel
             control={
-              <Checkbox checked={AvailableFFSeats} onChange={handleChange} name="AvailableFSeats" />
+              <Checkbox checked={AvailableFFSeats} onChange={handleChange} name={"AvailableFSeats," + AvailableFSeats} />
+              
             }
             label={AvailableFSeats}
           />)
@@ -652,7 +646,7 @@ function Row(props){
           {eList.map(AvailableESeats => (
             <FormControlLabel
             control={
-              <Checkbox checked={AvailableEESeats} onChange={handleChange} name="AvailableESeats" />
+              <Checkbox checked={AvailableEESeats} onChange={handleChange} name={"AvailableESeats," + AvailableESeats} />
             }
             label={AvailableESeats}
           />)
@@ -669,7 +663,7 @@ function Row(props){
           {bList.map(AvailableBSeats => (
             <FormControlLabel
             control={
-              <Checkbox checked={AvailableBBSeats} onChange={handleChange} name="AvailableBSeats" />
+              <Checkbox checked={AvailableBBSeats} onChange={handleChange} name={"AvailableBSeats," + AvailableBSeats} />
             }
             label={AvailableBSeats}
           />)
