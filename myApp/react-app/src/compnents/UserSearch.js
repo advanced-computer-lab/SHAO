@@ -58,7 +58,7 @@ function Handlecreserve(event){
   console.log(s);
   axios.post('http://localhost:8080/user/cancelreserve/' + s)
   window.location.reload(false);
-  
+   
 }
 
 
