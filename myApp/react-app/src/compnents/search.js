@@ -12,25 +12,11 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-
+import { Box } from "@mui/system";
+import { TypeBackground } from "@material-ui/core/styles/createPalette";
 import Button from '@material-ui/core/Button';
-// function Handledelete(event){
-//   var s=String(event.currentTarget.id);
-//   console.log(s);
-//   const url='http://localhost:8080/flight/delete/' + s
-//   axios.post(url)
-//   window.location.reload(false);
-// }
-// function Handleupdate(event){
-//   var s=String(event.currentTarget.id);
-//   console.log(s);
-//   const url='http://localhost:8080/flight/update/' + s
 
-//   axios.post(url)
-//   window.location.reload(false);
-
-//   }
-   
+   import { InputLabel } from "@material-ui/core";
 
 function Handledelete(event){
   var s=String(event.currentTarget.id);
@@ -63,6 +49,9 @@ function Search() {
       BusinessSeats : BusinessSeats ,
       ArrivalTerminal : ArrivalTerminal,
       DepartureTerminal : DepartureTerminal,
+      BaggageAllowance : BaggageAllowance,
+      Type : Type,
+      TicketPrice : TicketPrice,
    
        
         }).then((res) => {
@@ -92,6 +81,9 @@ function Search() {
      BusinessSeats : BusinessSeats ,
      ArrivalTerminal : ArrivalTerminal,
      DepartureTerminal : DepartureTerminal,
+     BaggageAllowance : BaggageAllowance,
+      Type : Type,
+      TicketPrice : TicketPrice,
   
       
        }).then((res) => {
@@ -123,6 +115,9 @@ function Search() {
   const [BusinessSeats, setB] = useState();
   const [ArrivalTerminal, setater] = useState();
   const [DepartureTerminal, setDter] = useState();
+  const [BaggageAllowance, setBag] = useState();
+  const [Type, setType] = useState();
+  const [TicketPrice, setPrice] = useState();
     
   return (
       
@@ -157,80 +152,58 @@ function Search() {
     
         
         
+            <br/>
             
-            
-    <h1>Search</h1>
+    <h3 style={{ color: '#3f51b5' }}>Search</h3>
+
+    <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="on"
+    >
+      <div>
+        <TextField style={{textAlign: 'center' }} variant="standard" name="Flight_number"  label="Flight Number" onChange={event=>setfn(event.target.value)} />
+        </div>
+        <div>
+
+        <TextField variant="standard" name="DepartureTime" label="Departure Time" onChange={event=>setDT(event.target.value)} />
+        <TextField variant="standard" name="To"  label="To" onChange={event=>setto(event.target.value)} />
+        <TextField variant="standard" name="From"  label="From" onChange={event=>setFrom(event.target.value)}  />
+        <TextField variant="standard" name="ArrivalTime" label="Arrival Time" onChange={event=>setat(event.target.value)} />
+
+        <TextField style = {{}} variant="standard" name="First"  label="First Seats" onChange={event=>setF(event.target.value)}  />
+  
+    <TextField variant="standard" name="EconomySeats" label="Economy Seats" onChange={event=>setE(event.target.value)} />
+
+ 
+      </div>
+      <div>
+        
+    <TextField variant="standard" name="BusinessSeats" label="Business Seats" onChange={event=>setB(event.target.value)}  />
+    <TextField variant="standard" name="ArrivalTerminal"  label="Arrival Terminal" onChange={event=>setater(event.target.value)}  />
+<TextField variant="standard" name="DepartureTerminal"  label="Departure Terminal" onChange={event=>setDter(event.target.value)}  />
+
+         
     
-    <label>
-    Flight number:
-    <TextField variant="standard"  type="text" name="Flight_number"  placeholder="Flight_number" value={Flight_number} onChange={event=>setfn(event.target.value)} />
-  </label>
-  <br/>
-  <label>
-  DepartureTime:
-    <TextField variant="standard"   type="text" name="DepartureTime" placeholder="DepartureTime" onChange={event=>setDT(event.target.value)}  />
-  </label>
-  <br/>
-  <label>
-    To:
-    <TextField variant="standard"  type="text" name="To"  placeholder="To" onChange={event=>setto(event.target.value)} />
-  </label>
-  <br/>
-  
-  <label>
-    From:
-    <TextField variant="standard"  type="text" name="From"  placeholder="From" onChange={event=>setFrom(event.target.value)}  />
-  </label>
-  <br/>
-  <label>
-  ArrivalTime
-    <TextField variant="standard"   type="text" name="ArrivalTime" placeholder="ArrivalTime" onChange={event=>setat(event.target.value)} />
-  </label>
-  <br/>
-  <label>
-  
-  <label>
-    First:
-    <TextField variant="standard"  type="text" name="First"  placeholder="First" onChange={event=>setF(event.target.value)}  />
-  </label>
-  <br/>
-  EconomySeats:
-    <TextField variant="standard"   type="text" name="EconomySeats" placeholder="EconomySeats" onChange={event=>setE(event.target.value)} />
-  </label>
-  <br/>
-    <label>
-    BusinessSeats:
-    <TextField variant="standard"   type="text" name="BusinessSeats" placeholder="BusinessSeats" onChange={event=>setB(event.target.value)}  />
-  </label>
-  <br/>
-  <label>
-    ArrivalTerminal:
-    <TextField variant="standard"  type="text" name="ArrivalTerminal"  placeholder="ArrivalTerminal" onChange={event=>setater(event.target.value)}  />
-  </label>
-  <br/>
-  <label>
-    DepartureTerminal:
-    <TextField variant="standard"  type="text" name="DepartureTerminal"  placeholder="DepartureTerminal" onChange={event=>setDter(event.target.value)}  />
-  </label>
-  <br/>
-  
-  <label>
-    BaggageAllowance:
-    <TextField variant="standard"  type="text" name="BaggageAllowance"  placeholder="BaggageAllowance" onChange={event=>setDter(event.target.value)}  />
-  </label>
-  <br/>
-  <label>
-    Type:
-    <TextField variant="standard"  type="text" name="Type"  placeholder="Type" onChange={event=>setDter(event.target.value)}  />
-  </label>
-  <br/>
-  <label>
-    TicketPrice:
-    <TextField variant="standard"  type="text" name="TicketPrice"  placeholder="TicketPrice" onChange={event=>setDter(event.target.value)}  />
-  </label>
-  <br/>
-             
-            <Button variant="contained"  type="submit" color="primary"  value='submit ' > Submit </Button>
+ 
+    <TextField variant="standard" name="BaggageAllowance"  label="Baggage Allowance" onChange={event=>setBag(event.target.value)}  />
+
+    <TextField variant="standard" name="Type"  label="Type" onChange={event=>setType(event.target.value)}  />
+    <TextField variant="standard" name="TicketPrice"  label="Ticket Price" onChange={event=>setPrice(event.target.value)}  />
+
+
+
+      </div>
+
+      <br/>
+
+    </Box>
+
+    <Button variant="contained"  type="submit" color="primary"  value='submit ' > Submit </Button>
+
             
             
                    </header>

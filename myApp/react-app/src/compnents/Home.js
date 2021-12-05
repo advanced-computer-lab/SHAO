@@ -1,25 +1,39 @@
-// import React from "react";
-// import { Link } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
-// import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button';
 
-// function Home() {
-
-//     const handleClickUser = () => {
-//       };
+function Home() {
 
 
-//     const handleClickAdmin = () => {
-//       };
+    const myStyle={
+        backgroundImage: 
+      "url('https://pngimg.com/uploads/plane/plane_PNG101234.png')",
+        height:'57vh',
+        marginTop:'180px',
+        fontSize:'50px',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        marginLeft: '150px',
+      };
+
+  return (
+    <div className= "Profile" >
+  
+
+
+  <h1 style={{ color: '#3f51b5', textAlign: 'center', fontSize:'300%',fontStyle: 'italic', position: 'fixed', marginLeft: '900px'}}>
+      <br/>
+
+<br/>
+
+      Welcome to Shao AirLines
+  </h1>
     
-    
-
-//   return (
-//     <div>
-//     <Button variant="contained"  type="submit"value='User'  color="primary"> User </Button>
-//     <Button variant="contained"  type="submit"value='Admin'  color="secondary"> Admin </Button>  
-    
-//     </div>
-//   );
-// }
-// export default Home;
+    <div style={myStyle}>
+        
+    </div>
+</div>
+  );
+}
+export default Home;

@@ -41,7 +41,7 @@ function Navbar() {
           AirLines
         </Typography>
           <div className={classes.navlinks}>
-            <Link to="/" className={classes.link}>
+            <Link to="/Home" className={classes.link}>
               Home
             </Link>
             <Link to="/flight/Addflight" className={classes.link}>

@@ -101,6 +101,9 @@ function UserSearch() {
       BusinessSeats : BusinessSeats ,
       ArrivalTerminal : ArrivalTerminal,
       DepartureTerminal : DepartureTerminal,
+      BaggageAllowance : BaggageAllowance ,
+      Type : Type,
+      TicketPrice : TicketPrice,
    
        
         }).then((res) => {
@@ -130,6 +133,9 @@ function UserSearch() {
      BusinessSeats : BusinessSeats ,
      ArrivalTerminal : ArrivalTerminal,
      DepartureTerminal : DepartureTerminal,
+     BaggageAllowance : BaggageAllowance ,
+      Type : Type,
+      TicketPrice : TicketPrice,
   
       
        }).then((res) => {
@@ -161,6 +167,9 @@ function UserSearch() {
   const [BusinessSeats, setB] = useState();
   const [ArrivalTerminal, setater] = useState();
   const [DepartureTerminal, setDter] = useState();
+  const [BaggageAllowance, setBag] = useState();
+  const [Type, setType] = useState();
+  const [TicketPrice, setPrice] = useState();
   
     
   return (
@@ -255,17 +264,17 @@ function UserSearch() {
   
   <label>
     BaggageAllowance:
-    <TextField variant="standard"  type="text" name="BaggageAllowance"  placeholder="BaggageAllowance" onChange={event=>setDter(event.target.value)}  />
+    <TextField variant="standard"  type="text" name="BaggageAllowance"  placeholder="BaggageAllowance" onChange={event=>setBag(event.target.value)}  />
   </label>
   <br/>
   <label>
     Type:
-    <TextField variant="standard"  type="text" name="Type"  placeholder="Type" onChange={event=>setDter(event.target.value)}  />
+    <TextField variant="standard"  type="text" name="Type"  placeholder="Type" onChange={event=>setType(event.target.value)}  />
   </label>
   <br/>
   <label>
     TicketPrice:
-    <TextField variant="standard"  type="text" name="TicketPrice"  placeholder="TicketPrice" onChange={event=>setDter(event.target.value)}  />
+    <TextField variant="standard"  type="text" name="TicketPrice"  placeholder="TicketPrice" onChange={event=>setPrice(event.target.value)}  />
   </label>
   <br/>
              

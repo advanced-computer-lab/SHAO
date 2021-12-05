@@ -40,20 +40,20 @@ function Showflights({}) {
      return (
          
       <Paper>
-      <Table sx={{ maxWidth: 100 }} >
+      <Table sx={{ maxWidth: 1000 }} >
         <TableHead >
           <TableRow>
             <TableCell>FlightNumber</TableCell>
-            <TableCell>DepartureTime</TableCell>
+            <TableCell>Departure Time</TableCell>
             <TableCell>To</TableCell>
             <TableCell>From</TableCell>
-            <TableCell>ArrivalTime</TableCell>
+            <TableCell>Arrival Time</TableCell>
             <TableCell>First</TableCell>
-            <TableCell>EconomySeats</TableCell>
-            <TableCell>BusinessSeats</TableCell>
-            <TableCell>ArrivalTerminal</TableCell>
-            <TableCell>DepartureTerminal</TableCell>
-            <TableCell>BaggageAllowance</TableCell>
+            <TableCell>Economy</TableCell>
+            <TableCell>Business</TableCell>
+            <TableCell>Arrival Terminal</TableCell>
+            <TableCell>Departure Terminal</TableCell>
+            <TableCell>Baggage</TableCell>
             <TableCell>Type</TableCell>
             <TableCell>TicketPrice</TableCell>
           </TableRow>

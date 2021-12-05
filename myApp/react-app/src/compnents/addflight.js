@@ -3,6 +3,9 @@ import axios from "axios";
 import { TextField } from "@material-ui/core";
 import Button from '@material-ui/core/Button';
 
+import { Box } from "@mui/system";
+
+
 
 function Addflight() {
  const [Flight_number, setfn] = useState();
@@ -51,93 +54,57 @@ DepartureTime:DepartureTime ,
         
             <br/>
             
-    <h2>Add your flight details</h2>
+    <h3 style={{color: '#3f51b5'}}>Add your flight details</h3>
     <br/>
-    
-    <label>
-    Flight number:
-    <br/>
-    <TextField variant="standard" name="Flight_number"  placeholder="Flight_number" onChange={event=>setfn(event.target.value)} />
-  </label>
-  <br/>
-  <label>
-  DepartureTime:
-  <br/>
-    <TextField variant="standard" name="DepartureTime" placeholder="DepartureTime" onChange={event=>setDT(event.target.value)}  />
-  </label>
-  <br/>
-  <label>
-    To:
-    <br/>
-    <TextField variant="standard" name="To"  placeholder="To" onChange={event=>setto(event.target.value)} />
-  </label>
-  <br/>
-  
-  <label>
-    From:
-    <br/>
-    <TextField variant="standard" name="From"  placeholder="From" onChange={event=>setFrom(event.target.value)}  />
-  </label>
-  <br/>
-  <label>
-  ArrivalTime:
-  <br/>
-    <TextField variant="standard" name="ArrivalTime" placeholder="ArrivalTime" onChange={event=>setat(event.target.value)} />
-  </label>
-  <br/>
-  <label>
-  
-  <label>
-    First:
-    <br/>
-    <TextField variant="standard" name="First"  placeholder="First" onChange={event=>setF(event.target.value)}  />
-  </label>
-  <br/>
-  EconomySeats:
-  <br/>
-    <TextField variant="standard" name="EconomySeats" placeholder="EconomySeats" onChange={event=>setE(event.target.value)} />
-  </label>
-  <br/>
-    <label>
-    BusinessSeats:
-    <br/>
-    <TextField variant="standard" name="BusinessSeats" placeholder="BusinessSeats" onChange={event=>setB(event.target.value)}  />
-  </label>
-  <br/>
-  <label>
-    ArrivalTerminal:
-    <br/>
-    <TextField variant="standard" name="ArrivalTerminal"  placeholder="ArrivalTerminal" onChange={event=>setater(event.target.value)}  />
-  </label>
-  <br/>
-  <label>
-    DepartureTerminal:
-    <br/>
-    <TextField variant="standard" name="DepartureTerminal"  placeholder="DepartureTerminal" onChange={event=>setDter(event.target.value)}  />
-  </label>
-  <br/>
+    <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <div>
+        <TextField style={{textAlign: 'center' }} variant="standard" name="Flight_number"  label="Flight Number" onChange={event=>setfn(event.target.value)} />
+      </div>
+      <div>
+        
+        <TextField variant="standard" name="DepartureTime" label="Departure Time" onChange={event=>setDT(event.target.value)} />
+        <TextField variant="standard" name="To"  label="To" onChange={event=>setto(event.target.value)} />
+        <TextField variant="standard" name="From"  label="From" onChange={event=>setFrom(event.target.value)}  />
+        <TextField variant="standard" name="ArrivalTime" label="Arrival Time" onChange={event=>setat(event.target.value)} />
 
-  <label>
-    BaggageAllowance:
-    <br/>
-    <TextField variant="standard" name="BaggageAllowance"  placeholder="BaggageAllowance" onChange={event=>setBag(event.target.value)}  />
-  </label>
-  <br/>
-  <label>
-    Type:
-    <br/>
-    <TextField variant="standard" name="Type"  placeholder="Type" onChange={event=>setType(event.target.value)}  />
-  </label>
-  <br/>
-  <label>
-    TicketPrice:
-    <br/>
-    <TextField variant="standard" name="TicketPrice"  placeholder="TicketPrice" onChange={event=>setPrice(event.target.value)}  />
-  </label>
-  <br/>
-  <br/>
+        
+ 
+      </div>
+      <div>
+        
+  
+    <TextField variant="standard" name="First"  label="First Seats" onChange={event=>setF(event.target.value)}  />
+  
+    <TextField variant="standard" name="EconomySeats" label="Economy Seats" onChange={event=>setE(event.target.value)} />
+    <TextField variant="standard" name="BusinessSeats" label="Business Seats" onChange={event=>setB(event.target.value)}  />
+    <TextField variant="standard" name="ArrivalTerminal"  label="Arrival Terminal" onChange={event=>setater(event.target.value)}  />
+      </div>
+      <div>
+         
+    <TextField variant="standard" name="DepartureTerminal"  label="Departure Terminal" onChange={event=>setDter(event.target.value)}  />
+ 
+    <TextField variant="standard" name="BaggageAllowance"  label="Baggage Allowance" onChange={event=>setBag(event.target.value)}  />
+
+    <TextField variant="standard" name="Type"  label="Type" onChange={event=>setType(event.target.value)}  />
+    <TextField variant="standard" name="TicketPrice"  label="Ticket Price" onChange={event=>setPrice(event.target.value)}  />
+      </div>
+
+      <br/>
+
+    </Box>
+
+
+      <Button style={{textAlign: 'center' }} variant="contained"  type="submit" color="primary" > Add flight </Button>
+
              
-  <Button variant="contained"  type="submit" color="primary" > Add flight </Button>
+
 
             
                    </header>

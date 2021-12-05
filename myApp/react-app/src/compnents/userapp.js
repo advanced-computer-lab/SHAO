@@ -4,6 +4,7 @@ import { BrowserRouter as Router,Route } from "react-router-dom";
 import Showresflights from "./showresflights";
 import UserSearch from "./UserSearch";
 import Profile from "./Profile";
+import Home from "./Home";
 
 function Appuser() {
 return (
@@ -19,6 +20,9 @@ return (
 		</Route>
 		<Route path="/user/Showresflights">
 		<Showresflights />
+		</Route>
+		<Route path="/Home">
+		<Home />
 		</Route>
 		
 		

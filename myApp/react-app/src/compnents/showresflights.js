@@ -50,13 +50,10 @@ function Showresflights({}) {
             <TableCell>To</TableCell>
             <TableCell>From</TableCell>
             <TableCell>ArrivalTime</TableCell>
-            <TableCell>First</TableCell>
-            <TableCell>EconomySeats</TableCell>
-            <TableCell>BusinessSeats</TableCell>
             <TableCell>ArrivalTerminal</TableCell>
             <TableCell>DepartureTerminal</TableCell>
             <TableCell>BaggageAllowance</TableCell>
-            <TableCell>Type</TableCell>
+            <TableCell>Flight Type</TableCell>
             <TableCell>TicketPrice</TableCell>
           </TableRow>
         </TableHead>
@@ -129,15 +126,10 @@ function Row(props){
   </TableCell>
     <TableCell><TextField variant="standard"   type="text" name="ArrivalTime" placeholder="ArrivalTime" value= {ArrivalTime} onChange={event=>setat(event.target.value)} />
   </TableCell>
-  <TableCell> <TextField variant="standard"  type="text" name="First"  placeholder="First" value={First} onChange={event=>setF(event.target.value)}  />
-</TableCell>
-
-    <TableCell> <TextField variant="standard"   type="text" name="EconomySeats" placeholder="EconomySeats" value= {EconomySeats} onChange={event=>setE(event.target.value)} /></TableCell>
-    <TableCell> <TextField variant="standard"   type="text" name="BusinessSeats" placeholder="BusinessSeats" value={BusinessSeats} onChange={event=>setB(event.target.value) }  /></TableCell>
-    <TableCell><TextField variant="standard"  type="text" name="ArrivalTerminal"  placeholder="ArrivalTerminal" value={ArrivalTerminal} onChange={event=>setater(event.target.value)}  /></TableCell>
+   <TableCell><TextField variant="standard"  type="text" name="ArrivalTerminal"  placeholder="ArrivalTerminal" value={ArrivalTerminal} onChange={event=>setater(event.target.value)}  /></TableCell>
     <TableCell><TextField variant="standard"  type="text" name="DepartureTerminal"  placeholder="DepartureTerminal" value= {DepartureTerminal} onChange={event=>setDter(event.target.value)}  /></TableCell>
     <TableCell><TextField variant="standard"  type="text" name="BaggageAllowance"  placeholder="BaggageAllowance" value= {BaggageAllowance} onChange={event=>setBag(event.target.value)}  /></TableCell>
-    <TableCell><TextField variant="standard"  type="text" name="Type"  placeholder="Type" value= {Type} onChange={event=>setType(event.target.value)}  /></TableCell>
+    <TableCell><TextField variant="standard"  type="text" name="Flight Type"  placeholder="Flight Type" value= {Type} onChange={event=>setType(event.target.value)}  /></TableCell>
     <TableCell><TextField variant="standard"  type="text" name="TicketPrice"  placeholder="TicketPrice" value= {TicketPrice} onChange={event=>setPrice(event.target.value)}  /></TableCell>
     <Button variant="contained" id={props.row._id} type="submit"value='cancelreserve' onClick={handleClickOpenC} color="secondary"> Cancel reservation </Button>  
     
