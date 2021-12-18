@@ -1,11 +1,11 @@
 import React from "react";
-import Navbarreg from "./navbarreg";
+import NavbarR from "./navreg";
 import { BrowserRouter as Router,Redirect,Route } from "react-router-dom";
 import Showresflights from "./showresflights";
 import UserSearch from "./UserSearch";
 import Profile from "./Profile";
 import Home from "./Home";
-import SignUp from "./SignUp";
+import SignUp from "./SignUp.js";
 import SignIn from "./login";
 
 function Registapp() {
@@ -14,7 +14,7 @@ return (
 
 	<Router>
 
-		<Navbarreg />
+		<NavbarR />
 
 		
 		<Route path="/Profile">
