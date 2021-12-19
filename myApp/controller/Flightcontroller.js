@@ -197,10 +197,23 @@ FlightRoutes.post('/usersearch', (req,res) => {
   .catch(err => {
     console.log(err);
   });
-
   
 
 
+});
+FlightRoutes.post('/details', (req,res) => {
+
+  console.log(req.body.data)
+  Flight.find(req.body,function(err,docs){
+    
+  }
+  ).clone().then(result => {
+    //console.log(result)
+    return res.send(result);
+  })
+  .catch(err => {
+    console.log(err);
+  });
 });
 
 module.exports = FlightRoutes
