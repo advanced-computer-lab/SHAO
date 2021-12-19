@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import Button from '@material-ui/core/Button';
 import Appuser from './compnents/userapp';
 import App from"./App";
+import Registapp from './compnents/Registapp';
 
 
 // const handleClickUser = () => {ReactDOM.render(
@@ -28,7 +29,7 @@ import App from"./App";
 
 ReactDOM.render(
 <React.StrictMode>
-<Appuser />
+<Registapp />
  </React.StrictMode>,
   document.getElementById('root')
 ); 

@@ -16,7 +16,8 @@ import { Router} from 'react-router-dom';
 import { Link } from '@material-ui/core';
 import axios from "axios";
 import { useState } from 'react';
-
+import ReactDOM from 'react-dom';
+import Appuser from './userapp';
 
 function Copyright(props) {
   return (
@@ -40,7 +41,12 @@ export default function SignIn() {
   const handleSubmit = (event) => axios.post('http://localhost:8080/user/login',{
    
     Email:Email ,
-    Password:Password   })
+    Password:Password   }).then(ReactDOM.render(
+      <React.StrictMode>
+      <Appuser />
+       </React.StrictMode>,
+        document.getElementById('root')
+      ) );
 
 
   return (

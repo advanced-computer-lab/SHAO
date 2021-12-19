@@ -5,7 +5,12 @@ const Flight = require('../models/Flight');
 const User = require("../models/User");
 const Users = require('../models/User');
 const UserRoutes = express.Router();
+
+require('dotenv').config()
 const jwt = require('jsonwebtoken');
+
+
+
 var nodemailer = require('nodemailer');
 
 
@@ -268,14 +273,14 @@ Flight.findById(req.params.id).then(result => {
 
 
     
-    UserRoutes.get('/token', (req,res) => {
+    // UserRoutes.get('/token', (req,res) => {
       
-      var token = jwt.sign({username:"aly"}, 'supersecret',{expiresIn: 420});
-      res.send(token)
-      console.log("token: "+token);
+    //   var token = jwt.sign({username:"aly"}, 'supersecret',{expiresIn: 420});
+    //   res.send(token)
+    //   console.log("token: "+token);
 
     
-    });
+    // });
 
 
     
@@ -318,15 +323,71 @@ UserRoutes.post("/register", (req, res) => {
 
 
 
+
+
+let refreshTokens = []
+
+UserRoutes.post('/token', (req, res) => {
+  const refreshToken = req.body.token
+  if (refreshToken == null) return res.sendStatus(401)
+  if (!refreshTokens.includes(refreshToken)) return res.sendStatus(403)
+  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+    if (err) return res.sendStatus(403)
+    const accessToken = generateAccessToken({ name: user.name })
+    res.json({ accessToken: accessToken })
+  })
+})
+
+UserRoutes.delete('/logout', (req, res) => {
+  refreshTokens = refreshTokens.filter(token => token !== req.body.token)
+  res.sendStatus(204)
+})
+
+function generateAccessToken(user) {
+  return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15s' })
+}
+
+
+
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers['authorization']
+  const token = authHeader && authHeader.split(' ')[1]
+  if (token == null) return res.sendStatus(401)
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    console.log(err)
+    if (err) return res.sendStatus(403)
+    req.user = user
+    next()
+  })
+}
+
+
+const dec = require('jwt-decode');
+
+
+
+
+
   
 UserRoutes.post("/login", (req, res) => {
-    
+  var decoded = dec(req.headers)
+  console.log(decoded);
   var Email = req.body.Email ;
   var Password = req.body.Password;
 
   if(User.exists({Email:Email},{Password:Password}))
   {
     //authentication
+
+    
+  const Email = req.body.Email;
+  const em = { Email: Email };
+
+  const accessToken = generateAccessToken(em)
+  const refreshToken = jwt.sign(em, process.env.REFRESH_TOKEN_SECRET)
+  refreshTokens.push(refreshToken)
+  res.json({ accessToken: accessToken, refreshToken: refreshToken })
   }  
 
 

@@ -32,6 +32,7 @@ const usercontrol=require("./controller/Usercontroller");
 app.use("/flight",Flightcontrol);
 app.use("/user",usercontrol);
 
+app.use(express.json())
 
 
 
