@@ -6,6 +6,8 @@ const { MongoClient } = require('mongodb');
 const axios = require('axios').default;
 var nodemailer = require('nodemailer');
 
+
+
 const cors = require ("cors")
 //hidedb
 require("dotenv").config();
@@ -29,6 +31,10 @@ const Flightcontrol = require("./controller/Flightcontroller");
 const usercontrol=require("./controller/Usercontroller");
 app.use("/flight",Flightcontrol);
 app.use("/user",usercontrol);
+
+
+
+
 
 
   

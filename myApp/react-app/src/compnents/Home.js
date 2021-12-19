@@ -20,7 +20,7 @@ function Home() {
   return (
     <div className= "Profile" >
   
-
+  {/* style={{ color: '#3f51b5'}} */}
 
   <h1 style={{ color: '#3f51b5', textAlign: 'center', fontSize:'300%',fontStyle: 'italic', position: 'fixed', marginLeft: '900px'}}>
       <br/>

@@ -8,7 +8,8 @@ const userSchema = new Schema({
   },
   Email: {
     type: String,
-    required: true
+    required: true,
+    unique : true,
   },
   Password: {
     type: String,
@@ -33,7 +34,8 @@ const userSchema = new Schema({
   },
   PhoneNumber: {
     type: String,
-    required: true
+    required: true,
+    unique : true,
   },
   isAdmin: {
     type: Boolean,
@@ -41,11 +43,9 @@ const userSchema = new Schema({
   },
   ReservedFlights: {
     type: [],
-    required: true
   },
   ReservedSeats: {
     type: [],
-    required: true
   }
 
   

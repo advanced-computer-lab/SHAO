@@ -14,7 +14,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { makeStyles } from "@material-ui/core";
 import { Router} from 'react-router-dom';
 import { Link } from '@material-ui/core';
-
+import axios from "axios";
+import { useState } from 'react';
 
 
 function Copyright(props) {
@@ -33,22 +34,20 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+  const [Email, setem] = useState();
+ const [Password, setpw] = useState();
+
+  const handleSubmit = (event) => axios.post('http://localhost:8080/user/login',{
+   
+    Email:Email ,
+    Password:Password   })
 
 
   return (
     
     <ThemeProvider theme={theme}>
       
-      <Container component="main" maxWidth="xs">
+      <Container  component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
@@ -64,8 +63,10 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Login
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box  component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
+                             onChange={event=>setem(event.target.value)}
+
               margin="normal"
               required
               fullWidth
@@ -76,6 +77,8 @@ export default function SignIn() {
               autoFocus
             />
             <TextField
+                 onChange={event=>setpw(event.target.value)}
+
               margin="normal"
               required
               fullWidth
@@ -95,18 +98,13 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+             Login
             </Button>
             <Grid container>
               <Grid item xs>
                 
-                <Link to="/" variant="body2" >
+                <Link href="#" variant="body2" >
                   Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="/SignUp" variant='body2' > 
-                  {"Don't have an account? Register"}
                 </Link>
               </Grid>
             </Grid>

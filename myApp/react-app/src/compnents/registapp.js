@@ -14,6 +14,7 @@ return (
 
 	<Router>
 
+{/* <Redirect to={"/home"}></Redirect> */}
 		<NavbarR />
 
 		

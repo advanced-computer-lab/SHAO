@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   link: {
     textDecoration: "none",
     color: "white",
-    fontSize: "20px",
+    fontSize: "17px",
     marginLeft: theme.spacing(8),
     "&:hover": {
       color: "yellow",
@@ -47,11 +47,14 @@ function NavbarR() {
             <Link to="/" className={classes.link}>
               Show Flights
             </Link>     
-            <Link style={{ marginRight: '260px'}} to="/" className={classes.link}>
+            <Link style={{ marginRight: '390px'}} to="/token" className={classes.link}>
               Help?
             </Link>
-            <Link style={{ marginRight: '200px'}} to="/SignIn" className={classes.link}>
+            <Link style={{ marginRight: '200px', fontSize: '18px'}} to="/SignIn" className={classes.link}>
               Login
+            </Link>
+            <Link style={{ marginLeft: '-180px', fontSize: '18px'}} to="/SignUp" className={classes.link}>
+              Register
             </Link>
           </div>
       </Toolbar>

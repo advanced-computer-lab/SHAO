@@ -22,6 +22,9 @@ function Addflight() {
  const [Type, setType] = useState();
  const [TicketPrice, setPrice] = useState();
 
+
+
+
  
  
 

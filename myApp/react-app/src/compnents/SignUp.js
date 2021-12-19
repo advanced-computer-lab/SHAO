@@ -12,6 +12,10 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
+import axios from "axios";
+
+
 
 function Copyright(props) {
   return (
@@ -29,15 +33,46 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+
+ const [Name, setfn] = useState();
+ const [Email, setem] = useState();
+ const [Password, setpw] = useState();
+ const [Age, setage] = useState();
+ const [BornIn, setbn] = useState();
+ const [LivesIn, setln] = useState();
+ const [PhoneNumber, setpn] = useState();
+ const [MartialStatus, setms] = useState();
+
+ const [errorMessage, setErrorMessage] = useState('');
+  const handleSubmit = (event) => axios.post('http://localhost:8080/user/register',{
+   
+   Name:Name,
+   Email:Email ,
+   Password:Password,
+   Age:Age,
+   BornIn:BornIn,
+   LivesIn:LivesIn,
+   MartialStatus: MartialStatus,
+   PhoneNumber: PhoneNumber
+   
+   
+   
+     }).then(response=> {
+     
+      setErrorMessage=response.message;
+
+  })
+  .catch((err)=> {
+    
+    setErrorMessage="Email Already Exists";
+
+    console.log(errorMessage);
+      if (err.response) {
+        setErrorMessage="Email Already Exists";
+
+        console.log(errorMessage);
+      }
+  })
 
   return (
     <ThemeProvider theme={theme}>
@@ -45,7 +80,7 @@ export default function SignUp() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 5,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -59,48 +94,102 @@ export default function SignUp() {
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
+                onChange={event=>setfn(event.target.value)}
                   autoComplete="given-name"
-                  name="firstName"
+                  name="FullName"
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  id="FullName"
+                  label="Full Name"
                   autoFocus
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
+                 onChange={event=>setem(event.target.value)}
+                 required
+                 fullWidth
+                 id="email"
+                 label="Email Address"
+                 name="email"
+                 autoComplete="email"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
+                onChange={event=>setpw(event.target.value)}
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="new-password"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                onChange={event=>setage(event.target.value)}
                   required
                   fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
+                  name="Age"
+                  label="Age"
+                  type="Age"
+                  id="Age"
+                  autoComplete="Age"
                 />
               </Grid>
+              <Grid item xs={12}sm={6}>
+                <TextField
+                onChange={event=>setbn(event.target.value)}
+                  required
+                  fullWidth
+                  name="BornIn"
+                  label="BornIn"
+                  type="BornIn"
+                  id="BornIn"
+                  autoComplete="BornIn"
+                />
+              </Grid>
+              <Grid item xs={12}sm={6}>
+                <TextField
+                onChange={event=>setln(event.target.value)}
+                  required
+                  fullWidth
+                  name="LivesIn"
+                  label="LivesIn"
+                  type="LivesIn"
+                  id="LivesIn"
+                  autoComplete="LivesIn"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                onChange={event=>setms(event.target.value)}
+                  required
+                  fullWidth
+                  name="MartialStatus"
+                  label="Martial Status"
+                  type="MartialStatus"
+                  id="MartialStatus"
+                  autoComplete="MartialStatus"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                onChange={event=>setpn(event.target.value)}
+                  required
+                  fullWidth
+                  name="PhoneNumber"
+                  label="PhoneNumber"
+                  type="PhoneNumber"
+                  id="PhoneNumber"
+                  autoComplete="PhoneNumber"
+                />
+              </Grid>
+             
               <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
@@ -116,17 +205,27 @@ export default function SignUp() {
             >
               Sign Up
             </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="/SignIn" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
+            <p style={{ color: 'red', textAlign: 'center', fontSize:'100%'}}  className="error"> {errorMessage} </p>
           </Box>
         </Box>
         <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
   );
-}
+        }
+
+
+
+
+
+
+
+
+
+        // event.preventDefault();
+        // const data = new FormData(event.currentTarget);
+        // // eslint-disable-next-line no-console
+        // console.log({
+        //   email: data.get('email'),
+        //   password: data.get('password'),
+        // });

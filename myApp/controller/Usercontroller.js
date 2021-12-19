@@ -5,7 +5,7 @@ const Flight = require('../models/Flight');
 const User = require("../models/User");
 const Users = require('../models/User');
 const UserRoutes = express.Router();
-
+const jwt = require('jsonwebtoken');
 var nodemailer = require('nodemailer');
 
 
@@ -264,6 +264,76 @@ Flight.findById(req.params.id).then(result => {
 
 
 
+
+
+
+    
+    UserRoutes.get('/token', (req,res) => {
+      
+      var token = jwt.sign({username:"aly"}, 'supersecret',{expiresIn: 420});
+      res.send(token)
+      console.log("token: "+token);
+
+    
+    });
+
+
+    
+UserRoutes.post("/register", (req, res) => {
+    
+ var Name = req.body.Name;
+ var Email = req.body.Email ;
+ var Password = req.body.Password;
+ var Age = Number.parseInt(req.body.Age);
+ var BornIn = req.body.BornIn;
+ var LivesIn = req.body.LivesIn;
+ var PhoneNumber =  req.body.PhoneNumber;
+ var MartialStatus = req.body.MartialStatus;
+   
+ const nuser =new User({
+   Name:Name,
+   Email:Email ,
+   Password:Password,
+   Age:Age,
+   BornIn:BornIn,
+   LivesIn:LivesIn,
+   MartialStatus:MartialStatus,
+   PhoneNumber: PhoneNumber,
+   isAdmin: false
+   });
+
+   nuser.save().then(
+    data=>{
+    console.log(Name+"'s Account Added");
+  }
+  ).catch(err=>{
+
+    if(User.exists({Email:Email})){
+       console.log("Email Already Exists"); 
+       return res.status(409).json({
+      message: 'Mail exists'});
+    }
+  })
+});
+
+
+
+  
+UserRoutes.post("/login", (req, res) => {
+    
+  var Email = req.body.Email ;
+  var Password = req.body.Password;
+
+
+  
+
+
+
+
+
+
+ });
+ 
 
 
 
