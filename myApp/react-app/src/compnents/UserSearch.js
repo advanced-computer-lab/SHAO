@@ -23,7 +23,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-//import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 
 
@@ -296,6 +296,15 @@ function Row(props){
 
 
 
+  const [openD, setOpenD] = React.useState(false);
+
+  const handleClickOpenD = () => {   //Show Details 
+    setOpenD(true);
+  };
+
+  const handleCloseD = () => {
+    setOpenD(false);
+  };
 
 
 
@@ -479,6 +488,214 @@ function Row(props){
     {/* <Button variant="contained" id={props.row._id} type="submit"value='reserve' onClick={handleClickOpen} color="primary"> reserve </Button> */}
   
     
+
+
+
+////start
+
+
+
+
+
+
+
+
+
+<Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Reserve flight"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are sure you want to reserve this flight?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>No</Button>
+          <Button id ={props.row._id} onClick={handleClickOpen, handleCloseR} autoFocus>
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+
+
+      
+    <Dialog
+        open={openC}
+        onClose={handleCloseC}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Cancel flight"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are sure you want to cancel reservation of this flight?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseC}>No</Button>
+          <Button id ={props.row._id} onClick={Handlecreserve} autoFocus>
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+
+      <Button variant="contained" id={props.row._id} type="submit"value='details' 
+      onClick={handleClickOpenD} color="inherit"> Show Details </Button>
+
+      <Button variant="contained" id={props.row._id} type="submit"value='reserve' 
+      onClick={handleClickOpen,handleClickOpenR} color="primary"> Reserve </Button>
+      
+      <Button variant="contained" id={props.row._id} type="submit"value='cancelreserve' onClick={handleClickOpenC} color="secondary"> Cancel reservation </Button>  
+    
+      <Dialog
+        fullScreen
+        open={openR}
+        onClose={handleCloseR}
+        TransitionComponent={Transition}
+      >
+        <AppBar sx={{ position: 'relative' }}>
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={handleCloseR}
+              aria-label="close"
+            >
+
+            </IconButton>
+            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+              Reserve Seats
+            </Typography>
+            <Button id = {props.row._id} type = "submit" autoFocus color="inherit" onClick={handleClickOpen}>
+              Save
+            </Button>
+          </Toolbar>
+        </AppBar>
+        <List>
+
+
+          
+          <ListItem button>
+
+
+          <Box sx={{ display: 'flex' }}>
+          <form onSubmit={(event)=> axios.post('http://localhost:8080/flight/Addflight',{
+   
+  ReservedSeats:allseats,
+  
+  
+    }).then(window.open("http://localhost:3000/flight/Showflights"))}>
+    
+    <div className="Reserve Seats">
+    <header className="search-header">
+
+
+    <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
+    <FormLabel component="legend">First Class Seats</FormLabel>
+    
+    <FormGroup>
+
+          {fList.map(AvailableFSeats => (
+            <FormControlLabel
+            control={
+              <Checkbox checked={AvailableFFSeats} onChange={handleChange} name={"AvailableFSeats," + AvailableFSeats} />
+              
+            }
+            label={AvailableFSeats}
+          />)
+          )}
+          </FormGroup>
+  </FormControl>
+
+
+  <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
+    <FormLabel component="legend">Economic Class Seats</FormLabel>
+    
+    <FormGroup>
+
+          {eList.map(AvailableESeats => (
+            <FormControlLabel
+            control={
+              <Checkbox checked={AvailableEESeats} onChange={handleChange} name={"AvailableESeats," + AvailableESeats} />
+            }
+            label={AvailableESeats}
+          />)
+          )}
+          </FormGroup>
+  </FormControl>
+
+
+  <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
+    <FormLabel component="legend">Business Class Seats</FormLabel>
+    
+    <FormGroup>
+
+          {bList.map(AvailableBSeats => (
+            <FormControlLabel
+            control={
+              <Checkbox checked={AvailableBBSeats} onChange={handleChange} name={"AvailableBSeats," + AvailableBSeats} />
+            }
+            label={AvailableBSeats}
+          />)
+          )}
+          </FormGroup>
+  </FormControl>
+
+
+
+
+            
+            
+    </header>
+                  
+     
+        </div>
+       </form>
+
+ 
+</Box>
+
+          </ListItem>
+          <Divider />
+        </List>
+      </Dialog>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //// end
     <Dialog
         open={open}
         onClose={handleClose}
@@ -527,9 +744,12 @@ function Row(props){
       </Dialog>
 
 
+      <Button variant="contained" id={props.row._id} type="submit"value='details' 
+      onClick={handleClickOpenD} color="inherit"> Show Details </Button>
+
       <Button variant="contained" id={props.row._id} type="submit"value='reserve' 
-      onClick={handleClickOpen,handleClickOpenR} color="primary"> Reserve 
-      </Button>
+      onClick={handleClickOpen,handleClickOpenR} color="primary"> Reserve </Button>
+      
       <Button variant="contained" id={props.row._id} type="submit"value='cancelreserve' onClick={handleClickOpenC} color="secondary"> Cancel reservation </Button>  
     
       <Dialog
@@ -629,6 +849,10 @@ function Row(props){
 
 
             
+
+
+
+            
             
                    </header>
                   
@@ -665,6 +889,8 @@ function Row(props){
     
     
     </TableRow>
+    
+
     
     )
 

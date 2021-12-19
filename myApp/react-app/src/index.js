@@ -28,7 +28,7 @@ import Registapp from './compnents/Registapp';
 
 ReactDOM.render(
 <React.StrictMode>
-<Registapp />
+<Appuser />
  </React.StrictMode>,
   document.getElementById('root')
 ); 

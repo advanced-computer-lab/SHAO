@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
  logo: {
-    flexGrow: "1",
+    flexGrow: "1", 
     cursor: "pointer",
   },
   link: {
@@ -41,7 +41,7 @@ function NavbarU() {
           AirLines
         </Typography>
           <div className={classes.navlinks}>
-            <Link to="/" className={classes.link}>
+            <Link style={{ marginLeft: '-900px'}} to="/user/home" className={classes.link}>
               Home
             </Link>
             <Link to="/user/Showresflights" className={classes.link}>
@@ -50,7 +50,7 @@ function NavbarU() {
             <Link to="/flight/UserSearch" className={classes.link}>
               Search
             </Link>
-            <Link to="/user/Profile" className={classes.link}>
+            <Link style={{ marginLeft: '300px'}} to="/user/Profile" className={classes.link}>
               Profile
             </Link>
           </div>

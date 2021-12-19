@@ -324,8 +324,10 @@ UserRoutes.post("/login", (req, res) => {
   var Email = req.body.Email ;
   var Password = req.body.Password;
 
-
-  
+  if(User.exists({Email:Email},{Password:Password}))
+  {
+    //authentication
+  }  
 
 
 
