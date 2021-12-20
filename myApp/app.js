@@ -29,8 +29,11 @@ const User = require('./models/User');
 const Flight = require('./models/Flight');
 const Flightcontrol = require("./controller/Flightcontroller");
 const usercontrol=require("./controller/Usercontroller");
+const authcontrol=require("./controller/authcontroller");
+
 app.use("/flight",Flightcontrol);
 app.use("/user",usercontrol);
+app.use("/auth",authcontrol);
 
 app.use(express.json())
 

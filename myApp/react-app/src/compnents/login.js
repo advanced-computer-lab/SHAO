@@ -7,7 +7,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -18,6 +18,8 @@ import axios from "axios";
 import { useState } from 'react';
 import ReactDOM from 'react-dom';
 import Appuser from './userapp';
+import {useDispatch} from 'react-redux'
+import {useSelector} from "react-redux";
 
 function Copyright(props) {
   return (
@@ -38,20 +40,68 @@ export default function SignIn() {
   const [Email, setem] = useState();
  const [Password, setpw] = useState();
 
-  const handleSubmit = (event) => axios.post('http://localhost:8080/user/login',{
+
+ const dispatch = useDispatch();
+ const {auth} =useSelector((state)=>({...state}));
+
+
+
+ const handleSubmit= async function(event){
+  event.preventDefault(event);
+ try {
+   let res=  await axios.post("http://localhost:8080/auth/login",JSON.stringify({email: Email, 
+   Password: Password}),
+   {headers:{"Content-Type":"application/json"}});
+
+
+  window.localStorage.setItem('auth',JSON.stringify(res.data));
+  dispatch({
+      type:'LOGGED_IN_USER',
+      payload: res.data,
+  });
+
+}
+ 
+ catch(err){
+   if(err.response.status===400) console.log(err.response.data);
+ }
+   };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // const handleSubmit = (event) => axios.post('http://localhost:8080/auth/login',{
    
-    Email:Email ,
-    Password:Password   }).then(ReactDOM.render(
-      <React.StrictMode>
-      <Appuser />
-       </React.StrictMode>,
-        document.getElementById('root')
-      ) );
+  //   Email:Email ,
+  //   Password:Password}
+    
+    
+  //   ).then(ReactDOM.render(
+  //     <React.StrictMode>
+  //     <Appuser />
+  //      </React.StrictMode>,
+  //       document.getElementById('root')
+  //     ) );
 
 
   return (
+
+    
     
     <ThemeProvider theme={theme}>
+
+      {JSON.stringify(auth.user._id)}
+      
       
       <Container  component="main" maxWidth="xs">
         <CssBaseline />
@@ -64,7 +114,7 @@ export default function SignIn() {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+            {/* <LockOutlinedIcon /> */}
           </Avatar>
           <Typography component="h1" variant="h5">
             Login

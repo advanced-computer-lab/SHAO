@@ -6,6 +6,11 @@ import Appuser from './compnents/userapp';
 import App from"./App";
 import Registapp from './compnents/Registapp';
 
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+import {composeWithDevTools} from 'redux-devtools-extension';
+import rootReducer from "./Reducers";
+const store = createStore(rootReducer,composeWithDevTools());
 
 // const handleClickUser = () => {ReactDOM.render(
 //   <React.StrictMode>
@@ -29,7 +34,9 @@ import Registapp from './compnents/Registapp';
 
 ReactDOM.render(
 <React.StrictMode>
-<Registapp />
+<Provider store={store}>
+    <Registapp />
+    </Provider>
  </React.StrictMode>,
   document.getElementById('root')
 ); 

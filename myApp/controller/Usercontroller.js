@@ -3,15 +3,13 @@ const { Mongoose } = require("mongoose");
 const { collection, db } = require("../models/Flight");
 const Flight = require('../models/Flight');
 const User = require("../models/User");
-const Users = require('../models/User');
 const UserRoutes = express.Router();
-
 require('dotenv').config()
 const jwt = require('jsonwebtoken');
-
-
-
 var nodemailer = require('nodemailer');
+// const authController= require('./authcontroller.js');
+
+
 
 
 
@@ -284,118 +282,118 @@ Flight.findById(req.params.id).then(result => {
 
 
     
-UserRoutes.post("/register", (req, res) => {
+// UserRoutes.post("/register", (req, res) => {
     
- var Name = req.body.Name;
- var Email = req.body.Email ;
- var Password = req.body.Password;
- var Age = Number.parseInt(req.body.Age);
- var BornIn = req.body.BornIn;
- var LivesIn = req.body.LivesIn;
- var PhoneNumber =  req.body.PhoneNumber;
- var MartialStatus = req.body.MartialStatus;
+//  var Name = req.body.Name;
+//  var Email = req.body.Email ;
+//  var Password = req.body.Password;
+//  var Age = Number.parseInt(req.body.Age);
+//  var BornIn = req.body.BornIn;
+//  var LivesIn = req.body.LivesIn;
+//  var PhoneNumber =  req.body.PhoneNumber;
+//  var MartialStatus = req.body.MartialStatus;
    
- const nuser =new User({
-   Name:Name,
-   Email:Email ,
-   Password:Password,
-   Age:Age,
-   BornIn:BornIn,
-   LivesIn:LivesIn,
-   MartialStatus:MartialStatus,
-   PhoneNumber: PhoneNumber,
-   isAdmin: false
-   });
+//  const nuser =new User({
+//    Name:Name,
+//    Email:Email ,
+//    Password:Password,
+//    Age:Age,
+//    BornIn:BornIn,
+//    LivesIn:LivesIn,
+//    MartialStatus:MartialStatus,
+//    PhoneNumber: PhoneNumber,
+//    isAdmin: false
+//    });
 
-   nuser.save().then(
-    data=>{
-    console.log(Name+"'s Account Added");
-  }
-  ).catch(err=>{
+//    nuser.save().then(
+//     data=>{
+//     console.log(Name+"'s Account Added");
+//   }
+//   ).catch(err=>{
 
-    if(User.exists({Email:Email})){
-       console.log("Email Already Exists"); 
-       return res.status(409).json({
-      message: 'Mail exists'});
-    }
-  })
-});
-
-
+//     if(User.exists({Email:Email})){
+//        console.log("Email Already Exists"); 
+//        return res.status(409).json({
+//       message: 'Mail exists'});
+//     }
+//   })
+// });
 
 
 
-let refreshTokens = []
-
-UserRoutes.post('/token', (req, res) => {
-  const refreshToken = req.body.token
-  if (refreshToken == null) return res.sendStatus(401)
-  if (!refreshTokens.includes(refreshToken)) return res.sendStatus(403)
-  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
-    if (err) return res.sendStatus(403)
-    const accessToken = generateAccessToken({ name: user.name })
-    res.json({ accessToken: accessToken })
-  })
-})
-
-UserRoutes.delete('/logout', (req, res) => {
-  refreshTokens = refreshTokens.filter(token => token !== req.body.token)
-  res.sendStatus(204)
-})
-
-function generateAccessToken(user) {
-  return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15s' })
-}
 
 
+// let refreshTokens = []
 
-function authenticateToken(req, res, next) {
-  const authHeader = req.headers['authorization']
-  const token = authHeader && authHeader.split(' ')[1]
-  if (token == null) return res.sendStatus(401)
+// UserRoutes.post('/token', (req, res) => {
+//   const refreshToken = req.body.token
+//   if (refreshToken == null) return res.sendStatus(401)
+//   if (!refreshTokens.includes(refreshToken)) return res.sendStatus(403)
+//   jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+//     if (err) return res.sendStatus(403)
+//     const accessToken = generateAccessToken({ name: user.name })
+//     res.json({ accessToken: accessToken })
+//   })
+// })
 
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-    console.log(err)
-    if (err) return res.sendStatus(403)
-    req.user = user
-    next()
-  })
-}
+// UserRoutes.delete('/logout', (req, res) => {
+//   refreshTokens = refreshTokens.filter(token => token !== req.body.token)
+//   res.sendStatus(204)
+// })
+
+// function generateAccessToken(user) {
+//   return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15s' })
+// }
 
 
-const dec = require('jwt-decode');
+
+// function authenticateToken(req, res, next) {
+//   const authHeader = req.headers['authorization']
+//   const token = authHeader && authHeader.split(' ')[1]
+//   if (token == null) return res.sendStatus(401)
+
+//   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+//     console.log(err)
+//     if (err) return res.sendStatus(403)
+//     req.user = user
+//     next()
+//   })
+// }
+
+
+// const dec = require('jwt-decode');
 
 
 
 
 
   
-UserRoutes.post("/login", (req, res) => {
-  var decoded = dec(req.headers)
-  console.log(decoded);
-  var Email = req.body.Email ;
-  var Password = req.body.Password;
+// UserRoutes.post("/login", (req, res) => {
+//   var decoded = dec(req.headers)
+//   console.log(decoded);
+//   var Email = req.body.Email ;
+//   var Password = req.body.Password;
 
-  if(User.exists({Email:Email},{Password:Password}))
-  {
-    //authentication
+//   if(User.exists({Email:Email},{Password:Password}))
+//   {
+//     //authentication
 
     
-  const Email = req.body.Email;
-  const em = { Email: Email };
+//   const Email = req.body.Email;
+//   const em = { Email: Email };
 
-  const accessToken = generateAccessToken(em)
-  const refreshToken = jwt.sign(em, process.env.REFRESH_TOKEN_SECRET)
-  refreshTokens.push(refreshToken)
-  res.json({ accessToken: accessToken, refreshToken: refreshToken })
-  }  
-
-
+//   const accessToken = generateAccessToken(em)
+//   const refreshToken = jwt.sign(em, process.env.REFRESH_TOKEN_SECRET)
+//   refreshTokens.push(refreshToken)
+//   res.json({ accessToken: accessToken, refreshToken: refreshToken })
+//   }  
 
 
 
 
- });
+
+
+//  });
  
 
 

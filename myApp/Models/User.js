@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const bcrypt = require('bcrypt');
 const userSchema = new Schema({
   Name: {
     type: String,
@@ -39,7 +39,6 @@ const userSchema = new Schema({
   },
   isAdmin: {
     type: Boolean,
-    required: true
   },
   ReservedFlights: {
     type: [],
@@ -50,6 +49,47 @@ const userSchema = new Schema({
 
   
 }, { timestamps: true });
+
+
+
+
+
+
+
+
+
+
+userSchema.methods.comparePassword = function(Password,next){
+  bcrypt.compare(Password,this.Password,function(err,match){
+      if(err){
+          console.log('Compare Failed');
+          return next(err,false);
+      }
+      return next(null,match); //true
+  })
+}
+
+userSchema.pre("save", function (next) {
+let user = this;
+if (user.isModified("Password")) {
+  return bcrypt.hash(user.Password, 12, function (err, hash) {
+    if (err) {
+      console.log("BCRYPT HASH ERR ", err);
+      return next(err);
+    }
+    user.Password = hash;
+    return next();
+  });
+} else {
+  return next();
+}
+});
+
+
+
+
+
+
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;

@@ -8,7 +8,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+// import { LockOutlinedIcon } from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -44,7 +44,8 @@ export default function SignUp() {
  const [MartialStatus, setms] = useState();
 
  const [errorMessage, setErrorMessage] = useState('');
-  const handleSubmit = (event) => axios.post('http://localhost:8080/user/register',{
+
+  const handleSubmit = (event) => axios.post('http://localhost:8080/auth/createuser',{
    
    Name:Name,
    Email:Email ,
@@ -64,11 +65,9 @@ export default function SignUp() {
   })
   .catch((err)=> {
     
-    setErrorMessage="Email Already Exists";
 
     console.log(errorMessage);
       if (err.response) {
-        setErrorMessage="Email Already Exists";
 
         console.log(errorMessage);
       }
@@ -87,7 +86,7 @@ export default function SignUp() {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+            {/* <LockOutlinedIcon /> */}
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
