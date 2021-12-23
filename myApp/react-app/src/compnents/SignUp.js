@@ -14,7 +14,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import axios from "axios";
-
+import SignIn from './login';
+import { ReactDOM } from 'react';
 
 
 function Copyright(props) {
@@ -54,15 +55,14 @@ export default function SignUp() {
    BornIn:BornIn,
    LivesIn:LivesIn,
    MartialStatus: MartialStatus,
-   PhoneNumber: PhoneNumber
+   PhoneNumber: PhoneNumber,
    
    
-   
-     }).then(response=> {
-     
-      setErrorMessage=response.message;
-
-  })
+     }).then(
+       
+      window.history.pushState("", "", "http://localhost:3000/SignIn"),
+      window.location.reload(),
+)
   .catch((err)=> {
     
 

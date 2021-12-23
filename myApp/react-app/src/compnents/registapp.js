@@ -7,8 +7,13 @@ import Profile from "./Profile";
 import Home from "./Home";
 import SignUp from "./SignUp.js";
 import SignIn from "./login";
+import GShowflights from "./guestshowflights";
+import Help from "./help";
+import { useState } from "react";
+
 
 function Registapp() {
+
 return (
 
 
@@ -21,8 +26,8 @@ return (
 		<Route path="/Profile">
 		<Profile />
 		</Route>
-		<Route path="/Showresflights">
-		<Showresflights />
+		<Route path="/guestshowflights">
+		<GShowflights />
 		</Route>
 		<Route path="/home">
 		<Home />
@@ -32,6 +37,9 @@ return (
 		</Route>
 		<Route path="/SignIn">
 		<SignIn />
+		</Route>
+		<Route path="/help">
+		<Help />
 		</Route>
 		</Router>
 		);

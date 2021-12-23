@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 import Box from '@mui/material/Box';
 import airplane from './airplane.png'; 
 
+import {useDispatch} from 'react-redux'
+import {useSelector} from "react-redux";
 
 function Profile() {
  const [Name, setn] = useState();
@@ -18,7 +20,10 @@ function Profile() {
  const [ReservedFlights, setrf] = useState();
  const [ReservedSeats, setrs] = useState();
 
- const s = "61a52b332239b52f7ef5cc68";
+
+ const {auth} =useSelector((state)=>({...state}));
+ var s = String(auth.user._id);
+ 
 
  const [userList,setUserList]= useState([]);
  useEffect(()=> {

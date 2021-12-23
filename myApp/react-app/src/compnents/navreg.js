@@ -44,10 +44,10 @@ function NavbarR() {
             <Link  to="/home" className={classes.link}>
               Home
             </Link>
-            <Link to="/" className={classes.link}>
+            <Link to="/guestshowflights" className={classes.link}>
               Show Flights
             </Link>     
-            <Link style={{ marginRight: '390px'}} to="/token" className={classes.link}>
+            <Link style={{ marginRight: '390px'}} to="/help" className={classes.link}>
               Help?
             </Link>
             <Link style={{ marginRight: '200px', fontSize: '18px'}} to="/SignIn" className={classes.link}>

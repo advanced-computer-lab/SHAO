@@ -8,7 +8,7 @@ require('dotenv').config()
 const jwt = require('jsonwebtoken');
 var nodemailer = require('nodemailer');
 // const authController= require('./authcontroller.js');
-
+const cors = require('cors');
 
 
 
@@ -25,7 +25,7 @@ var nodemailer = require('nodemailer');
     
 
 
-  User.findById("61a52b332239b52f7ef5cc68", function (err, docs) {
+  User.findById(req.params.id, function (err, docs) {
 
   rf = docs.ReservedFlights;
   for(var i=0; i<=rf.length;i++)
@@ -44,7 +44,7 @@ var nodemailer = require('nodemailer');
   {
 
 
-   User.findByIdAndUpdate("61a52b332239b52f7ef5cc68", {$push: {ReservedFlights: req.params.id}})
+   User.findByIdAndUpdate(req.params.id, {$push: {ReservedFlights: req.params.id}})
  
    .then(result => {
     var transporter = nodemailer.createTransport({
@@ -97,7 +97,7 @@ var nodemailer = require('nodemailer');
   UserRoutes.post('/cancelreserve/:id', (req,res) => {
 
 
-    User.findByIdAndUpdate("61a52b332239b52f7ef5cc68", {$pull: {ReservedFlights: req.params.id}})
+    User.findByIdAndUpdate(req.params.id, {$pull: {ReservedFlights: req.params.id}})
   
           .then(result => {
             var transporter = nodemailer.createTransport({
@@ -134,11 +134,9 @@ var nodemailer = require('nodemailer');
 
 
     UserRoutes.get('/Profile/:id', (req,res) => {
-      
-      User.findById("61a52b332239b52f7ef5cc68").then(result => {
-        
-        //console.log(result);
-        res.send(result);
+
+      User.findById(req.params.id).then(result => {
+                res.send(result);
       })
       .catch(err => {
         console.log(err);
@@ -150,7 +148,7 @@ var nodemailer = require('nodemailer');
 
     UserRoutes.post('/update/:id', (req,res) => {
       
-      User.findByIdAndUpdate("61a52b332239b52f7ef5cc68", req.body, {new : true}).then(result => {
+      User.findByIdAndUpdate(req.params.id, req.body, {new : true}).then(result => {
         var transporter = nodemailer.createTransport({
           service: 'gmail',
           auth: {
@@ -186,7 +184,7 @@ var nodemailer = require('nodemailer');
     UserRoutes.get('/Showresflights', async (req, res) => {
 
       try {
-        const rfs = (await User.findById("61a52b332239b52f7ef5cc68").lean().exec()).ReservedFlights;
+        const rfs = (await User.findById(req.params.id).lean().exec()).ReservedFlights;
     
         const flights = await Flight.find({
           _id: { $in: rfs }
@@ -204,7 +202,7 @@ var nodemailer = require('nodemailer');
 
     UserRoutes.post('/reserveseats/:id', (req,res) => {
     
-      User.findByIdAndUpdate("61a52b332239b52f7ef5cc68",{ReservedSeats:req.body.ReservedSeats},{new : true}).catch(err => {
+      User.findByIdAndUpdate(req.params.id,{ReservedSeats:req.body.ReservedSeats},{new : true}).catch(err => {
         console.log(err);
       
     });
@@ -251,12 +249,6 @@ Flight.findById(req.params.id).then(result => {
   }
     
   }
-    
-
-    
-  
-
-
 })
 .catch(err => {
   console.log(err);

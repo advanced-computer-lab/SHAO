@@ -20,6 +20,14 @@ import ReactDOM from 'react-dom';
 import Appuser from './userapp';
 import {useDispatch} from 'react-redux'
 import {useSelector} from "react-redux";
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+import {composeWithDevTools} from 'redux-devtools-extension';
+import rootReducer from '../Reducers';
+import PropTypes from 'prop-types';
+const store = createStore(rootReducer,composeWithDevTools());
+
+
 
 function Copyright(props) {
   return (
@@ -36,7 +44,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignIn() {
+export default function SignIn({ setToken }) {
   const [Email, setem] = useState();
  const [Password, setpw] = useState();
 
@@ -44,14 +52,17 @@ export default function SignIn() {
  const dispatch = useDispatch();
  const {auth} =useSelector((state)=>({...state}));
 
-
-
- const handleSubmit= async function(event){
+ 
+ const handleSubmit = async function(event){
   event.preventDefault(event);
  try {
+   
    let res=  await axios.post("http://localhost:8080/auth/login",JSON.stringify({email: Email, 
    Password: Password}),
-   {headers:{"Content-Type":"application/json"}});
+   {headers:{"Content-Type":"application/json"}})
+
+   
+  
 
 
   window.localStorage.setItem('auth',JSON.stringify(res.data));
@@ -63,8 +74,26 @@ export default function SignIn() {
 }
  
  catch(err){
-   if(err.response.status===400) console.log(err.response.data);
+  //  if(err.response.status===400) console.log(err.response.data);
  }
+console.log(auth.user);
+   console.log(auth.user.userName)
+
+ ReactDOM.render(
+   <div>
+     { !auth.userName &&( 
+    <Provider store={store}>
+     
+      <Appuser />
+    
+    </Provider>
+    )}
+   </div> ,
+        document.getElementById('root')
+
+)
+
+
    };
 
 
@@ -77,7 +106,17 @@ export default function SignIn() {
 
 
 
-
+  //  ReactDOM.render(
+  //   <React.StrictMode>
+  // <Provider store={store}>
+  // { auth!=" "&&(  
+  //     <Appuser />
+  //   )}
+  //   </Provider>
+  //    </React.StrictMode>,
+  //     document.getElementById('root')
+  //   )
+  
 
 
   // const handleSubmit = (event) => axios.post('http://localhost:8080/auth/login',{
@@ -86,12 +125,12 @@ export default function SignIn() {
   //   Password:Password}
     
     
-  //   ).then(ReactDOM.render(
-  //     <React.StrictMode>
-  //     <Appuser />
-  //      </React.StrictMode>,
-  //       document.getElementById('root')
-  //     ) );
+    // ).then(ReactDOM.render(
+    //   <React.StrictMode>
+    //   <Appuser />
+    //    </React.StrictMode>,
+    //     document.getElementById('root')
+    //   ) );
 
 
   return (
@@ -100,7 +139,7 @@ export default function SignIn() {
     
     <ThemeProvider theme={theme}>
 
-      {JSON.stringify(auth.user._id)}
+      {/* {JSON.stringify(auth.user._id)} */}
       
       
       <Container  component="main" maxWidth="xs">

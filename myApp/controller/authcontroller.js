@@ -5,31 +5,57 @@ var bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const AuthRoutes = express.Router();
 require("dotenv").config();
+const cors = require('cors');
 
+AuthRoutes.use(cors());
 
 
 AuthRoutes.post("/login", async (req, res) => {  
   const { email, Password } = req.body;
+  var x = true;
   try {
     // check if user with that email exist
     let user = await User.findOne({Email: email }).exec();
     // console.log("USER EXIST", user);
-    if (!user) res.status(400).send("User with that email not found");
+    if (!user){
+
+      x = false;
+
+      res.json({
+        user:{
+          _id:user._id,
+         userName:x,
+         email:user.Email,}});
+
+    res.status(400).send("User with that email not found");
+    
+    }
     // compare Password
     console.log(user);
     console.log(email);
     console.log(Password);
     user.comparePassword(Password, (err, match) => {
       console.log("COMPARE PASSWORD IN LOGIN ERR", err);
-      if (!match || err) return res.status(400).send("Wrong password");
-      // GENERATE A TOKEN THEN SEND AS RESPONSE TO CLIENT
+      if (!match || err){
+
+       x = false; 
+
+       res.json({
+        user:{
+          _id:user._id,
+         userName:x,
+         email:user.Email,}});
+       
+        return res.status(400).send("Wrong password");
+      }
+        // GENERATE A TOKEN THEN SEND AS RESPONSE TO CLIENT
       let token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
         expiresIn: "7d",
       });
       res.json({
         token,user:{
           _id:user._id,
-         userName:user.Name,
+         userName:x,
          email:user.Email,}});
     });
   } catch (err) {
