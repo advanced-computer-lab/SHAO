@@ -76,22 +76,22 @@ export default function SignIn({ setToken }) {
  catch(err){
   //  if(err.response.status===400) console.log(err.response.data);
  }
-console.log(auth.user);
-   console.log(auth.user.userName)
+// console.log(auth.user);
+//    console.log(auth.user.userName)
 
- ReactDOM.render(
-   <div>
-     { !auth.userName &&( 
-    <Provider store={store}>
+//  ReactDOM.render(
+//    <div>
+//      { !auth.userName &&( 
+//     <Provider store={store}>
      
-      <Appuser />
+//       <Appuser />
     
-    </Provider>
-    )}
-   </div> ,
-        document.getElementById('root')
+//     </Provider>
+//     )}
+//    </div> ,
+//         document.getElementById('root')
 
-)
+// )
 
 
    };

@@ -10,10 +10,27 @@ import SignIn from "./login";
 import GShowflights from "./guestshowflights";
 import Help from "./help";
 import { useState } from "react";
+import {useSelector} from "react-redux";
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+import {composeWithDevTools} from 'redux-devtools-extension';
+import rootReducer from "../Reducers";
+import PropTypes from 'prop-types';
+const store = createStore(rootReducer,composeWithDevTools());
 
 
 function Registapp() {
-
+	// 	const [Email, setem] = useState();
+	//  const [Password, setpw] = useState();
+	//  window.localStorage.setItem('auth',JSON.stringify(auth.data));
+	//  dispatch({
+	// 	 type:'LOGGED_IN_USER',
+	// 	 payload: res.data,
+	//  });
+	
+	//  const dispatch = useDispatch();
+	 const {auth} =useSelector((state)=>({...state}));
+	 console.log(auth.user.email)
 return (
 
 

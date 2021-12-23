@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   navlinks: {
-    marginLeft: theme.spacing(30), // used to be 10
+    marginLeft: theme.spacing(0), // used to be 10
     display: "flex",
   },
  logo: {
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     color: "white",
     fontSize: "17px",
-    marginLeft: theme.spacing(10),
+    marginLeft: theme.spacing(8),
     "&:hover": {
       color: "yellow",
       borderBottom: "1px solid white",
@@ -41,7 +41,7 @@ function Navbar() {
           AirLines
         </Typography>
           <div className={classes.navlinks}>
-            <Link to="/" className={classes.link}>
+            <Link style={{ marginLeft: '-950px'}} to="/user/home" className={classes.link}>
               Home
             </Link>
             <Link to="/flight/Addflight" className={classes.link}>
@@ -55,7 +55,7 @@ function Navbar() {
               Search
             </Link>
           
-            <Link to="/user/Profile" className={classes.link}>
+            <Link style={{ marginLeft: '300px'}} to="/user/Profile" className={classes.link}>
               Profile
             </Link>
           </div>

@@ -203,7 +203,7 @@ FlightRoutes.post('/usersearch', (req,res) => {
 });
 FlightRoutes.post('/details', (req,res) => {
 
-  console.log(req.body.data)
+  // console.log(req.body.data)
   Flight.find(req.body,function(err,docs){
     
   }

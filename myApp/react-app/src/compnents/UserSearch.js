@@ -25,7 +25,8 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 //import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
-
+import {useSelector} from "react-redux";
+import {createStore} from 'redux';
 
 import Box from '@mui/material/Box';
 import FormLabel from '@mui/material/FormLabel';
@@ -38,7 +39,6 @@ import Seatmap from 'react-seatmap';
 
 
 
-
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -46,17 +46,26 @@ const Transition = React.forwardRef(function Transition(props, ref) {
    
 
 function Handlereserve(event){
-  var s=String(event.currentTarget.id);
+  const {auth} =useSelector((state)=>({...state}));
+
+  var s=String(auth.user._id);
   console.log(s);
-  axios.post('http://localhost:8080/user/reserve/' + s)
+  axios.post('http://localhost:8080/user/reserve/' + s,{
+    id:event.currentTarget.id
+  })
   window.location.reload(false);
   
 }
 
-function Handlecreserve(event){
-  var s=String(event.currentTarget.id);
+const Handlecreserve =(event)=>{
+  const {auth} =useSelector((state)=>({...state}));
+
+  var s=String(auth.user._id);
   console.log(s);
-  axios.post('http://localhost:8080/user/cancelreserve/' + s)
+  axios.post('http://localhost:8080/user/cancelreserve/' + s,{
+    id:event.currentTarget.id
+
+  })
   window.location.reload(false);
   
 }
@@ -64,9 +73,13 @@ function Handlecreserve(event){
 
 
 function UserSearch() {
+  const {auth} =useSelector((state)=>({...state}));
+
   const [userList,setUserList]= useState([]);
 
   function Handleupdate(event){
+    const {auth} =useSelector((state)=>({...state}));
+
     var s=String(event.currentTarget.id);
    // console.log(s);
     axios.post('http://localhost:8080/flight/update/' + s,{
@@ -100,6 +113,7 @@ function UserSearch() {
   
     }
   const Handleclick=(event)=>{
+
     event.preventDefault()
     axios.post('http://localhost:8080/flight/usersearch',{
      
@@ -152,7 +166,7 @@ function UserSearch() {
   const [fList,setfList]= useState([]);
   const [bList,setbList]= useState([]);
   const [eList,seteList]= useState([]);
-  
+
     
   return (
       
@@ -254,6 +268,7 @@ function UserSearch() {
     
 function Row(props){
 
+  const {auth} =useSelector((state)=>({...state}));
 
 
   const [openR, setOpenR] = React.useState(false);
@@ -263,22 +278,26 @@ function Row(props){
   };
 
   const handleCloseR = (event) => {
+
     setOpenR(false);
     var s=String(event.currentTarget.id);
 
 
-    var x=String(event.currentTarget.id);
-   // console.log(s);
-    axios.post('http://localhost:8080/user/reserve/' + x)
+    var x=String(auth.user._id);
+    console.log(x);
+    axios.post('http://localhost:8080/user/reserve/' + x,{
+      id:s,
+    })
     window.location.replace('http://localhost:3000/user/Showresflights');
     
 
 
 
-  axios.post('http://localhost:8080/user/reserveseats/' + s ,{
+  axios.post('http://localhost:8080/user/reserveseats/' + x ,{
      
     ReservedSeats: allseats,
-
+    id:s,
+    
    
        
         }).then((res) => {
@@ -335,6 +354,8 @@ function Row(props){
 
 
   function Handleupdate(event){
+    const {auth} =useSelector((state)=>({...state}));
+
     var s=String(event.currentTarget.id);
     //console.log(s);
     axios.post('http://localhost:8080/flight/update/' + s,{
@@ -381,7 +402,7 @@ function Row(props){
   const [BaggageAllowance, setBag] = useState();
   const [Type, setType] = useState();
   const [TicketPrice, setPrice] = useState();
-  
+
   const [AvailableFSeats, setfs] = useState();
   const [AvailableESeats, setes] = useState();
   const [AvailableBSeats, setbs] = useState();
@@ -811,6 +832,7 @@ Flight Details            </Typography>
 }
 function Row2(props){
 
+  const {auth} =useSelector((state)=>({...state}));
 
 
   const [openR, setOpenR] = React.useState(false);
@@ -824,19 +846,21 @@ function Row2(props){
     var s=String(event.currentTarget.id);
 
 
-    var x=String(event.currentTarget.id);
-   // console.log(s);
-    axios.post('http://localhost:8080/user/reserve/' + x)
+    var x=String(auth.user._id);
+ console.log(x);
+    axios.post('http://localhost:8080/user/reserve/' + x,{
+      id:s,
+    })
     window.location.replace('http://localhost:3000/user/Showresflights');
     
 
 
 
-  axios.post('http://localhost:8080/user/reserveseats/' + s ,{
+  axios.post('http://localhost:8080/user/reserveseats/' + x ,{
      
     ReservedSeats: allseats,
 
-   
+   id:s,
        
         }).then((res) => {
       //console.log(res)
@@ -892,6 +916,8 @@ function Row2(props){
 
 
   function Handleupdate(event){
+    const {auth} =useSelector((state)=>({...state}));
+
     var s=String(event.currentTarget.id);
     //console.log(s);
     axios.post('http://localhost:8080/flight/update/' + s,{
@@ -980,7 +1006,6 @@ function Row2(props){
 
 
   },[])
-
 
 
   const [state, setState] = React.useState({

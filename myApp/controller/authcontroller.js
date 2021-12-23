@@ -19,13 +19,6 @@ AuthRoutes.post("/login", async (req, res) => {
     // console.log("USER EXIST", user);
     if (!user){
 
-      x = false;
-
-      res.json({
-        user:{
-          _id:user._id,
-         userName:x,
-         email:user.Email,}});
 
     res.status(400).send("User with that email not found");
     
@@ -38,13 +31,6 @@ AuthRoutes.post("/login", async (req, res) => {
       console.log("COMPARE PASSWORD IN LOGIN ERR", err);
       if (!match || err){
 
-       x = false; 
-
-       res.json({
-        user:{
-          _id:user._id,
-         userName:x,
-         email:user.Email,}});
        
         return res.status(400).send("Wrong password");
       }
@@ -52,16 +38,20 @@ AuthRoutes.post("/login", async (req, res) => {
       let token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
         expiresIn: "7d",
       });
-      res.json({
-        token,user:{
-          _id:user._id,
-         userName:x,
-         email:user.Email,}});
+      
+  res.json({
+    user:{
+      _id:user._id,
+     userName:user.Name,
+     email:user.Email,
+    Role: user.isAdmin,}});
     });
   } catch (err) {
     console.log("LOGIN ERROR", err);
     res.status(400).send("Signin failed");
   }
+  
+
 });
 
 

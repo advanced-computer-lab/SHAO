@@ -22,15 +22,15 @@ const cors = require('cors');
   var rf = [];
   var f = false;
 
-    
+    console.log(req.params.id);
 
 
   User.findById(req.params.id, function (err, docs) {
-
+// console.log(docs)
   rf = docs.ReservedFlights;
   for(var i=0; i<=rf.length;i++)
   {
-    if(rf[i]===req.params.id)
+    if(rf[i]===req.body.id)
     {
       f = true;
     }
@@ -44,7 +44,7 @@ const cors = require('cors');
   {
 
 
-   User.findByIdAndUpdate(req.params.id, {$push: {ReservedFlights: req.params.id}})
+   User.findByIdAndUpdate(req.params.id, {$push: {ReservedFlights: req.body.id}})
  
    .then(result => {
     var transporter = nodemailer.createTransport({
@@ -97,7 +97,7 @@ const cors = require('cors');
   UserRoutes.post('/cancelreserve/:id', (req,res) => {
 
 
-    User.findByIdAndUpdate(req.params.id, {$pull: {ReservedFlights: req.params.id}})
+    User.findByIdAndUpdate(req.params.id, {$pull: {ReservedFlights: req.body.id}})
   
           .then(result => {
             var transporter = nodemailer.createTransport({
@@ -181,14 +181,16 @@ const cors = require('cors');
     });
 
     
-    UserRoutes.get('/Showresflights', async (req, res) => {
-
+    UserRoutes.get('/Showresflights/:id', async (req, res) => {
+console.log(req.params.id)
       try {
         const rfs = (await User.findById(req.params.id).lean().exec()).ReservedFlights;
     
         const flights = await Flight.find({
           _id: { $in: rfs }
         }).lean().exec();
+        console.log(flights)
+
             res.json(flights);
       } catch (err) {
         console.log(err);
@@ -206,17 +208,18 @@ const cors = require('cors');
         console.log(err);
       
     });
-Flight.findById(req.params.id).then(result => {
+    console.log(req.body.id)
+Flight.findById(req.body.id).then(result => {
   for (let i = 0; i <= req.body.ReservedSeats.length; i++) {
     
     if(result.AvailableFSeats.indexOf(req.body.ReservedSeats[i])!==-1){
       
       result.AvailableFSeats.splice(result.AvailableFSeats.indexOf(req.body.ReservedSeats[i]),1)
-      Flight.findByIdAndUpdate(req.params.id,{ AvailableFSeats : result.AvailableFSeats},{new : true}).catch(err => {
+      Flight.findByIdAndUpdate(req.body.id,{ AvailableFSeats : result.AvailableFSeats},{new : true}).catch(err => {
         console.log(err);
       
     });;
-    Flight.findByIdAndUpdate(req.params.id,{ First : result.AvailableFSeats.length},{new : true}).catch(err => {
+    Flight.findByIdAndUpdate(req.body.id,{ First : result.AvailableFSeats.length},{new : true}).catch(err => {
       console.log(err);
     
   })
@@ -227,7 +230,7 @@ Flight.findById(req.params.id).then(result => {
         console.log(err);
       
     });
-    Flight.findByIdAndUpdate(req.params.id,{ EconomySeats : result.AvailableESeats.length},{new : true}).catch(err => {
+    Flight.findByIdAndUpdate(req.body.id,{ EconomySeats : result.AvailableESeats.length},{new : true}).catch(err => {
       console.log(err);
     
   })
@@ -236,12 +239,12 @@ Flight.findById(req.params.id).then(result => {
     if(result.AvailableBSeats.indexOf(req.body.ReservedSeats[i])!==-1){
       
       result.AvailableBSeats.splice(result.AvailableBSeats.indexOf(req.body.ReservedSeats[i]),1)
-      Flight.findByIdAndUpdate(req.params.id,{ AvailableBSeats : result.AvailableBSeats},{new : true}).catch(err => {
+      Flight.findByIdAndUpdate(req.body.id,{ AvailableBSeats : result.AvailableBSeats},{new : true}).catch(err => {
         console.log(err);
       
     });
   
-    Flight.findByIdAndUpdate(req.params.id,{ BusinessSeats : result.AvailableBSeats.length},{new : true}).catch(err => {
+    Flight.findByIdAndUpdate(req.body.id,{ BusinessSeats : result.AvailableBSeats.length},{new : true}).catch(err => {
       console.log(err);
     
   })

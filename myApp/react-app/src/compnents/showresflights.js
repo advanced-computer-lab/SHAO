@@ -14,26 +14,33 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { responsiveFontSizes, TextField } from "@material-ui/core";
+import {useSelector} from "react-redux";
+import {createStore} from 'redux';
 
 
-function Handlecreserve(event){
-  var s=String(event.currentTarget.id);
-  console.log(s);
-  axios.post('http://localhost:8080/user/cancelreserve/' + s)
-  window.location.reload(false);
-  
-}
+
 
 
 function Showresflights({}) {
 
   
+  const {auth} =useSelector((state)=>({...state}));
+  const Handlecreserve=(event)=>{
   
+    var s=String(auth.user._id);
+    console.log(s);
+    axios.post('http://localhost:8080/user/cancelreserve/' + s,{
+      id: event.currentTarget.id
+    })
+    window.location.reload(false);
+    
+  }
 
   
     const [userList,setUserList]= useState([]);
     useEffect(()=> {
-    axios.get('http://localhost:8080/user/Showresflights')
+      var x=String(auth.user._id);
+    axios.get('http://localhost:8080/user/Showresflights/'+x)
     .then((res)=>{
       console.log(res.data);
       setUserList(res.data);
@@ -75,7 +82,17 @@ function Showresflights({}) {
 
 export default Showresflights;
 function Row(props){
+  const {auth} =useSelector((state)=>({...state}));
+  const Handlecreserve=(event)=>{
   
+    var s=String(auth.user._id);
+    console.log(s);
+    axios.post('http://localhost:8080/user/cancelreserve/' + s,{
+      id: event.currentTarget.id
+    })
+    window.location.reload(false);
+    
+  }
   const [openC, setOpenC] = React.useState(false);
 
   const handleClickOpenC = () => {

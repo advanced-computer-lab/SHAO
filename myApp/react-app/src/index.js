@@ -35,7 +35,7 @@ const store = createStore(rootReducer,composeWithDevTools());
 ReactDOM.render(
 <React.StrictMode>
 <Provider store={store}>
-    <Registapp />
+    <App />
     </Provider>
  </React.StrictMode>,
   document.getElementById('root')

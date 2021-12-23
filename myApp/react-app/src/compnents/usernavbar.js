@@ -1,6 +1,7 @@
 
 import React from "react";
 import {
+  Button,
   AppBar,
   Toolbar,
   CssBaseline,
@@ -8,7 +9,13 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
+function Hlogout(){
+  
+    localStorage.clear();
+    window.location.href = '/';
 
+  
+}
 const useStyles = makeStyles((theme) => ({
   navlinks: {
     marginLeft: theme.spacing(0), // used to be 10
@@ -27,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
       color: "yellow",
       borderBottom: "1px solid white",
     },
-  },
+},
 }));
 
 function NavbarU() {
@@ -50,9 +57,15 @@ function NavbarU() {
             <Link to="/flight/UserSearch" className={classes.link}>
               Search
             </Link>
+            <Link  to="/help" className={classes.link}>
+              Help?
+            </Link>
             <Link style={{ marginLeft: '300px'}} to="/user/Profile" className={classes.link}>
               Profile
             </Link>
+            <Button style={{ fontSize: "15px", marginTop:'-6px'}} type="submit" className={classes.link} onClick={Hlogout} >
+             Logout
+            </Button>
           </div>
       </Toolbar>
     </AppBar>
