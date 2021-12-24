@@ -41,7 +41,7 @@ try {
     currency: "usd",
     customer: customer.id,
     receipt_email: token.email,
-    description: 'Purchased the' + product.name,
+    description: 'Purchased the ' + product.name,
     shipping: {
       name: token.card.name,
       address: {

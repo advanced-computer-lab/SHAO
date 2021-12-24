@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 toast.configure();
@@ -64,9 +65,6 @@ function NavbarU() {
             </Link>
             <Link  to="/help" className={classes.link}>
               Help?
-            </Link>
-            <Link  to="/payment" className={classes.link}>
-              Payment
             </Link>
             <Link style={{ marginLeft: '300px'}} to="/user/Profile" className={classes.link}>
               Profile

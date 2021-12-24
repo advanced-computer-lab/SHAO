@@ -20,7 +20,7 @@ AuthRoutes.post("/login", async (req, res) => {
     if (!user){
 
 
-    res.status(400).send("User with that email not found");
+    res.status(400).send("Email doesn't exist");
     
     }
     // compare Password

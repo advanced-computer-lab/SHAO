@@ -25,7 +25,9 @@ import {Provider} from 'react-redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import rootReducer from '../Reducers';
 import PropTypes from 'prop-types';
-import {toast} from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import LoadingScreen from 'react-loading-screen';
 
 
 toast.configure();
@@ -91,7 +93,7 @@ export default function SignIn() {
       // const notify = () => {
       if(! toast.isActive(toastId.current)) {
         toastId.current = toast.error(err.response.data,{
-          position: toast.POSITION.BOTTOM_CENTER, textAlign: 'center' , icon: "❗️"});
+          position: toast.POSITION.TOP_RIGHT, textAlign: 'center' , icon: "❗️"});
       }
     // }
     // return  {notify}
@@ -106,6 +108,7 @@ export default function SignIn() {
     
     
     <ThemeProvider theme={theme}>
+     
 
 {/* <div className="SignIn">
             <button onClick={notify}>Click Me!</button>

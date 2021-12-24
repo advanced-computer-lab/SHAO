@@ -16,6 +16,12 @@ import Paper from "@material-ui/core/Paper";
 import { responsiveFontSizes, TextField } from "@material-ui/core";
 import {useSelector} from "react-redux";
 import {createStore} from 'redux';
+import StripeCheckout from "react-stripe-checkout";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+toast.configure();
 
 
 
@@ -134,6 +140,57 @@ function Row(props){
 
 
   },[])
+
+
+//start pay
+
+
+  
+
+  const [product] = React.useState({
+      name: 'Flight No: ' + props.row.Flight.FlightNumber,
+      price: props.row.Flight.TicketPrice,
+
+  });
+
+async function handleToken(token, addresses) {
+ const response = await axios.post("http://localhost:8080/user/checkout",{
+      token,
+      product
+  });
+const {status} = response.data
+if(status === 'success')
+{
+  toast('Success! Check email for details',
+  {icon: "✅"})
+}
+else
+{
+  toast("Something went wrong",
+  { icon: "❌"});
+}
+  console.log({token, addresses});
+}
+
+
+
+
+      
+
+
+  
+
+
+
+
+
+
+
+//endpay
+
+
+
+
   return(<TableRow key={props.row._id}>
     <TableCell><TextField variant="standard"  type="text" name="Flight_number"  placeholder="Flight_number" value={Flight_number} onChange={event=>setfn(event.target.value)}  />
 </TableCell>
@@ -148,8 +205,21 @@ function Row(props){
     <TableCell><TextField variant="standard"  type="text" name="BaggageAllowance"  placeholder="BaggageAllowance" value= {BaggageAllowance} onChange={event=>setBag(event.target.value)}  /></TableCell>
     <TableCell><TextField variant="standard"  type="text" name="Flight Type"  placeholder="Flight Type" value= {Type} onChange={event=>setType(event.target.value)}  /></TableCell>
     <TableCell><TextField variant="standard"  type="text" name="TicketPrice"  placeholder="TicketPrice" value= {TicketPrice} onChange={event=>setPrice(event.target.value)}  /></TableCell>
-    <Button variant="contained" id={props.row._id} type="submit"value='cancelreserve' onClick={handleClickOpenC} color="secondary"> Cancel reservation </Button>  
+    {/* <Button variant="contained" id={props.row._id} type="submit"value='pay' onClick={handleToken} color="primary"> Payment </Button>   */}
     
+    <StripeCheckout 
+            stripeKey="pk_test_51KABeOLJRcHi1IfiAVGgjn5RmuDKAPsthHXJg5MVaKssRDJjcjrTNJUIir2IcYxxMJfdQRP9MzZSmKm8MYm7G4a400DgM97QBf"
+            token={handleToken}
+            billingAddress
+            shippingAddress
+            amount={product.price * 100}
+            name={product.name}
+
+
+            />
+    
+    <Button variant="contained" id={props.row._id} type="submit"value='cancelreserve' onClick={handleClickOpenC} color="secondary"> Cancel reservation </Button>  
+
       
     <Dialog
         open={openC}
