@@ -9,10 +9,15 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import {toast} from 'react-toastify';
+
+
+toast.configure();
 function Hlogout(){
   
     localStorage.clear();
-    window.location.href = '/';
+    window.location.href = '/SignIn';
+    toast('Successfully Logged Out')
 
   
 }
@@ -44,7 +49,7 @@ function NavbarU() {
     <AppBar position="static">
       <CssBaseline />
       <Toolbar>
-        <Typography variant="h3" className={classes.logo}>
+        <Typography to="/user/home" variant="h3" className={classes.logo}>
           AirLines
         </Typography>
           <div className={classes.navlinks}>
@@ -59,6 +64,9 @@ function NavbarU() {
             </Link>
             <Link  to="/help" className={classes.link}>
               Help?
+            </Link>
+            <Link  to="/payment" className={classes.link}>
+              Payment
             </Link>
             <Link style={{ marginLeft: '300px'}} to="/user/Profile" className={classes.link}>
               Profile

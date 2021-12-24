@@ -1,6 +1,7 @@
 
 import React from "react";
 import {
+  Button,
   AppBar,
   Toolbar,
   CssBaseline,
@@ -8,7 +9,17 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import {toast} from 'react-toastify';
 
+
+toast.configure();
+
+function Hlogout(){
+  
+  localStorage.clear();
+  window.location.href = '/SignIn';
+  toast('Successfully Logged Out')
+}
 const useStyles = makeStyles((theme) => ({
   navlinks: {
     marginLeft: theme.spacing(0), // used to be 10
@@ -37,7 +48,7 @@ function Navbar() {
     <AppBar position="static">
       <CssBaseline />
       <Toolbar>
-        <Typography variant="h3" className={classes.logo}>
+        <Typography to="/user/home" variant="h3" className={classes.logo}>
           AirLines
         </Typography>
           <div className={classes.navlinks}>
@@ -58,6 +69,9 @@ function Navbar() {
             <Link style={{ marginLeft: '300px'}} to="/user/Profile" className={classes.link}>
               Profile
             </Link>
+            <Button style={{ fontSize: "15px", marginTop:'-6px'}} type="submit" className={classes.link} onClick={Hlogout} >
+             Logout
+            </Button>
           </div>
       </Toolbar>
     </AppBar>

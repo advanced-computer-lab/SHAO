@@ -21,6 +21,8 @@ import SignUp from "./compnents/SignUp";
 import SignIn from "./compnents/login";
 import GShowflights from "./compnents/guestshowflights";
 import Help from "./compnents/help";
+import Pay from "./compnents/payment";
+
 const store = createStore(rootReducer,composeWithDevTools());
 
 function App() {
@@ -54,7 +56,9 @@ function App() {
 			<Route path="/help">
 		<Help />
 		</Route>
-			
+		<Route path="/payment">
+				<Pay />
+				</Route>
 			
 			</Router>
 			
@@ -86,7 +90,9 @@ try {
 			<Route path="/help">
 		<Help />
 		</Route>
-			
+		<Route path="/payment">
+				<Pay />
+				</Route>
 			</Router>
 	  
 	
@@ -126,6 +132,9 @@ try {
 				</Route>
 				<Route path="/help">
 				<Help />
+				</Route>
+				<Route path="/payment">
+				<Pay />
 				</Route>
 				</Router>
 				);

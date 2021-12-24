@@ -277,7 +277,7 @@ function Row(props){
     setOpenR(true);
   };
 
-  const handleCloseR = (event) => {
+  const handleCloseR = (event) => {   /// reserveseatsconfirmmethod - working
 
     setOpenR(false);
     var s=String(event.currentTarget.id);
@@ -288,7 +288,7 @@ function Row(props){
     axios.post('http://localhost:8080/user/reserve/' + x,{
       id:s,
     })
-    window.location.replace('http://localhost:3000/user/Showresflights');
+    window.location.replace('http://localhost:3000/payment');
     
 
 
@@ -783,6 +783,7 @@ Flight Details            </Typography>
 
 
 
+
             
 
 
@@ -841,10 +842,9 @@ function Row2(props){
     setOpenR(true);
   };
 
-  const handleCloseR = (event) => {
+  const handleCloseR = (event) => {   //reserve seats confirm yes method
     setOpenR(false);
     var s=String(event.currentTarget.id);
-
 
     var x=String(auth.user._id);
  console.log(x);
@@ -1083,14 +1083,13 @@ function Row2(props){
               color="inherit"
               onClick={handleCloseD}
               aria-label="close"
+              fontsize = "10px"
             >
-
+              x
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
 Flight Details            </Typography>
-            <Button id = {props.row._id} type = "submit" autoFocus color="inherit" onClick={handleClickOpen}>
-              Save
-            </Button>
+            
           </Toolbar>
         </AppBar>
         <List>
