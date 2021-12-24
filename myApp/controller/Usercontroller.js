@@ -226,7 +226,7 @@ res.json({error, status});
               subject: 'Sending Email using Node.js',
               text: 'how are you dear,'+result.Name+'Your flight reservation was canceld'
             };
-            
+            //
             transporter.sendMail(mailOptions, function(error, info){
               if (error) {
                 console.log(error);
