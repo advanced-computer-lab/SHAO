@@ -3,6 +3,7 @@ const { Mongoose } = require("mongoose");
 const { collection, db } = require("../models/Flight");
 const Flight = require('../models/Flight');
 const User = require("../models/User");
+const RF = require("../models/Reserve");
 const UserRoutes = express.Router();
 require('dotenv').config()
 const jwt = require('jsonwebtoken');
@@ -11,7 +12,12 @@ var nodemailer = require('nodemailer');
 const cors = require('cors');
 const stripe = require("stripe")("sk_test_51KABeOLJRcHi1IfiKryTGkirJXZY3NaRjS7ZI7nkDGu9m0AogGtkgACmKzAyVgM3Cfarb7zUzzPdpkifs7atdRqO00Q3B3kwqg");
 var crypto = require("crypto");
-
+//const { console } = require("console");
+// function sleep(ms) {
+//   return new Promise((resolve) => {
+//     setTimeout(resolve, ms);
+//   });
+// }
 UserRoutes.use(express.json());
 UserRoutes.use(cors());
 
@@ -68,77 +74,132 @@ res.json({error, status});
 
 
 
-  UserRoutes.post('/reserve/:id', (req,res) => {
+   UserRoutes.post('/reserve/:id', async (req,res) => {
     
-  var rf = [];
   var f = false;
 
-    console.log(req.params.id);
 
 
-  User.findById(req.params.id, function (err, docs) {
-// console.log(docs)
-  rf = docs.ReservedFlights;
-  for(var i=0; i<=rf.length;i++)
-  {
-    if(rf[i]===req.body.id)
-    {
-      f = true;
-    }
-  }
+  RF.find({User:req.params.id}, async function (err, docs) {
 
 
 
   //console.log(f);
-  //console.log(rf);
-  if(f == false)
+  
+  console.log(req.body.id);
+  if(docs[0]!=null){
+  if( await docs[0].Flight == req.body.id)
   {
-
-
-   User.findByIdAndUpdate(req.params.id, {$push: {ReservedFlights: req.body.id}})
- 
-   .then(result => {
-    var transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'aclproject23@gmail.com',
-        pass: '#acl123456'
-      }
-    });
-    console.log(result.Email)
-    var mailOptions = {
-      from: 'aclproject23@gmail.com',
-      to: 'aclproject23@gmail.com',
-      subject: 'Sending Email using Node.js',
-      text: 'how are you dear,'+result.Name+'Your flight reservation was confirmed'
-    };
-    
-    transporter.sendMail(mailOptions, function(error, info){
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Email sent: ' + info.response);
-      }
-    });
-     //console.log(result);
-     res.send(result);
-         })
-         .catch(err => {
-           console.log(err);
-         });
+    console.log("Already Reserved");
 
   }
 
  else
   {
-         console.log("Already Reserved");
- }
+    const rf = new RF({
+      Flight: req.body.id,
+      User: req.params.id,
+      
+    });
+    rf.save();
+    
+       User.findById(req.params.id)
+     
+       .then(result => {
+        var transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+            user: 'aclproject23@gmail.com',
+            pass: '#acl123456'
+          }
+        });
+        console.log(result.Email)
+        var mailOptions = {
+          from: 'aclproject23@gmail.com',
+          to: 'aclproject23@gmail.com',
+          subject: 'Sending Email using Node.js',
+          text: 'how are you dear,'+result.Name+'Your flight reservation was confirmed'
+        };
+        
+        transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+            console.log(error);
+          } else {
+            console.log('Email sent: ' + info.response);
+          }
+        });
+         //console.log(result);
+         res.send(result);
+             })
+             .catch(err => {
+               console.log(err);
+             });
+    
+     }
 
 
 
 
   
-  });
+  }
+  else
+  {
+
+    const rf = new RF({
+      Flight: req.body.id,
+      User: req.params.id,
+      
+    });
+    rf.save();
+    console.log(rf)
+       User.findById(req.params.id)
+     
+       .then(result => {
+        var transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+            user: 'aclproject23@gmail.com',
+            pass: '#acl123456'
+          }
+        });
+        console.log(result.Email)
+        var mailOptions = {
+          from: 'aclproject23@gmail.com',
+          to: 'aclproject23@gmail.com',
+          subject: 'Sending Email using Node.js',
+          text: 'how are you dear,'+result.Name+'Your flight reservation was confirmed'
+        };
+        
+        transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+            console.log(error);
+          } else {
+            console.log('Email sent: ' + info.response);
+          }
+        });
+         //console.log(result);
+         res.send(result);
+             })
+             .catch(err => {
+               console.log(err);
+             });
+    
+     }
+
+
+
+
+  
+  
+
+}
+  
+  
+  
+  
+  
+  
+  );
 
         
     });
@@ -148,7 +209,7 @@ res.json({error, status});
   UserRoutes.post('/cancelreserve/:id', (req,res) => {
 
 
-    User.findByIdAndUpdate(req.params.id, {$pull: {ReservedFlights: req.body.id}})
+    User.findById(req.params.id )
   
           .then(result => {
             var transporter = nodemailer.createTransport({
@@ -206,7 +267,9 @@ res.json({error, status});
             user: 'aclproject23@gmail.com',
             pass: '#acl123456'
           }
-        });
+        }
+
+        );
         console.log(result.Email)
         var mailOptions = {
           from: 'aclproject23@gmail.com',
@@ -235,14 +298,15 @@ res.json({error, status});
     UserRoutes.get('/Showresflights/:id', async (req, res) => {
 console.log(req.params.id)
       try {
-        const rfs = (await User.findById(req.params.id).lean().exec()).ReservedFlights;
+        const rfs = (await RF.find({User:req.params.id}).populate("Flight").lean().exec(function(err, post) {
+          res.json(post)
+        }));
     
-        const flights = await Flight.find({
-          _id: { $in: rfs }
-        }).lean().exec();
-        console.log(flights)
+        // const flights = await Flight.find({
+        //   _id: rfs
+        // }).lean().exec(); 
 
-            res.json(flights);
+            // res.json(flights);
       } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -252,14 +316,31 @@ console.log(req.params.id)
 
 
 
+    function sleep(ms) {
+      return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+      });
+    } 
+    UserRoutes.post('/reserveseats/:id',  async (req,res) => {
+      await sleep(10000);
 
-    UserRoutes.post('/reserveseats/:id', (req,res) => {
-    
-      User.findByIdAndUpdate(req.params.id,{ReservedSeats:req.body.ReservedSeats},{new : true}).catch(err => {
-        console.log(err);
+    //   User.findByIdAndUpdate(req.params.id,{ReservedSeats:req.body.ReservedSeats},{new : true}).catch(err => {
+    //     console.log(err);
       
-    });
-    console.log(req.body.id)
+    // });
+    //console.log(req.body.ReservedSeats)
+    
+if (req.body.ReservedSeats!=null) {
+  
+
+     RF.findOne({User: req.params.id,Flight:req.body.id}).exec().then(
+      result=> {RF.findByIdAndUpdate(result._id,{ Reservedseats : req.body.ReservedSeats},{new : true}).catch(err=>{console.log(err)});
+      // console.log(result);
+      // console.log(result);
+      
+      // console.log(result._id)
+    }
+    )
 Flight.findById(req.body.id).then(result => {
   for (let i = 0; i <= req.body.ReservedSeats.length; i++) {
     
@@ -307,7 +388,7 @@ Flight.findById(req.body.id).then(result => {
 .catch(err => {
   console.log(err);
 });
-
+}
     
     });
 

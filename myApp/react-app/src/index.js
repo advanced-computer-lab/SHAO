@@ -3,8 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import ReactDOM from 'react-dom';
 import Button from '@material-ui/core/Button';
 import Appuser from './compnents/userapp';
-import App from"./App";
-import Registapp from './compnents/Registapp';
+import App from "./App";
 
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';

@@ -117,19 +117,19 @@ function Row(props){
   const [Type, setType] = useState();
   const [TicketPrice, setPrice] = useState();
 
-   useEffect(() => {setfn(props.row.FlightNumber);
-    setDT(props.row.DepartureTime);
-    setto(props.row.To);
-    setFrom(props.row.From);
-    setat(props.row.ArrivalTime);
-    setF(props.row.First);
-    setE(props.row.EconomySeats);
-    setB(props.row.BusinessSeats);
-    setater(props.row.ArrivalTerminal);
-    setDter(props.row.DepartureTerminal);
-    setBag(props.row.BaggageAllowance);
-    setType(props.row.Type);
-    setPrice(props.row.TicketPrice);
+   useEffect(() => {setfn(props.row.Flight.FlightNumber);
+    setDT(props.row.Flight.DepartureTime);
+    setto(props.row.Flight.To);
+    setFrom(props.row.Flight.From);
+    setat(props.row.Flight.ArrivalTime);
+    setF(props.row.Flight.First);
+    setE(props.row.Flight.EconomySeats);
+    setB(props.row.Flight.BusinessSeats);
+    setater(props.row.Flight.ArrivalTerminal);
+    setDter(props.row.Flight.DepartureTerminal);
+    setBag(props.row.Flight.BaggageAllowance);
+    setType(props.row.Flight.Type);
+    setPrice(props.row.Flight.TicketPrice);
     
 
 

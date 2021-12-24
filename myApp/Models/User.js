@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
+const rFlight = require('./Reserve');
+
 const userSchema = new Schema({
   Name: {
     type: String,
@@ -46,9 +48,9 @@ const userSchema = new Schema({
   },
   ReservedSeats: {
     type: [],
-  }
+  },
 
-  
+ 
 }, { timestamps: true });
 
 
