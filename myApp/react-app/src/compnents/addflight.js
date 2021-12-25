@@ -24,6 +24,11 @@ function Addflight() {
 
 
 
+ const [RArrivalTime, setrat] = useState();
+ const [RDepartureTime, setrDT] = useState();
+ const [RArrivalTerminal, setrater] = useState();
+ const [RDepartureTerminal, setrDter] = useState();
+ 
 
  
  
@@ -37,9 +42,7 @@ DepartureTime:DepartureTime ,
   To:TO ,
   From:From ,
   ArrivalTime:ArrivalTime,
-  
   First:First ,
- 
   EconomySeats: EconomySeats,
   BusinessSeats:BusinessSeats ,
   ArrivalTerminal: ArrivalTerminal,
@@ -47,6 +50,13 @@ DepartureTime:DepartureTime ,
   BaggageAllowance : BaggageAllowance,
   Type : Type,
   TicketPrice : TicketPrice,
+
+
+
+  RArrivalTime : RArrivalTime,
+  RDepartureTime : RDepartureTime,  
+  RArrivalTerminal: RArrivalTerminal,
+  RDepartureTerminal:RDepartureTerminal,
   
   
     }).then(window.open("http://localhost:3000/flight/Showflights"))}>
@@ -87,16 +97,24 @@ DepartureTime:DepartureTime ,
   
     <TextField variant="standard" name="EconomySeats" label="Economy Seats" onChange={event=>setE(event.target.value)} />
     <TextField variant="standard" name="BusinessSeats" label="Business Seats" onChange={event=>setB(event.target.value)}  />
-    <TextField variant="standard" name="ArrivalTerminal"  label="Arrival Terminal" onChange={event=>setater(event.target.value)}  />
+    <TextField variant="standard" name="DepartureTerminal"  label="Departure Terminal" onChange={event=>setDter(event.target.value)}  />
       </div>
       <div>
-         
-    <TextField variant="standard" name="DepartureTerminal"  label="Departure Terminal" onChange={event=>setDter(event.target.value)}  />
+      <TextField variant="standard" name="ArrivalTerminal"  label="Arrival Terminal" onChange={event=>setater(event.target.value)}  />
+
  
     <TextField variant="standard" name="BaggageAllowance"  label="Baggage Allowance" onChange={event=>setBag(event.target.value)}  />
 
     <TextField variant="standard" name="Type"  label="Type" onChange={event=>setType(event.target.value)}  />
     <TextField variant="standard" name="TicketPrice"  label="Ticket Price" onChange={event=>setPrice(event.target.value)}  />
+      </div>
+
+
+      <div>
+         
+      <TextField variant="standard" name="DepartureTime" label="Return Departure Time" onChange={event=>setrDT(event.target.value)} />
+      <TextField variant="standard" name="ArrivalTime" label="Return Arrival Time" onChange={event=>setrat(event.target.value)} />
+
       </div>
 
       <br/>

@@ -156,7 +156,7 @@ var x;
      DepartureTime : dep,
      To:to,
      From:from, 
-     ArrivalTime : arr ,
+     ArrivalTime:arr,
      First:Fr,
      EconomySeats: ec,
      BusinessSeats: bz,
@@ -167,7 +167,19 @@ var x;
     AvailableBSeats:b,
     BaggageAllowance: bag,
     Type: type,
-    TicketPrice: price});
+    TicketPrice: price,
+  
+  
+
+
+     RTo:from,
+     RFrom:to, 
+     RArrivalTime:dep,
+     RDepartureTime : arr,  
+     RArrivalTerminal:Dept,
+     RDepartureTerminal:Arrt,
+  
+  });
  
  flight.save().then(
    data=>{

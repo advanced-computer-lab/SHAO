@@ -22,6 +22,37 @@ const flightSchema =  new Schema ({
     type: String,
     required: true
   },
+
+
+
+  RTo: {
+    type: String,
+    required: true
+  },
+  RFrom: {
+    type: String,
+    required: true
+  },
+  RArrivalTime: {
+    type: Date,
+    required: true
+  },
+  RDepartureTime: {
+    type: Date,
+    required: true
+  },
+  RArrivalTerminal: {
+    type: String,
+    required: true
+  },
+  RDepartureTerminal: {
+    type: String,
+    required: true
+  },
+
+
+
+
   ArrivalTime: {
     type: Date,
     required: true

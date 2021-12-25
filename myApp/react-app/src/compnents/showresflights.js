@@ -53,21 +53,22 @@ function Showresflights({}) {
     })   
    },[]);
      return (
-         
+
       <Paper>
       <Table sx={{ maxWidth: 100 }} >
         <TableHead >
           <TableRow>
-            <TableCell>FlightNumber</TableCell>
-            <TableCell>DepartureTime</TableCell>
-            <TableCell>To</TableCell>
-            <TableCell>From</TableCell>
-            <TableCell>ArrivalTime</TableCell>
-            <TableCell>ArrivalTerminal</TableCell>
-            <TableCell>DepartureTerminal</TableCell>
-            <TableCell>BaggageAllowance</TableCell>
-            <TableCell>Flight Type</TableCell>
-            <TableCell>TicketPrice</TableCell>
+          <TableCell style={{width: '1%'}}>Flight<br/>Number</TableCell>
+            <TableCell style={{width: '14%',textAlign: 'center'}}>From<br/>To</TableCell>
+            <TableCell style={{width: '26%'}}>Departure Time<br/>Arrival Time</TableCell>
+            <TableCell style={{width: '26%'}}>Return DepartureTime<br/>Return ArrivalTime</TableCell>
+            <TableCell style={{width: '1%'}}>First<br/>Seats</TableCell>
+            <TableCell style={{width: '1%'}}>Economy<br/>Seats</TableCell>
+            <TableCell style={{width: '1%'}}>Business<br/>Seats</TableCell>
+            <TableCell style={{width: '14%'}}>DepartureTerminal<br/>ArrivalTerminal</TableCell>
+            <TableCell style={{width: '5%'}}>Baggage<br/>Allowance</TableCell>
+            <TableCell style={{width: '1%'}}>Type</TableCell>
+            <TableCell style={{width: '8%'}}>Price</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -123,6 +124,9 @@ function Row(props){
   const [Type, setType] = useState();
   const [TicketPrice, setPrice] = useState();
 
+  const [RArrivalTime, setrat] = useState();
+  const [RDepartureTime, setrDT] = useState();
+
    useEffect(() => {setfn(props.row.Flight.FlightNumber);
     setDT(props.row.Flight.DepartureTime);
     setto(props.row.Flight.To);
@@ -138,6 +142,9 @@ function Row(props){
     setPrice(props.row.Flight.TicketPrice);
     
 
+    setrDT(props.row.RDepartureTime);
+    setrat(props.row.RArrivalTime);
+  
 
   },[])
 
@@ -191,19 +198,25 @@ else
 
 
   return(<TableRow key={props.row._id}>
-    <TableCell><TextField variant="standard"  type="text" name="Flight_number"  placeholder="Flight_number" value={Flight_number} onChange={event=>setfn(event.target.value)}  />
+    <TableCell><TextField variant="standard"  name="Flight_number"  placeholder="Flight_number" value={Flight_number} onChange={event=>setfn(event.target.value)}  />
 </TableCell>
-    <TableCell><TextField variant="standard"   type="text" name="DepartureTime" placeholder="DepartureTime" value={DepartureTime} onChange={event=>setDT(event.target.value)} /></TableCell>
-    <TableCell><TextField variant="standard"  type="text" name="To"  placeholder="To" value= {TO} onChange={event=>setto(event.target.value)} /></TableCell>
-    <TableCell><TextField variant="standard"  type="text" name="From" value= {From} placeholder="From" onChange={event=>setFrom(event.target.value)}  />
-  </TableCell>
-    <TableCell><TextField variant="standard"   type="text" name="ArrivalTime" placeholder="ArrivalTime" value= {ArrivalTime} onChange={event=>setat(event.target.value)} />
-  </TableCell>
-   <TableCell><TextField variant="standard"  type="text" name="ArrivalTerminal"  placeholder="ArrivalTerminal" value={ArrivalTerminal} onChange={event=>setater(event.target.value)}  /></TableCell>
-    <TableCell><TextField variant="standard"  type="text" name="DepartureTerminal"  placeholder="DepartureTerminal" value= {DepartureTerminal} onChange={event=>setDter(event.target.value)}  /></TableCell>
-    <TableCell><TextField variant="standard"  type="text" name="BaggageAllowance"  placeholder="BaggageAllowance" value= {BaggageAllowance} onChange={event=>setBag(event.target.value)}  /></TableCell>
-    <TableCell><TextField variant="standard"  type="text" name="Flight Type"  placeholder="Flight Type" value= {Type} onChange={event=>setType(event.target.value)}  /></TableCell>
-    <TableCell><TextField variant="standard"  type="text" name="TicketPrice"  placeholder="TicketPrice" value= {TicketPrice} onChange={event=>setPrice(event.target.value)}  /></TableCell>
+<TableCell><TextField variant="standard"  name="From" value= {From} placeholder="From" onChange={event=>setFrom(event.target.value)}  />
+  <TextField variant="standard"  name="To"  placeholder="To" value= {TO} onChange={event=>setto(event.target.value)} /></TableCell>
+  <TableCell><TextField variant="standard"   name="DepartureTime" placeholder="DepartureTime" value={DepartureTime} onChange={event=>setDT(event.target.value)} />
+    <TextField variant="standard"   name="ArrivalTime" placeholder="ArrivalTime" value= {ArrivalTime} onChange={event=>setat(event.target.value)} /></TableCell>
+         {/* roundtripp */}
+  <TableCell><TextField variant="standard"   name="DepartureTime" placeholder="RDepartureTime" value={RDepartureTime} onChange={event=>setrDT(event.target.value)} />
+  <TextField variant="standard"   name="ArrivalTime" placeholder="RArrivalTime" value= {RArrivalTime} onChange={event=>setrat(event.target.value)} /> </TableCell>
+{/* roundtripp */}
+<TableCell> <TextField variant="standard"  name="First"  placeholder="First" value={First} onChange={event=>setF(event.target.value)}  /></TableCell>
+    <TableCell> <TextField variant="standard"   name="EconomySeats" placeholder="EconomySeats" value= {EconomySeats} onChange={event=>setE(event.target.value)} /></TableCell>
+    <TableCell> <TextField variant="standard"   name="BusinessSeats" placeholder="BusinessSeats" value={BusinessSeats} onChange={event=>setB(event.target.value) }  /></TableCell>
+ 
+    <TableCell><TextField variant="standard"  name="DepartureTerminal"  placeholder="DepartureTerminal" value= {DepartureTerminal} onChange={event=>setDter(event.target.value)}  />
+   <TextField variant="standard"  name="ArrivalTerminal"  placeholder="ArrivalTerminal" value={ArrivalTerminal} onChange={event=>setater(event.target.value)}  /></TableCell>
+    <TableCell><TextField variant="standard"  name="BaggageAllowance"  placeholder="BaggageAllowance" value= {BaggageAllowance} onChange={event=>setBag(event.target.value)}  /></TableCell>
+    <TableCell><TextField variant="standard"  name="Flight Type"  placeholder="Flight Type" value= {Type} onChange={event=>setType(event.target.value)}  /></TableCell>
+    <TableCell><TextField variant="standard"  name="TicketPrice"  placeholder="TicketPrice" value= {TicketPrice} onChange={event=>setPrice(event.target.value)}  /></TableCell>
     {/* <Button variant="contained" id={props.row._id} type="submit"value='pay' onClick={handleToken} color="primary"> Payment </Button>   */}
     
     <StripeCheckout 
