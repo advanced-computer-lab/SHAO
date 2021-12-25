@@ -29,6 +29,9 @@ Reserving online, recieving the airplane ticket and online payment using visa/ma
 
 ## Available Scripts
 
+### `npm i`
+
+Installs all the packages used in the project.<br>
 
 ### `nodemon app.js`
 
@@ -145,4 +148,16 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 
 
- 
+ ## Credits
+
+ ### Stack Overflow (https://stackoverflow.com/)
+ ### GeeksForGeeks (https://www.geeksforgeeks.org/)
+ ### Material UI (https://mui.com/)
+
+
+
+
+
+ ## License
+
+ ### Copyright © Shao AirLines 2021.

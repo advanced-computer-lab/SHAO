@@ -87,9 +87,9 @@ else{try {
    console.log(result.Email)
    var mailOptions = {
      from: 'aclproject23@gmail.com',
-     to: 'aclproject23@gmail.com',
+     to: result.Email,
      subject: 'Sending Email using Node.js',
-     text: 'Dear, '+result.Name+'. You successfully paid for your flight'
+     text: 'Dear, '+result.Name+'. You successfully paid for your flight.'
    };
    
    transporter.sendMail(mailOptions, function(error, info){
@@ -122,7 +122,7 @@ res.json({error, status});})
 
 
 
-  RF.find({User:req.params.id}, async function (err, docs) {
+  RF.find({User:req.params.id, Flight:req.body.id}, async function (err, docs) {
 
 
 
@@ -158,9 +158,9 @@ res.json({error, status});})
         console.log(result.Email)
         var mailOptions = {
           from: 'aclproject23@gmail.com',
-          to: 'aclproject23@gmail.com',
+to: result.Email,
           subject: 'Sending Email using Node.js',
-          text: 'how are you dear,'+result.Name+'Your flight reservation was confirmed'
+          text: 'Dear, '+result.Name+'. Your flight reservation is confirmed.'
         };
         
         transporter.sendMail(mailOptions, function(error, info){
@@ -207,9 +207,9 @@ res.json({error, status});})
         console.log(result.Email)
         var mailOptions = {
           from: 'aclproject23@gmail.com',
-          to: 'aclproject23@gmail.com',
+          to: result.Email,
           subject: 'Sending Email using Node.js',
-          text: 'how are you dear,'+result.Name+'Your flight reservation was confirmed'
+          text: 'Dear, '+result.Name+'. Your flight reservation is confirmed.'
         };
         
         transporter.sendMail(mailOptions, function(error, info){
@@ -333,9 +333,9 @@ await RF.findOne({User: req.params.id , Flight :req.body.id}).then( res=>{
             console.log(result.Email)
             var mailOptions = {
               from: 'aclproject23@gmail.com',
-              to: 'aclproject23@gmail.com',
-              subject: 'Sending Email using Node.js',
-              text: 'how are you dear,'+result.Name+'Your flight reservation was canceld'
+    to: result.Email
+   ,               subject: 'Sending Email using Node.js',
+              text: 'Dear, '+result.Name+'. Your flight reservation is cancelled.'
             };
 
             transporter.sendMail(mailOptions, function(error, info){
@@ -384,9 +384,9 @@ await RF.findOne({User: req.params.id , Flight :req.body.id}).then( res=>{
         console.log(result.Email)
         var mailOptions = {
           from: 'aclproject23@gmail.com',
-          to: 'aclproject23@gmail.com',
+          to: result.Email,
           subject: 'Sending Email using Node.js',
-          text: 'Dear,'+result.Name+'Your profile was updated'
+          text: 'Dear, '+result.Name+'. Your profile is updated.'
         };
         
         transporter.sendMail(mailOptions, function(error, info){

@@ -121,6 +121,8 @@ FlightRoutes.post("/Addflight", (req, res) => {
     var type= req.body.Type;
     var price= req.body.TicketPrice;
 
+    var rarr = Date.parse(req.body.RArrivalTime);
+    var rdep = Date.parse(req.body.RDepartureTime);
 
 
 var x;
@@ -146,7 +148,7 @@ var x;
     }
 
 
-     if(from===to || arr<dep)
+     if(from===to || arr<dep || rarr<rdep)
      {
        console.log("From=To Error")
      }
@@ -174,8 +176,8 @@ var x;
 
      RTo:from,
      RFrom:to, 
-     RArrivalTime:dep,
-     RDepartureTime : arr,  
+     RArrivalTime:rarr,
+     RDepartureTime : rdep,  
      RArrivalTerminal:Dept,
      RDepartureTerminal:Arrt,
   

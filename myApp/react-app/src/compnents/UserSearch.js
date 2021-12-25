@@ -1115,7 +1115,7 @@ function Row2(props){
 
   return(<TableRow key={props.row._id}>   {/* de el sha8ala */}
   
-    <TableCell><TextField variant="standard" name="Flight_number"  placeholder="F" value={Flight_number} onChange={event=>setfn(event.target.value)}  />
+    <TableCell><TextField variant="standard" name="Flight_number"  placeholder="Flight_number" value={Flight_number} onChange={event=>setfn(event.target.value)}  />
 </TableCell>
     <TableCell><TextField variant="standard" name="From" value= {From} placeholder="From" onChange={event=>setFrom(event.target.value)}  />
   </TableCell>

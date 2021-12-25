@@ -90,13 +90,11 @@ export default function SignIn() {
  catch(err){
     if(err.response.status===400)
     { 
-      // const notify = () => {
       if(! toast.isActive(toastId.current)) {
         toastId.current = toast.error(err.response.data,{
           position: toast.POSITION.TOP_RIGHT, textAlign: 'center' , icon: "❗️"});
       }
-    // }
-    // return  {notify}
+    
     }           
 
  }

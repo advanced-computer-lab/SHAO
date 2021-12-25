@@ -55,7 +55,7 @@ function Showresflights({}) {
      return (
 
       <Paper>
-      <Table sx={{ maxWidth: 100 }} >
+      <Table >
         <TableHead >
           <TableRow>
           <TableCell style={{width: '1%'}}>Flight<br/>Number</TableCell>
@@ -142,8 +142,8 @@ function Row(props){
     setPrice(props.row.Flight.TicketPrice);
     
 
-    setrDT(props.row.RDepartureTime);
-    setrat(props.row.RArrivalTime);
+    setrDT(props.row.Flight.RDepartureTime);
+    setrat(props.row.Flight.RArrivalTime);
   
 
   },[])
@@ -188,19 +188,6 @@ else
 }
   console.log({token, addresses});
 }
-
-
-
-
-      
-
-
-  
-
-
-
-
-
 
 
 //endpay

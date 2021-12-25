@@ -37,6 +37,15 @@ import FormHelperText from '@mui/material/FormHelperText';
 import Checkbox from '@mui/material/Checkbox';
 import Seatmap from 'react-seatmap';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+toast.configure();
+
+
+
+
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -292,6 +301,20 @@ function Row(props){
 
 
   const [openR, setOpenR] = React.useState(false);
+
+  const redirectlogin = async () => { //Reserve Seats pop up
+
+    function sleep(ms) {
+      return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+      });
+    } 
+
+        toast('Redirecting to login to reserve');
+
+  await sleep(5000);
+ window.location.replace('http://localhost:3000/SignIn');
+  };
 
   const handleClickOpenR = () => { //Reserve Seats pop up
     setOpenR(true);
@@ -730,10 +753,11 @@ Flight Details            </Typography>
 
 
 
-      <Button variant="contained" id={props.row._id} type="submit"value='reserve' 
-      onClick={handleClickOpen,handleClickOpenR} color="primary"> Reserve </Button>
+      <Button  variant="contained" id={props.row._id} type="submit"value='reserve' 
+      onClick={redirectlogin} color="primary"> Reserve </Button>  
+
+      {/* henareserve */}
       
-      <Button variant="contained" id={props.row._id} type="submit"value='cancelreserve' onClick={handleClickOpenC} color="secondary"> Cancel reservation </Button>  
     
       <Dialog
         fullScreen

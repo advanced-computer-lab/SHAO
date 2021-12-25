@@ -82,14 +82,24 @@ DepartureTime:DepartureTime ,
       </div>
       <div>
         
-        <TextField variant="standard" name="DepartureTime" label="Departure Time" onChange={event=>setDT(event.target.value)} />
-        <TextField variant="standard" name="To"  label="To" onChange={event=>setto(event.target.value)} />
+
         <TextField variant="standard" name="From"  label="From" onChange={event=>setFrom(event.target.value)}  />
-        <TextField variant="standard" name="ArrivalTime" label="Arrival Time" onChange={event=>setat(event.target.value)} />
+        <TextField variant="standard" name="To"  label="To" onChange={event=>setto(event.target.value)} />
+        <TextField variant="standard" name="DepartureTerminal"  label="Departure Terminal" onChange={event=>setDter(event.target.value)}  />
+        <TextField variant="standard" name="ArrivalTerminal"  label="Arrival Terminal" onChange={event=>setater(event.target.value)}  />
 
         
- 
       </div>
+      <div>
+        <TextField variant="standard" name="DepartureTime" label="Departure Time" onChange={event=>setDT(event.target.value)} />
+        <TextField variant="standard" name="ArrivalTime" label="Arrival Time" onChange={event=>setat(event.target.value)} />
+
+              
+      <TextField variant="standard" name="DepartureTime" label="Return Departure Time" onChange={event=>setrDT(event.target.value)} />
+      <TextField variant="standard" name="ArrivalTime" label="Return Arrival Time" onChange={event=>setrat(event.target.value)} />
+</div>
+ 
+      
       <div>
         
   
@@ -97,23 +107,22 @@ DepartureTime:DepartureTime ,
   
     <TextField variant="standard" name="EconomySeats" label="Economy Seats" onChange={event=>setE(event.target.value)} />
     <TextField variant="standard" name="BusinessSeats" label="Business Seats" onChange={event=>setB(event.target.value)}  />
-    <TextField variant="standard" name="DepartureTerminal"  label="Departure Terminal" onChange={event=>setDter(event.target.value)}  />
-      </div>
-      <div>
-      <TextField variant="standard" name="ArrivalTerminal"  label="Arrival Terminal" onChange={event=>setater(event.target.value)}  />
-
- 
+    
     <TextField variant="standard" name="BaggageAllowance"  label="Baggage Allowance" onChange={event=>setBag(event.target.value)}  />
 
-    <TextField variant="standard" name="Type"  label="Type" onChange={event=>setType(event.target.value)}  />
+      </div>
+      <div>
+
+ 
     <TextField variant="standard" name="TicketPrice"  label="Ticket Price" onChange={event=>setPrice(event.target.value)}  />
+    <TextField style = {{width:'3%'}} variant="standard" name="Type"  label="N/RT" onChange={event=>setType(event.target.value)}  />
+
       </div>
 
 
       <div>
-         
-      <TextField variant="standard" name="DepartureTime" label="Return Departure Time" onChange={event=>setrDT(event.target.value)} />
-      <TextField variant="standard" name="ArrivalTime" label="Return Arrival Time" onChange={event=>setrat(event.target.value)} />
+   
+
 
       </div>
 

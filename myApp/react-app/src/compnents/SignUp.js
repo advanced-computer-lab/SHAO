@@ -16,7 +16,11 @@ import { useState } from 'react';
 import axios from "axios";
 import SignIn from './login';
 import { ReactDOM } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+
+toast.configure();
 
 function Copyright(props) {
   return (
@@ -45,6 +49,7 @@ export default function SignUp() {
  const [MartialStatus, setms] = useState();
 
  const [errorMessage, setErrorMessage] = useState('');
+ const toastId = React.useRef(null);
 
   const handleSubmit = (event) => axios.post('http://localhost:8080/auth/createuser',{
    
@@ -66,11 +71,14 @@ export default function SignUp() {
   .catch((err)=> {
     
 
-    console.log(errorMessage);
       if (err.response) {
 
-        console.log(errorMessage);
-      }
+        if(! toast.isActive(toastId.current)) {
+          toastId.current = toast.error(err.response.data,{
+            position: toast.POSITION.TOP_RIGHT, textAlign: 'center' , icon: "❗️"});
+        }      }
+
+        
   })
 
   return (

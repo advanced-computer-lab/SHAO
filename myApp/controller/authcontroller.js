@@ -57,6 +57,8 @@ AuthRoutes.post("/login", async (req, res) => {
 
 AuthRoutes.post("/createuser",  (req, res) => {  
     const user = new User(req.body);
+
+    
     user.save()
     .then(result=>{
      res.status(200).json({
