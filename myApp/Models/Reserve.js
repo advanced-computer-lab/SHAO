@@ -14,6 +14,15 @@ const ReservedFlightSchema =  new Schema ({
   Reservedseats:{
     type: [],
   },
+  Payed:{
+    type: Boolean,
+    default: false,
+
+  },
+  Amount:{
+    type: Number,
+  },
+
 }, { timestamps: true });
 // mongoose.models={}
 const ReservedFlight = mongoose.model('ReservedFlight', ReservedFlightSchema);

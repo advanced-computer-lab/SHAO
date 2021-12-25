@@ -21,13 +21,22 @@ var crypto = require("crypto");
 UserRoutes.use(express.json());
 UserRoutes.use(cors());
 
-UserRoutes.post("/checkout", async (req,res) => {
-console.log("Request:", req.body);
+UserRoutes.post("/checkout/:id", async (req,res) => {
+//console.log("Request:", req.body);
+console.log(req.body.id)
 
-let error;
-let status;
+RF.findOne({User:req.params.id, Flight:req.body.id}).then
+( async result=>{ 
+  
+  let error;
+  let status;
+  
+  if(result!=null && result.Payed){
+    status = "payed";
+  }
+ 
 
-try {
+else{try {
   const {product, token}=req.body;
   const customer = await
   stripe.customers.create({
@@ -36,6 +45,7 @@ try {
   });
   var uuid = crypto.randomBytes(20).toString('hex');
   const idempotency_key = uuid;
+  
   const charge = await stripe.charges.create({
     amount: product.price * 100,
     currency: "usd",
@@ -60,15 +70,47 @@ try {
   }
   );
 
+  RF.findOneAndUpdate({User:req.params.id,Flight:req.body.id},{ $set:{Amount:(product.price) , Payed : (true)}},{new : true}).then(res=>{console.log(res)})
   console.log("Charge:", {charge});
   status = "success";
+  User.findById(req.params.id)
+     
+  .then(result => {
+    
+   var transporter = nodemailer.createTransport({
+     service: 'gmail',
+     auth: {
+       user: 'aclproject23@gmail.com',
+       pass: '#acl123456'
+     }
+   });
+   console.log(result.Email)
+   var mailOptions = {
+     from: 'aclproject23@gmail.com',
+     to: 'aclproject23@gmail.com',
+     subject: 'Sending Email using Node.js',
+     text: 'Dear, '+result.Name+'. You successfully paid for your flight'
+   };
+   
+   transporter.sendMail(mailOptions, function(error, info){
+     if (error) {
+       console.log(error);
+     } else {
+       console.log('Email sent: ' + info.response);
+     }
+   });
+    //console.log(result);
+        })
+        .catch(err => {
+          console.log(err);
+        });
 } catch (error) {
   console.error("Error:", error);
   status = "failure";
   
 }
-
-res.json({error, status});
+}
+res.json({error, status});})
 });
 
 
@@ -206,8 +248,77 @@ res.json({error, status});
 
  
 
-  UserRoutes.post('/cancelreserve/:id', (req,res) => {
+  UserRoutes.post('/cancelreserve/:id', async (req,res) => {
+    console.log(req.params.id);
+    console.log(req.body.id);
+await RF.findOne({User: req.params.id , Flight :req.body.id}).then( res=>{
+  console.log(res);
+  console.log(res.Reservedseats);
 
+  for (let i = 0; i < res.Reservedseats.length; i++) {
+    
+    console.log(res.Reservedseats[i].charAt(0))
+    var x = res.Reservedseats[i].charAt(0);
+    
+    if(x == "F" ){
+      
+      
+      Flight.findByIdAndUpdate(req.body.id,{ $push: {AvailableFSeats : res.Reservedseats[i]}},{new : true}).catch(err => {
+        console.log(err);
+      
+    
+    
+  })
+    }
+    if(x === "E" ){
+      
+      
+      Flight.findByIdAndUpdate(req.body.id,{ $push: {AvailableESeats : res.Reservedseats[i]}},{new : true}).catch(err => {
+        console.log(err);
+      
+    
+    
+  })
+    
+    
+  
+  }
+  if(x === "B" ){
+      
+      
+    Flight.findByIdAndUpdate(req.body.id,{ $push: {AvailableBSeats : res.Reservedseats[i]}},{new : true}).catch(err => {
+      console.log(err);
+    
+  
+  
+})
+  
+    
+  }}
+
+  Flight.findById(req.body.id).then(res=>{
+    Flight.findByIdAndUpdate(req.body.id,{First: res.AvailableFSeats.length, EconomySeats:res.AvailableESeats.length,BusinessSeats:res.AvailableBSeats },{new : true})
+
+  })
+//   ),{ EconomySeats : result.AvailableESeats.length},{new : true}).catch(err => {
+//     console.log(err);
+  
+// })
+
+
+
+}).then(RF.findOne({User: req.params.id , Flight :req.body.id}).then( res=>{
+  
+  
+  console.log(res._id)
+  RF.deleteOne({_id:res._id}, function (err, docs) {
+  if (err){
+      console.log(err)
+  }
+  else{
+      console.log("Deleted : ", docs);
+  }
+});}))
 
     User.findById(req.params.id )
   
@@ -226,7 +337,7 @@ res.json({error, status});
               subject: 'Sending Email using Node.js',
               text: 'how are you dear,'+result.Name+'Your flight reservation was canceld'
             };
-            //
+
             transporter.sendMail(mailOptions, function(error, info){
               if (error) {
                 console.log(error);

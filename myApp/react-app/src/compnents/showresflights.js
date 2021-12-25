@@ -159,16 +159,27 @@ console.log(props.row.Reservedseats.length);
 
   });
 
-async function handleToken(token, addresses) {
- const response = await axios.post("http://localhost:8080/user/checkout",{
-      token,
-      product
+  async function handleToken(token, addresses) {   
+  console.log(props.row.Flight._id); 
+  var s=String(auth.user._id);
+ const response = await axios.post("http://localhost:8080/user/checkout/"+s,{
+  
+       token,
+       product,
+       id:props.row.Flight._id,
+      
+       
   });
 const {status} = response.data
 if(status === 'success')
 {
   toast('Success! Check email for details',
   {icon: "✅"})
+}
+else if (status === 'payed') {
+ 
+  toast('Already payed',
+  {icon: "❌"}) 
 }
 else
 {
@@ -227,10 +238,10 @@ else
             amount={product.price * 100}
             name={product.name}
 
-
+            
             />
     
-    <Button variant="contained" id={props.row._id} type="submit"value='cancelreserve' onClick={handleClickOpenC} color="secondary"> Cancel reservation </Button>  
+    <Button variant="contained" id={props.row.Flight._id} type="submit"value='cancelreserve' onClick={handleClickOpenC} color="secondary"> Cancel reservation </Button>  
 
       
     <Dialog
@@ -249,7 +260,7 @@ else
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCloseC}>No</Button>
-          <Button id ={props.row._id} onClick={Handlecreserve} autoFocus>
+          <Button id ={props.row.Flight._id} onClick={Handlecreserve} autoFocus>
             Yes
           </Button>
         </DialogActions>
