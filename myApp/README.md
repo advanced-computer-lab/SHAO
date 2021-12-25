@@ -29,11 +29,11 @@ Reserving online, recieving the airplane ticket and online payment using visa/ma
 
 ## Available Scripts
 
-Please note that any time the server is run in these scripts `nodemon` is used in place of `node` for easier development. If you are interested in how this works follow the nodemon In the project directory, you can run:
 
 ### `nodemon app.js`
 
 Runs both the client app and the server app in development mode.<br>
+`nodemon` is used in place of `node` for easier development.
 Open [http://localhost:3000](http://localhost:3000) to view the client in the browser.
 
 ### `npm start`
@@ -63,6 +63,9 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
   - [Express(.js) - 4.16.1]() - `npm i express`
   - [React(.js) - 17.0.2 ]() - `npm i react`
   - [Nodemon(.js) - 2.0.15]() - `npm i nodemon`
+
+  - [axios - 0.24.0]() - `npm i axios` Axios was used as well to connect the frontend with the backend.
+
   - Check (https://www.mongodb.com/mern-stack) for more information about MERN stack.
 
 
@@ -127,27 +130,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 #### Logout
 
 
-## tt
 
 
-
-
-
-
-
-
-
-
-
-
-  - [nodejs - ]()
-  - [react - 17.0.2 ]()
-  - [mongodb - 4.1.3]()
-  - [mongoose - 6.0.12]()
-  - [axios - 0.24.0]()
-  - [express - 4.16.1]()
-  - [nodemon - 2.0.15]()
-  - [axios - 0.24.0]()
-  - [axios - 0.24.0]()
 
  

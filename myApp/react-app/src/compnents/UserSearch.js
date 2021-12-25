@@ -288,7 +288,7 @@ function Row(props){
     axios.post('http://localhost:8080/user/reserve/' + x,{
       id:s,
     })
-    window.location.replace('http://localhost:3000/payment');
+    window.location.replace('http://localhost:3000/user/Showresflights');
     
 
 
