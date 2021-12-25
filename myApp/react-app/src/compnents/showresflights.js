@@ -145,11 +145,10 @@ function Row(props){
 //start pay
 
 
-  
-
+console.log(props.row.Reservedseats.length);
   const [product] = React.useState({
       name: 'Flight No: ' + props.row.Flight.FlightNumber,
-      price: props.row.Flight.TicketPrice,
+      price: (props.row.Flight.TicketPrice)*(props.row.Reservedseats.length),
 
   });
 

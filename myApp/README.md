@@ -102,7 +102,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Functionalities
 
-### Admin
+### Admin Functions
 
 #### Sign In
 #### Home Page
@@ -116,7 +116,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 
 
-### User
+### User Functions
 
 #### Sign In
 #### Home Page
@@ -130,6 +130,18 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 #### Logout
 
 
+
+
+
+### Flight Attributes
+
+#### Flight Number
+#### From/To
+#### Arrival/Departure Time
+#### Type
+#### Baggage Allowance
+#### Reserved Seats
+#### Ticket Price
 
 
 
