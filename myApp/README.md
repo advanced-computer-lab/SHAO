@@ -5,12 +5,6 @@
 
 * Shady Ahmed
 
-* Hatem Nair
-
-* Hania Ashraf
-
-* Omar Emad
-
 ## Start file
 
 app.js
